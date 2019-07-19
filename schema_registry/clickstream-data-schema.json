@@ -1,0 +1,74 @@
+{
+ "type": "record",
+ "namespace": "cloudera.workshop.clickstream",
+ "name": "clickstream_event",
+ "fields": [
+  {
+   "name": "clickstream_id",
+   "type": "string"
+  },
+  {
+   "name": "timestamp",
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  {
+   "name": "IPaddress",
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  {
+   "name": "url",
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  {
+   "name": "is_purchased",
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  {
+   "name": "is_page_errored",
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  {
+   "name": "user_session_id",
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  {
+   "name": "city",
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  {
+   "name": "state",
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  {
+   "name": "country",
+   "type": [
+    "null",
+    "string"
+   ]
+  }
+ ]
+}

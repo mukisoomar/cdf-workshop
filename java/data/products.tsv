@@ -1,0 +1,17 @@
+url category    id
+http://RL.com  home page    1000
+http://RL.com/product/1001 checking account    1001
+http://RL.com/product/1002	savings account 	1002
+http://RL.com/product/1003	money market	1003
+http://RL.com/product/2001	mortgage-30yr-fixed	2001
+http://RL.com/product/2002	mortgage-15yr-fixed	2002
+http://RL.com/product/3001	VISA-Debit	3001
+http://RL.com/product/3002	VISA-Signature	3002
+http://RL.com/product/3003	IRA	3003
+http://RL.com/product/3004	home equity	3004
+http://RL.com/product/3005	home improvement	3005
+http://RL.com/product/4001	health savings	4001
+http://RL.com/product/4002	overdrft protection	4002
+http://RL.com/product/4003	boat RV loan	4003
+http://RL.com/product/4004	car loan	4004
+http://my.bank.com/product/4005	merit access	4005
