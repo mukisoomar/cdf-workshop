@@ -161,7 +161,7 @@ Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and fol
  
   We are now going to explore what came into the ListenTCP processor and how this data is now available from the queue connection we created between the processor and the funnel.  
   - Right click on the **success queue** and from the context menu, select **List Queue** item. 
-    ![Selecting List Queue](images/Queue-list-1.png.png)  
+    ![Selecting List Queue](images/Queue-list-1.png.png)
     - This will open up a window showing all the flowfiles that were received by the **ListenTCP** processor and forwarded to the connection queue.
     ![Selecting List Queue](images/Queue-list-2.png.png)  
     - Select the "info icon in the first column", This will open up the a window to show the corresponding flow file details. Observe some of the attributes on the **DETAILS** tab. Each flowfile has a unique id associated with that and a unique filename given to it. Also shows the size of the file. You can download the contents of the file to your computer by clicking on the **Download Button** or click on the **View Button** to view what was received. 
