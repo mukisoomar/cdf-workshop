@@ -167,12 +167,17 @@ Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and fol
   - Click on the **View Button** and you will see the contents in another tab of your browser window that pops up. Keep this window open for using later. ![Flowfile Contents](images/Queue-list-4.png.png)
   - Go back to your **FlowFile** details window. Click on the **ATTRIBUTES** tab. This provides the details of the attributes that are associated with the flow file. Click OK and close the queue list window to return back to your canvas. ![Flowfile Contents](images/Queue-list-5.png.png)
   
-###Process and enrich content
+### Process and enrich content
 In this lab, we will further enrich and process content that was received from the log generator simulating a web click stream.
 
 We will perform the following steps:
-1. First, we need to be able to parse the data so we can use the values of interest to us and use them to either route or make calls using them. In our lab, we will query a user database using the **UserSessionId** value and enrich the content so we can perform more richer and contextual analysis by knowing who the customer/user is who came to the website and was browsing our products. For this we will define a schema and persist into the schema registry.
-2. Configure a parser - **UpdateAttribute**, to reference the name of the schema in the registry that will be used for processing content within our flows.
+- **Step 1: Define clickstream_events schema and register it within the Schema Registry**    
+  First, we need to be able to parse the data so we can use the values of interest to us to either route or make calls to external services using them.   
+
+  For this we will define a schema called **clicstream_events** and persist into the schema registry. This will allow us to reference this data structure to parse data by different services as we shall see in the lab. 
+  
+- **Step 2: Configure the UpdateAttribute NiFi Processor**  
+To reference the name of the schema in the registry that will be used for processing content within our flows.
 3. Configure a processor - **SplitRecord**, to first parse the streaming content that comes in as csv data (withi pipe delimited) using the schema we defined earlier, convert it into **json** data, as well as split the content into individual data. Depending of the speed of the streaming data, we may receive multiple records within one batch so we need to split it if we need to process each record individually. For this we will also have to configure to record processing services - one for reading CSV data and another to convert and write that data as json records. 
 4. Configure a processorNext we will extract the values from each record that is of interest to us. In this lab, we will extract all values in the record.
 5. We will 
