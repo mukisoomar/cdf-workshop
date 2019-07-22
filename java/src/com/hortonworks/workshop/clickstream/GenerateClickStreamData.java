@@ -49,7 +49,10 @@ public class GenerateClickStreamData {
         // Read data/omniture file, iterate over each line
         try {
             Path omnitureFilePath = FileSystems.getDefault().getPath("data", PRODUCTS_DESCR);
-        } catch
+        } catch (Exception e) {
+            System.out.println ("Main: Omniture file exception.");
+            e.printStackTrace();
+        }
 
 
         FileInputStream inputStream = null;
