@@ -139,7 +139,6 @@ Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and fol
   Get into the CDF Workshop process group (double click on the process group).  
   - Drag a **ListenTCP** processor to the canvas
   - Double click on the processor
-  -   - Double click on the processor
   - On settings tab, change the **Name** parameter value to **Listen for clickstream log events**
   - On properties tab, change **Port** value to **9797**
   - You can hover on the **?** icon by each property value to see what they are for, but leave the default values as they are.
@@ -155,6 +154,7 @@ Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and fol
     `.\publish-clickstream-to-nifi.sh 1`. 
    You will now see that the script executes and does not error out since it is now able to connect to the **ListenTCP** processor and send the data packets over.
    - Within your NiFi flow, you should now see data coming in and the messages in the queue connection piling up.
+   ![listenTCP processor consuming messages from publish-clickstream-to-nifi.sh script](images/TCP-Listener-Config-3.png.png)
    - Stop the **publish-clickstream-to-nifi.sh** script by using **CTL-C**. 
 
   
