@@ -157,8 +157,20 @@ Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and fol
    ![listenTCP processor consuming messages from publish-clickstream-to-nifi.sh script](images/TCP-Listener-Config-3.png.png)
    - Stop the **publish-clickstream-to-nifi.sh** script by using **CTL-C**. 
 
+- **Step 6: Explore data in queue**  
+ 
+  We are now going to explore what came into the ListenTCP processor and how this data is now available from the queue connection we created between the processor and the funnel.  
+  - Right click on the **success queue** and from the context menu, select **List Queue** item. 
+    ![Selecting List Queue](images/Queue-list-1.png.png)
+    - This will open up a window showing all the flowfiles that were received by the **ListenTCP** processor and forwarded to the connection queue.
+    ![Selecting List Queue](images/Queue-list-2.png.png)  
+    - Select the "info icon in the first column", This will open up the a window to show the corresponding flow file details. Observe some of the attributes on the **DETAILS** tab on. Each flowfile has a unique id associated with that and a unique filename given to it. Also shows the size of the file. You can download the contents of the file to your computer by clicking on the **Download Button** or click on the **View Button** to view what was received. Click on the **View Button** and you will see the contents in another tab of your browser window that pops up. Keep this window open for using later.
+    ![Flowfile Details](images/Queue-list-3.png.png)
+    ![Flowfile Contents](images/Queue-list-4.png.png)  
+    - Go back to your **FlowFile** details window. Click on the **ATTRIBUTES** tab. This provides the details of the attributes that are associated with the flow file. Click OK and close the queue list window to return back to your canvas.
   
-- **Step 6 TODO:** Add an UpdateAttribute connector to the canvas and link from ConnectWebSocket on **text message** relationship
+  
+- **Step 7 TODO:** Add an UpdateAttribute connector to the canvas and link from ConnectWebSocket on **text message** relationship
   - Double click on the processor
   - On properties tab add new property **mime.type** clicking on + icon and give the value **application/json**. This will tell the next processor that the messages sent by the Meetup WebSocket is in JSON format.
   - Add another property **event** to set an event name **CDF workshop** for the purpose of this exercise as explained before
