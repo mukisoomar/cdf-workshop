@@ -16,6 +16,7 @@
 
 * [Lab 1 - Accessing the sandbox](#accessing-the-sandbox)
 * [Lab 2 - Stream data using NiFi](#stream-data-using-nifi)
+* [Lab 2.2 - Build the first NiFi flow](##Build-the-first-NiFi-flow)
 * [Lab 3 - Explore Kafka](#explore-kafka)
 * [Lab 4 - Integrate with Schema Registry](#integrate-with-schema-registry)
 * [Lab 5 - Explore Hive, Druid and Zeppelin](#explore-hive-druid-and-zeppelin)
@@ -82,9 +83,6 @@ On Windows use [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest
 ![Image of Putty ssh](images/login_with_putty_2.png)
 
 ## Stream data using NiFi
-
-### Build NiFi flow
-
 In these labs while exploring the Cloudera Platform technologies, we are going to build a Web Click Stream Analytics Application that will allow us to monitor the interest in the products that the customers are most interested. For this we are going to have a fictitious financial institution called (my.bank.com) that exposes its financial products to its customers as well as general public and will monitor the interest in its products advertised through its website.
 
 While this example is for a financial institution, this use case in general is applicable in any vertical including retail and any other consumer oriented business. The monitoring aspect of the interest in the products could generally be for understanding the consumer behavior for the products or also for understanding the efficacy of a marketing campaign for new products or for promotions of existing products. The insights derived from real-time monitoring and notifications can be leveraged for makign decisions in real-time on which products to focus the most or which segment of the consumers to target the most. Many such scenarious evolve when you have the right information at the right time, so that you can take pro-active actions in real-time. 
@@ -93,7 +91,9 @@ In order to have a web-click stream data source available for our workshop, we a
 
 The streaming data will be captured via a socket listener processor in NiFi that the script will forward to.  
 
-TODO: Image of the overall architecture
+TODO: Image of the overall architecture.
+
+### Build the first NiFi flow
 
 Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and follow the steps below:
 
