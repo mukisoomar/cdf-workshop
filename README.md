@@ -16,7 +16,7 @@
 
 * [Lab 1 - Accessing the sandbox](#accessing-the-sandbox)
 * [Lab 2 - Stream data using NiFi](#stream-data-using-nifi)
-* [Lab 2.2 - Build the first NiFi flow](##Build-the-first-NiFi-flow)
+* [Lab 2.2 - Build the first NiFi flow](#Build-the-first-NiFi-flow)
 * [Lab 3 - Explore Kafka](#explore-kafka)
 * [Lab 4 - Integrate with Schema Registry](#integrate-with-schema-registry)
 * [Lab 5 - Explore Hive, Druid and Zeppelin](#explore-hive-druid-and-zeppelin)
