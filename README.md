@@ -152,12 +152,14 @@ Follow the below steps:
   - Drag the **funnel icon** from the menu bar at the top on the canvas.
   - Connect the **ListenTCP** processor to the **funnel icon**. A **Create Connection** icon pops up with the **success** box checked. Accept the default and click on the **Add button*
   - The **funnel** is used to typically collect flowfiles from different processors. However we are using it here as a place-holder for future flows and to collect the data that comes in from the **ListenTCP Processor** and send that data to the intermediate queue to help explore the data as it comes in.
-  ![listenTCP processor flow](  TCP-Listener-Config-2.png.png)
+  ![listenTCP processor flow](images/TCP-Listener-Config-2.png.png)
   
    - Start the processor by righ-clicking on the processor and clicking on the **start** menu item. This will start the processor and it will now listen on the port **9797** for incoming packets.
-   - Go back to your command prompt window and now execute the publish-clickstream-to-nifi.sh script by executing the following command. `.\publish-clickstream-to-nifi.sh 1`. You will now see that the script executes and does not error out since it is now able to connect to the **ListeTCP** processor and send the data packets over.
+   - Go back to your command prompt window and now execute the publish-clickstream-to-nifi.sh script by executing the following command.
+    `.\publish-clickstream-to-nifi.sh 1`. 
+   You will now see that the script executes and does not error out since it is now able to connect to the **ListenTCP** processor and send the data packets over.
    - Within your NiFi flow, you should now see data coming in and the messages in the queue connection piling up.
-   - Stop the **publish-clickstream-to-nifi.sh** script by using 'CTL-C'. 
+   - Stop the **publish-clickstream-to-nifi.sh** script by using **CTL-C**. 
 
   
 - Step 6: TODO: Add an UpdateAttribute connector to the canvas and link from ConnectWebSocket on **text message** relationship
