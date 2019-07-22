@@ -134,9 +134,9 @@ Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and fol
   - `write-clickstream-to-file.sh` : This script writes the output to a file in the "../data/weblogs" directory in a file called "weblogs.log". **We will use this file later to have minifi capture the logs written to this file and publish it over to NiFi.**  
 
 
-- **Step 5: Configure a ListenTCP Processor** 
+- **Step 5: Configure a ListenTCP Processor**  
  
- Get into the CDF Workshop process group (double click on the process group). 
+  Get into the CDF Workshop process group (double click on the process group).  
   - Drag a **ListenTCP** processor to the canvas
   - Double click on the processor
   -   - Double click on the processor
