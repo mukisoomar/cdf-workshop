@@ -92,6 +92,7 @@ In order to have a web-click stream data source available for our workshop, we a
 
 **TODO: Image of the overall architecture.**
 
+****
 ### Build the first NiFi flow
 
 Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and follow the steps below:
@@ -164,7 +165,8 @@ Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and fol
   - Select the "info icon in the first column", This will open up the a window to show the corresponding flow file details. Observe some of the attributes on the **DETAILS** tab. Each flowfile has a unique id associated with that and a unique filename given to it. Also shows the size of the file. You can download the contents of the file to your computer by clicking on the **Download Button** or click on the **View Button** to view what was received. ![Flowfile Details](images/Queue-list-3.png.png)
   - Click on the **View Button** and you will see the contents in another tab of your browser window that pops up. Keep this window open for using later. ![Flowfile Contents](images/Queue-list-4.png.png)
   - Go back to your **FlowFile** details window. Click on the **ATTRIBUTES** tab. This provides the details of the attributes that are associated with the flow file. Click OK and close the queue list window to return back to your canvas. ![Flowfile Contents](images/Queue-list-5.png.png)
-  
+
+****  
 ### Process and enrich content
 In this lab, we will further enrich and process content that was received from the log generator simulating a web click stream.
 
