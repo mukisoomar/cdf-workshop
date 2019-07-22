@@ -93,7 +93,10 @@ In order to have a web-click stream data source available for our workshop, we a
 
 The streaming data will be captured via a socket listener processor in NiFi that the script will forward to.  
 
+TODO: Image of the overall architecture
+
 Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and follow the steps below:
+
 
 - Step 1: Drag on drop a Process Group on the root canvas and name it **CDF Workshop**
 
@@ -108,14 +111,31 @@ Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and fol
 
 - Step 3: Go back to NiFi UI and right click on the previously created process group
   - Click on Version > Start version control
-  - Then provide at least a Flow Name
+  - Then provide at least a Flow Name - clickstream-flow
   - Click on Save
+  
+  This will put your process group in version control. As you build your flows by adding processors, you can persist them from time to time in the flow registry for version control.
 
-![Version control](images/version-control.png)
+![Version control](images/version-control.png.png)
 
-![Version control 2](images/version-control-2.png)
+![Version control 2](images/version-control-2.png.png)
 
-- Step 4: Get in the CDF Workshop (double click on the process group) and add a **ConnectWebSocket** processor to the canvas
+
+- Step 4: Explore the web-app simulator script. 
+
+We will now gradually build the process flow to capture web logs. Since we dont have a real web application, we are going to use a web-application simulator that will generate the log files. Let us explore how this simulator works first.
+
+Follow the below steps:
+- SSH into your instance.
+- cd to /home/centos/cdf-workshop-master/data_gen Directory
+- There are  3 scripts here as shown below:
+	![Version control 2](images/data_gen.1.png.png)
+	
+
+
+
+- Step 5: Get in the CDF Workshop (double click on the process group). 
+As our initial step, we are going to have a TCP Listesand add a **ConnectWebSocket** processor to the canvas
   - Double click on the processor
   - On settings tab, check all relationships except **text message**
   - Got to properties tab and select or create **JettyWebSocketClient** as the WebSocket Client ControllerService
