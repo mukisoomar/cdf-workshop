@@ -98,18 +98,18 @@ TODO: Image of the overall architecture
 Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and follow the steps below:
 
 
-- Step 1: Drag on drop a Process Group on the root canvas and name it **CDF Workshop**
+- **Step 1:** Drag on drop a Process Group on the root canvas and name it **CDF Workshop**
 
 ![CDF Workshop process group](images/cdfprocessgroup.png)
 
-- Step 2: Go to [NiFi Registry](http://demo.cloudera.com:61080/nifi-registry/explorer/grid-list) and create a new bucket
+- **Step 2:** Go to [NiFi Registry](http://demo.cloudera.com:61080/nifi-registry/explorer/grid-list) and create a new bucket
   - Click on the little wrench icon at the top right corner
   - Click on the **NEW BUCKET** button
   - Name the bucket **workshop**
   
 ![NiFi Registry bucket creation](images/registry-bucket.png)
 
-- Step 3: Go back to NiFi UI and right click on the previously created process group
+- **Step 3:** Go back to NiFi UI and right click on the previously created process group
   - Click on Version > Start version control
   - Then provide at least a Flow Name - clickstream-flow
   - Click on Save
@@ -124,7 +124,7 @@ Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and fol
 - **Step 4:** Explore the web-app simulator script. 
 We will now gradually build the process flow to capture web logs. Since we dont have a real web application, we are going to use a web-application simulator that will generate the log files. Let us explore how this simulator works first.
 
-- Follow the below steps: 
+ Follow the below steps: 
   - SSH into your instance.
   - cd to `/home/centos/cdf-workshop-master/data_gen Directory`
   - There are  3 scripts here as shown below:
@@ -157,7 +157,7 @@ We will now gradually build the process flow to capture web logs. Since we dont 
    - Stop the **publish-clickstream-to-nifi.sh** script by using **CTL-C**. 
 
   
-- Step 6: TODO: Add an UpdateAttribute connector to the canvas and link from ConnectWebSocket on **text message** relationship
+- **Step 6 TODO:** Add an UpdateAttribute connector to the canvas and link from ConnectWebSocket on **text message** relationship
   - Double click on the processor
   - On properties tab add new property **mime.type** clicking on + icon and give the value **application/json**. This will tell the next processor that the messages sent by the Meetup WebSocket is in JSON format.
   - Add another property **event** to set an event name **CDF workshop** for the purpose of this exercise as explained before
@@ -165,7 +165,7 @@ We will now gradually build the process flow to capture web logs. Since we dont 
   
 ![UpdateAtrribute 1 properties](images/updateattibute1properties.png)
   
-- Step 6: Add EvaluateJsonPath to the canvas and link from UpdateAttribute on **success** relationship
+- **Step 6:** Add EvaluateJsonPath to the canvas and link from UpdateAttribute on **success** relationship
   - Double click on the processor
   - On settings tab, check both **failure** and **unmatched** relationships
   - On properties tab, change **Destination** value to **flowfile-attribute**
