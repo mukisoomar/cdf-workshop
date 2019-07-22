@@ -121,8 +121,9 @@ Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and fol
 ![Version control 2](images/version-control-2.png.png)
 
 
-- **Step 4:** Explore the web-app simulator script. 
-We will now gradually build the process flow to capture web logs. Since we dont have a real web application, we are going to use a web-application simulator that will generate the log files. Let us explore how this simulator works first. 
+- **Step 4: Explore the web-app simulator script **  
+ We will now gradually build the process flow to capture web logs. Since we dont have a real web application, we are going to use a web-application simulator that will generate the log files. Let us explore how this simulator works first. 
+ 
  Follow the below steps: 
   - SSH into your instance.
   - cd to `/home/centos/cdf-workshop-master/data_gen Directory`
@@ -134,7 +135,8 @@ We will now gradually build the process flow to capture web logs. Since we dont 
   - `write-clickstream-to-file.sh` : This script writes the output to a file in the "../data/weblogs" directory in a file called "weblogs.log". **We will use this file later to have minifi capture the logs written to this file and publish it over to NiFi.**  
 
 
-- **Step 5:** Get into the CDF Workshop process group (double click on the process group). 
+- **Step 5: Configure a ListenTCP Processor ** 
+ Get into the CDF Workshop process group (double click on the process group). 
   - Drag a **ListenTCP** processor to the canvas
   - Double click on the processor
   -   - Double click on the processor
