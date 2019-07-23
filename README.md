@@ -287,27 +287,37 @@ In this step, we will configure a **SplitRecord** processor. There are two reaso
 
    The data coming in is in the pipe delimited format. We will convert it into json format so we can extract the data we need using another processor in the next step.    
 
-   - Drag the SplitRecord processor on the canvas and perform the following steps:    
+   - Drag the **SplitRecord** processor on the canvas and perform the following steps:    
      - On the **PROPERTIES** tab    
         - *RecordReader*: Click on **CreateNewService** in the dropdown and select **CSVReader**
         - *RecordWriter*: Click on the **CreateNewService** in the dropdwon and select **JsonRecordSetWriter**
         - *Records Per Split*: 1  
       ![CSVReader Config-1](images/SplitRecord-CSVReader-1.png.png)
-        - Click on arrow next to CSVReader. It will ask you to save the configurations, which you can accept. It will then take you to the **CONTROLLER SERVICES** window. Click on the **Gear** icon. ![CSVReader Config-2](images/SplitRecord-CSVReader-2.png.png).   
+        - **Configure CSVReader Controller Service** Click on arrow next to CSVReader. It will ask you to save the configurations, which you can accept. It will then take you to the **CONTROLLER SERVICES** window. Click on the **Gear** icon. ![CSVReader Config-2](images/SplitRecord-CSVReader-2.png.png).   
         
         This will take you to the CSVReader's configuration window. Select the **PROPERTIES** tab.   
-        
-        
-         
+                 
         - Set the following properties as below (see the images for the configs below):   
            - *Schema Access Strategy*: *Use 'Schema Name' Property*
            - *Schema Registry*: Select *'create new service'* and select **HortonworksSchemaRegistry** from the dropdown.
            - *Schema Name*: $(schema.name)   
         
            ![CSVReader Config-4](images/SplitRecord-CSVReader-4.png.png)
-           ![CSVReader Config-3](images/SplitRecord-CSVReader-3.png.png)
-                
-      - On the **SETTINGS** tab  
+           ![CSVReader Config-3](images/SplitRecord-CSVReader-3.png.png)   
+           - Click **APPLY** and get out of the CSVReader Configuration Window.   
+           
+           - **Configure JsonRecordSetWriter Controller Service** From the Controller Service window (or by clicking on arrow next to JsonRecordSetWriter service, if you closed it). Click on the **Gear** icon. ![JsonRecordSetWriter Config-1](images/SplitRecord-JsonRecordSetWriter-1.png.png).   
+        
+        This will take you to the JsonRecordSetWriter's configuration window. Select the **PROPERTIES** tab.   
+         
+        - Set the following properties as below (see the images for the configs below):   
+           - *Schema Write Strategy*: *Set 'avro.schema' Attribute*
+           - *Schema Access Strategy*: *Use 'Schema Name' Property*
+           - *Schema Registry*: select **HortonworksSchemaRegistry** from the dropdown.
+           - *Schema Name*: $(schema.name)   
+           - Leave the rest as defaults and Click **APPLY** and get out of the JsonRecordSetWriter Configuration Window. Close the Controller Services Window.   
+                          
+      - On the **SplitRecord** configuration **SETTINGS** tab  
         - Check the *failure* and *original* check boxes.   
         - Click **APPLY** and close the processor configuration window.
 
