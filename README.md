@@ -320,6 +320,25 @@ In this step, we will configure a **SplitRecord** processor. There are two reaso
       - On the **SplitRecord** configuration **SETTINGS** tab  
         - Check the *failure* and *original* check boxes.   
         - Click **APPLY** and close the processor configuration window.
+      - Connect the **UpdateAttribute** processor with the **SplitRecord** Processor for the **success** path.  
+        
+ - **Step 4: Configure a EvaluateJsonPath Procesor**
+In the previous step, our processor will convert the CSV (pipe delimited) format into a json object. In this step, we will extract values from the flow file content and assign those values to flow file attributes that we will create.   
+
+Drag a **EvaluateJsonPath** processor to the canvas and perform the following configurations by double clicking on the processor.
+
+   - On the **PROPERTIES** tab, add the following attributes by clicking on the "+" button on the upper right hand corner of the window and assign values as below (please see the image below for help).    
+      - **city** : *$.city*
+      - **clicstream_id** : *$.clickstream_id*
+      - **country** : *$.country*
+      - **IPaddress** : *$.IPaddress*
+      - **is_page_errored** : *$.is_page_errored*
+      - **is_purchased** : *$.is_purchased*
+      - **state** : *$.state*
+      - **ts** : *$.timestamp*
+      - **url** : *$.url*
+      - **user_session_id** : *$.user_session_id*
+      
 
 Connect  
 
@@ -417,10 +436,6 @@ Follow the same steps as above except for the last step where we are going to op
 Type anything and click enter. Then go back to the first terminal with the consumer running. You should see the same message get displayed!
 
 ## Integrate with Schema Registry
-
-
-
-  
   
 
 --- Muki TODO: -----
