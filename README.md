@@ -383,7 +383,13 @@ We will now test the flow. Perform the following steps to start the controller s
    
    - Click on the **ATTRIBUTES** tab. You will see all the attributes that were defined in the **EvaluateJsonPath** processor are now populated with the right values.
    ![Test-Attributes](images/Test-Attributes.png.png)
-
+   
+   - If you have the process flow working this far, you should save the flow in the Flow Registry. Right-click on the canvas, click on **Version** from the options menu, then click on **Commit local changes**.
+   ![Test-Attributes](images/Test-Attributes.png.png)
+   
+   - You have now successfully completed this lab.
+   
+   
   
   
 - **Step 7 TODO:** Add an UpdateAttribute connector to the canvas and link from ConnectWebSocket on **text message** relationship
