@@ -372,7 +372,18 @@ We will now test the flow. Perform the following steps to start the controller s
    
    - Start the 'publish-clickstream-to-nifi.sh' script from your ssh terminal. This will start publishing log events to the ListenTCP processor and the events will now flow to the other processors. 
    
-   - 
+   - You can see the processed data at each stage now. Go to the connection queue before the funnel and right-click for the context menu. Select 'List Queue' option. 
+   ![Test-ListQueue-1](images/Test-ListQueue-1.png.png)
+   
+   - Select the first row and click on the info icon. 
+   ![Test-ListQueue-2](images/Test-ListQueue-2.png.png)
+   
+   - In the flow-file window that pops up, on the **DETAILS** tab, click on the **VIEW** button. You will see the data that was originally sent in the pipe delimited format, is now transformed into json format.
+   ![Test-JSON-format](images/Test-JSON-format.png.png)
+   
+   - Click on the **ATTRIBUTES** tab. You will see all the attributes that were defined in the **EvaluateJsonPath** processor are now populated with the right values.
+   ![Test-Attributes](images/Test-Attributes.png.png)
+
   
   
 - **Step 7 TODO:** Add an UpdateAttribute connector to the canvas and link from ConnectWebSocket on **text message** relationship
