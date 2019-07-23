@@ -180,7 +180,8 @@ To reference the name of the schema in the registry that will be used for proces
     - Property Name: schema.name
     - Property Value: clickstream_event 
   - Click OK, APPLY and close the processor properties.
-  - Connect the "*Listen for clickstream logs*" processor to this processor, using the "*success*" relationship. A connection queue will show up on the connection line joining the two processors.
+  - Connect the "*Listen for clickstream logs*" processor to this processor, using the "*success*" relationship. A connection queue will show up on the connection line joining the two processors.![UpdateProcessor-Properties-2](images/SetSchemaNamefromRegistry_1.png.png)
+  ![UpdateProcessor-Properties-2](images/SetSchemaNamefromRegistry_2.png.png)
   
  - **Step 2: Configure the UpdateAttribute NiFi Processor**  
 To reference the name of the schema in the registry that will be used for processing content within our flows, we will configure an UpdateAttribute processor.  
