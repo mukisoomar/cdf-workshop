@@ -268,15 +268,16 @@ To be able to parse the data received from the clickstream log events, we will n
   }
  ]
 }
-```
-![Avro schema creation](images/avro_schema_creation.png)   
+```   
 
-   You should end up with a newly versioned schema as follow:
-![Avro schema versioned](images/avro_schema_versioned.png)   
+   ![Avro schema creation](images/avro_schema_creation.png)   
+
+   You should end up with a newly versioned schema as follow:   
+   ![Avro schema versioned](images/avro_schema_versioned.png)   
 
    Explore the [REST API](http://demo.cloudera.com:7788/swagger) as well. You can use these APIs to perform various actions on the schemas.   
 
-   Additionally you can explore by clicking on the *Edit* and *Fork* the features they provide for maintaining the schemas along with publishing the new versions for general consumption by other flows or services. (*Note: Ignore the name of the schmea showing up as clickstream_event_v1 in the images.*)   
+   Additionally you can explore by clicking on the *Edit* and *Fork* the features they provide for maintaining the schemas along with publishing the new versions for general consumption by other flows or services. (*Note: Ignore the name of the schmea showing up as clickstream_event_v1 in the images.*)
   
  - **Step 3: Configure a SplitRecord Procesor**
    
