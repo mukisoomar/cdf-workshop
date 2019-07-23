@@ -337,9 +337,21 @@ Drag a **EvaluateJsonPath** processor to the canvas and perform the following co
       - **state** : *$.state*
       - **ts** : *$.timestamp*
       - **url** : *$.url*
-      - **user_session_id** : *$.user_session_id*
+      - **user_session_id** : *$.user_session_id*      
       
-
+      Set the other other properties as follows and leave the rest as defaults:
+      - **Destination** : *flowfile-attribute* 
+      
+   - On the **SETTINGS** tab, 
+   	  - Check the *failure* box.
+   	  - **Name** : *Extract JSON values into attributes*
+   	  
+   - Click **APPLY** and close the processor configuration window.
+   
+   - Connect the **SplitRecord** processor to the **EvaluateJsonPath** processor.
+   
+   ![EvaluateJsonPath Config-1](images/EvaluateJsonPath-1.png.png)
+   
 Connect  
 
 
