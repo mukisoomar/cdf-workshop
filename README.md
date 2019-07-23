@@ -355,8 +355,8 @@ Drag a **EvaluateJsonPath** processor to the canvas and perform the following co
    
    
  - **Step 5: Test the Flow**   
-We will now test the flow. Perform the following steps to start the controller services.
-   -In the **Operate** window at the right side of the canvas, click on the **Gear** icon. This will take you to the controller services window.
+We will now test the flow. Perform the following steps to start the controller services.   
+   -In the **Operate** window at the right side of the canvas, click on the **Gear** icon. This will take you to the controller services window.   
    -Start the HortonworksSchemaRegistry, CSVReader and JsonRecordSetWriter services by clicking on the **bolt** icon on the right side (need to start HortonworksSchemaRegistry service first). 
    ![ControllerService-1](images/ControllerServices-1.png.png)
    ![ControllerService-2](images/ControllerServices-2.png.png)
