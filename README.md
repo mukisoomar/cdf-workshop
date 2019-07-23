@@ -349,14 +349,17 @@ Drag a **EvaluateJsonPath** processor to the canvas and perform the following co
    - Click **APPLY** and close the processor configuration window.
       ![EvaluateJsonPath Config-1](images/EvaluateJSONPath-1.png.png)
    
-   - Connect the **SplitRecord** processor to the **EvaluateJsonPath** processor and move the *funnel* connection from **ListenTCP** connection to **EvaluateJSONPath**, by accepting both the *matched* and *unmatched* paths to the funnel. Your nifi flow will look something like below.
+   - Connect the **SplitRecord** processor to the **EvaluateJsonPath** processor using the **splits** path.
+   - Move the *funnel* connection from **ListenTCP** connection to **EvaluateJSONPath**, by accepting both the *matched* and *unmatched* paths to the funnel. Your nifi flow will look something like below.
    ![NiFi Flow-1](images/nifi-lfow-1.png.png)
    
    
-
-   
-Connect  
-
+ - **Step 5: Test the Flow**   
+We will now test the flow. Perform the following steps to start the controller services.
+   -In the **Operate** window at the right side of the canvas, click on the **Gear** icon. This will take you to the controller services window.
+   -Start the HortonworksSchemaRegistry, CSVReader and JsonRecordSetWriter services by clicking on the **bolt** icon on the right side (need to start HortonworksSchemaRegistry service first). 
+   ![ControllerService-1](images/ControllerServices-1.png.png)
+   ![ControllerService-2](images/ControllerServices-2.png.png)
 
 For this we will first define  
 - **Step 7 TODO:** Add an UpdateAttribute connector to the canvas and link from ConnectWebSocket on **text message** relationship
