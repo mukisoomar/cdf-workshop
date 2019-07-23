@@ -184,13 +184,13 @@ To reference the name of the schema in the registry that will be used for proces
   ![UpdateProcessor-Properties-2](images/SetSchemaNamefromRegistry_2.png.png)
   
  - **Step 2: Define clickstream_events schema and register with Schema Registry**  
-To be able to parse the data received from the clickstream log events, we will need to defined a data structure that can be referenced by various services to parse or serialize and de-serialize the data when required.  
+To be able to parse the data received from the clickstream log events, we will need to defined a data structure that can be referenced by various services to parse or serialize and de-serialize the data when required.   
 
-For this we will define a schema called **clicstream_event** and persist into the schema registry.  
+  For this we will define a schema called **clicstream_event** and persist into the schema registry.   
 
-Explore [Schema Registry UI](http://demo.cloudera.com:7788/)  
+  Explore [Schema Registry UI](http://demo.cloudera.com:7788/)   
 
-Create a new Avro Schema, hitting the plus button, named **clickstream_event** with the following Avro Schema. You an copy and paste the schema in the **SCHEMA TEXT** window. Fill in the other values as shown in the figure below:  
+  Create a new Avro Schema, hitting the plus button, named **clickstream_event** with the following Avro Schema. You an copy and paste the schema in the **SCHEMA TEXT** window. Fill in the other values as shown in the figure below:   
 
 ```
 {
