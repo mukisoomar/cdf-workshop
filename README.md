@@ -184,7 +184,7 @@ To reference the name of the schema in the registry that will be used for proces
   ![UpdateProcessor-Properties-2](images/SetSchemaNamefromRegistry_2.png.png)
   
  - **Step 2: Define clickstream_events schema and register with Schema Registry**  
-To be able to parse the data received from the clickstream log events, we will need to defined a data structure that can be referenced by various services to parse or serialize and de-serialize the data when required.  
+To be able to parse the data received from the clickstream log events, we will need to defined a data structure that can be referenced by various services to parse or serialize and de-serialize the data when required.
 
 For this we will define a schema called **clicstream_event** and persist into the schema registry.  
 
