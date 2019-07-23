@@ -289,9 +289,9 @@ In this step, we will configure a **SplitRecord** processor. There are two reaso
 
    - Drag the SplitRecord processor on the canvas and perform the following steps:    
      - On the **PROPETIES** tab  
-      - RecordReader: Click on CreateNewService in the dropdown and select CSVReader
-      - RecordWriter: Click on the CreateNewService in the dropdwon and select JsonRecordSetWriter
-      - Records Per Split: 1  
+      - *RecordReader*: Click on **CreateNewService** in the dropdown and select **CSVReader**
+      - *RecordWriter*: Click on the **CreateNewService** in the dropdwon and select **JsonRecordSetWriter**
+      - *Records Per Split*: 1  
       ![CSVReader Config](images/SplitRecord-CSVReader-1.png.png)
       - Click on arrow next to CSVReader. It will ask you to save the configurations, which you can accept. It will then take you to the **CONTROLLER SERVICES** window. Click on the **Gear** icon and select the **PROPERTIES** tab. Set the following properties as below:  
         - Scheama Access Strategy: *Use 'Schema Name' Property*
