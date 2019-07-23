@@ -5,7 +5,11 @@
 
 **Although this AMI is not public and is available for Cloudera workhops only, the steps can be reproduced in your own environment**
 
-- Launch AWS AMI **ami-06c4071a1b5d62c4f** with **m5d.4xlarge** instance type
+- Launch AWS AMI 
+  - **New: ami-09cfb2ea903d77ce1** 
+  - **charles: -ami-06c4071a1b5d62c4f** 
+  
+- Use **m5d.4xlarge** instance type
 - Keep default storage (300GB SSD)
 - Set security group with:
   - Type: All TCP
