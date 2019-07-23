@@ -191,9 +191,9 @@ To be able to parse the data received from the clickstream log events, we will n
 
    Explore [Schema Registry UI](http://demo.cloudera.com:7788/)   
 
-  Create a new Avro Schema, hitting the plus button, named **clickstream_event** with the following Avro Schema. You an copy and paste the schema in the **SCHEMA TEXT** window. Fill in the other values as shown in the figure below:   
+   Create a new Avro Schema, hitting the plus button, named **clickstream_event** with the following Avro Schema. You an copy and paste the schema in the **SCHEMA TEXT** window. Fill in the other values as shown in the figure below:   
 
-```
+   ```
 {
  "type": "record",
  "namespace": "cloudera.workshop.clickstream",
@@ -269,16 +269,14 @@ To be able to parse the data received from the clickstream log events, we will n
  ]
 }
 ```
+![Avro schema creation](images/avro_schema_creation.png)   
 
-![Avro schema creation](images/avro_schema_creation.png)  
+   You should end up with a newly versioned schema as follow:
+![Avro schema versioned](images/avro_schema_versioned.png)   
 
-  You should end up with a newly versioned schema as follow:
+   Explore the [REST API](http://demo.cloudera.com:7788/swagger) as well. You can use these APIs to perform various actions on the schemas.   
 
-![Avro schema versioned](images/avro_schema_versioned.png)
-
-  Explore the [REST API](http://demo.cloudera.com:7788/swagger) as well. You can use these APIs to perform various actions on the schemas. 
-
-  Additionally you can explore by clicking on the *Edit* and *Fork* the features they provide for maintaining the schemas along with publishing the new versions for general consumption by other flows or services. (*Note: Ignore the name of the schmea showing up as clickstream_event_v1 in the images.*)
+   Additionally you can explore by clicking on the *Edit* and *Fork* the features they provide for maintaining the schemas along with publishing the new versions for general consumption by other flows or services. (*Note: Ignore the name of the schmea showing up as clickstream_event_v1 in the images.*)   
   
  - **Step 3: Configure a SplitRecord Procesor**
    
