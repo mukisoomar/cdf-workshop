@@ -146,7 +146,7 @@ Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and fol
   ![listenTCP properties](images/TCP-Listener-Config-1.png.png)
   - Drag the **funnel icon** from the menu bar at the top on the canvas.
   - Connect the **ListenTCP** processor to the **funnel icon**. A **Create Connection** icon pops up with the **success** box checked. Accept the default and click on the **Add button*
-  - The **funnel** is used to typically collect flowfiles from different processors. However we are using it here as a place-holder for future flows and to collect the data that comes in from the **ListenTCP Processor** and send that data to the intermediate queue to help explore the data as it comes in.
+  - The **funnel** is used to typically to collect flowfiles from different connections. However we are using it here as a place-holder for future flows and to collect the data that comes in from the **ListenTCP Processor** and send that data to the intermediate queue to help explore the data as it comes in.
   ![listenTCP processor flow](images/TCP-Listener-Config-2.png.png)
   
    - Start the processor by righ-clicking on the processor and clicking on the **start** menu item. This will start the processor and it will now listen on the port **9797** for incoming packets.
@@ -183,14 +183,14 @@ To reference the name of the schema in the registry that will be used for proces
   - Connect the "*Listen for clickstream logs*" processor to this processor, using the "*success*" relationship. A connection queue will show up on the connection line joining the two processors.![UpdateProcessor-Properties-2](images/SetSchemaNamefromRegistry_1.png.png)
   ![UpdateProcessor-Properties-2](images/SetSchemaNamefromRegistry_2.png.png)
   
- - **Step 2: Define clickstream_events schema and register with Schema Registry_**  
+ - **Step 2: Define clickstream_events schema and register with Schema Registry**  
 To be able to parse the data received from the clickstream log events, we will need to defined a data structure that can be referenced by various services to parse or serialize and de-serialize the data when required.    
 
-For this we will define a schema called **clicstream_event** and persist into the schema registry.  
+  For this we will define a schema called **clicstream_event** and persist into the schema registry.  
 
-Explore [Schema Registry UI](http://demo.cloudera.com:7788/)
+  Explore [Schema Registry UI](http://demo.cloudera.com:7788/)  
 
-Create a new Avro Schema, hitting the plus button, named **clickstream_event** with the following Avro Schema:
+  Create a new Avro Schema, hitting the plus button, named **clickstream_event** with the following Avro Schema:
 
 ```
 {
@@ -269,18 +269,41 @@ Create a new Avro Schema, hitting the plus button, named **clickstream_event** w
 }
 ```
 
-![Avro schema creation](images/avro_schema_creation.png)
+![Avro schema creation](images/avro_schema_creation.png)  
 
-You should end up with a newly versioned schema as follow:
+  You should end up with a newly versioned schema as follow:
 
 ![Avro schema versioned](images/avro_schema_versioned.png)
 
-Explore the [REST API](http://demo.cloudera.com:7788/swagger) as well. You can use these APIs to perform various actions on the schemas. 
+  Explore the [REST API](http://demo.cloudera.com:7788/swagger) as well. You can use these APIs to perform various actions on the schemas. 
+
+  Additionally you can explore by clicking on the *Edit* and *Fork* the features they provide for maintaining the schemas along with publishing the new versions for general consumption by other flows or services. (*Note: Ignore the name of the schmea showing up as clickstream_event_v1 in the images.*)
   
+ - **Step 3: Configure a SplitRecord Procesor**
    
-3. Configure a processor - **SplitRecord**, to first parse the streaming content that comes in as csv data (withi pipe delimited) using the schema we defined earlier, convert it into **json** data, as well as split the content into individual data. Depending of the speed of the streaming data, we may receive multiple records within one batch so we need to split it if we need to process each record individually. For this we will also have to configure to record processing services - one for reading CSV data and another to convert and write that data as json records. 
-4. Configure a processorNext we will extract the values from each record that is of interest to us. In this lab, we will extract all values in the record.
-5. We will 
+In this step, we will configure a **SplitRecord** processor. There are two reasons for this. (1) to be able to split the content received into individual records. The content received over ListenTCP processor can have multiple records coming in one data flow file depending on the speed of the streaming data as well as the size of the buffer configured. (2) Convert the data format into a format required for further processing or delivering it to a destination.   
+
+The data coming in is in the pipe delimited format. We will convert it into json format so we can extract the data we need using another processor in the next step. 
+
+Drag the SplitRecord processor on the canvas and perform the following steps:  
+    - On the **PROPETIES** tab  
+      - RecordReader: Click on CreateNewService in the dropdown and select CSVReader
+      - RecordWriter: Click on the CreateNewService in the dropdwon and select JsonRecordSetWriter
+      - Records Per Split: 1  
+      ![CSVReader Config](images/SplitRecord-CSVReader-1.png.png)
+      - Click on arrow next to CSVReader. It will ask you to save the configurations, which you can accept. It will then take you to the **CONTROLLER SERVICES** window. Click on the **Gear** icon and select the **PROPERTIES** tab. Set the following properties as below:  
+        - Scheama Access Strategy: *Use 'Schema Name' Property*
+        - Scheama Registry: Select 'create new service' and select HortonworksSchemaRegistry
+         ![HortonworksRegistry Config](images/SplitRecord-CSVReader-2.png.png)
+        - Schema Name: $(schema.name)
+    - On the **SETTINGS** tab  
+      - Check the failure and original check boxes.  
+
+      
+Click **APPLY** and close the processor configuration window.
+
+Connect  
+
 
 For this we will first define  
 - **Step 7 TODO:** Add an UpdateAttribute connector to the canvas and link from ConnectWebSocket on **text message** relationship
