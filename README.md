@@ -293,14 +293,14 @@ In this step, we will configure a **SplitRecord** processor. There are two reaso
       - *RecordWriter*: Click on the **CreateNewService** in the dropdwon and select **JsonRecordSetWriter**
       - *Records Per Split*: 1  
       ![CSVReader Config-1](images/SplitRecord-CSVReader-1.png.png)
-      - Click on arrow next to CSVReader. It will ask you to save the configurations, which you can accept. It will then take you to the **CONTROLLER SERVICES** window. Click on the **Gear** icon and select the **PROPERTIES** tab. Set the following properties as below:  
-        - *Schema Access Strategy*: *Use 'Schema Name' Property*
-        - *Schema Registry*: Select *'create new service' * and select **HortonworksSchemaRegistry**
-        - *Schema Name*: $(schema.name)
-        
-        ![CSVReader Config-2](images/SplitRecord-CSVReader-2.png.png)
+      - Click on arrow next to CSVReader. It will ask you to save the configurations, which you can accept. It will then take you to the **CONTROLLER SERVICES** window. Click on the **Gear** icon. ![CSVReader Config-2](images/SplitRecord-CSVReader-2.png.png). This will take you to the CSVReader's configuration window. Select the **PROPERTIES** tab.
         ![CSVReader Config-3](images/SplitRecord-CSVReader-3.png.png)
-        ![CSVReader Config-4](images/SplitRecord-CSVReader-4.png.png)
+        ![CSVReader Config-4](images/SplitRecord-CSVReader-4.png.png) 
+      - Set the following properties as below:   
+        - *Schema Access Strategy*: *Use 'Schema Name' Property*
+        - *Schema Registry*: Select *'create new service'* and select **HortonworksSchemaRegistry**
+        - *Schema Name*: $(schema.name)
+
                  
     - On the **SETTINGS** tab  
       - Check the failure and original check boxes.  
