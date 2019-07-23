@@ -385,7 +385,13 @@ We will now test the flow. Perform the following steps to start the controller s
    ![Test-Attributes](images/Test-Attributes.png.png)
    
    - If you have the process flow working this far, you should save the flow in the Flow Registry. Right-click on the canvas, click on **Version** from the options menu, then click on **Commit local changes**.
-   ![Test-Attributes](images/Test-Attributes.png.png)
+   ![Test-SaveToFlowRegistry](images/Test-SaveToFlowRegistry-1.png.png)
+   
+   - Provide the version comments in the window that pops up and click on **SAVE**. When you go up one-level outside your process group, to the main canvas, you will see your process group has a green tick mark on it, indicating that the process group is now being versioned in the nifi flow registry.
+   ![Test-SaveToFlowRegistry](images/Test-SaveToFlowRegistry-2.png.png)
+   ![Test-SaveToFlowRegistry](images/Test-SaveToFlowRegistry-3.png.png)
+   
+   - Confirm that 
    
    - You have now successfully completed this lab.
    
