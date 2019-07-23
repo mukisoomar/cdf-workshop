@@ -347,10 +347,13 @@ Drag a **EvaluateJsonPath** processor to the canvas and perform the following co
    	  - **Name** : *Extract JSON values into attributes*
    	  
    - Click **APPLY** and close the processor configuration window.
+      ![EvaluateJsonPath Config-1](images/EvaluateJSONPath-1.png.png)
    
-   - Connect the **SplitRecord** processor to the **EvaluateJsonPath** processor.
+   - Connect the **SplitRecord** processor to the **EvaluateJsonPath** processor and move the *funnel* connection from **ListenTCP** connection to **EvaluateJSONPath**, by accepting both the *matched* and *unmatched* paths to the funnel. Your nifi flow will look something like below.
+   ![NiFi Flow-1](images/nifi-lfow-1.png.png)
    
-   ![EvaluateJsonPath Config-1](images/EvaluateJSONPath-1.png.png)
+   
+
    
 Connect  
 
