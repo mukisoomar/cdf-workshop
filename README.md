@@ -361,14 +361,20 @@ Drag a **EvaluateJsonPath** processor to the canvas and perform the following co
  - **Step 5: Test the Flow**   
 We will now test the flow. Perform the following steps to start the controller services. 
    
-    - In the **Operate** window at the right side of the canvas, click on the **Gear** icon. This will take you to the controller services window.   
+   - In the **Operate** window at the right side of the canvas, click on the **Gear** icon. This will take you to the controller services window.   
    ![ControllerService-1](images/ControllerServices-1.png.png)   
    
-    - Start the HortonworksSchemaRegistry, CSVReader and JsonRecordSetWriter services by clicking on the **bolt** icon on the right side (need to start HortonworksSchemaRegistry service first). 
+   - Start the HortonworksSchemaRegistry, CSVReader and JsonRecordSetWriter services by clicking on the **bolt** icon on the right side (need to start HortonworksSchemaRegistry service first). 
 
    ![ControllerService-2](images/ControllerServices-2.png.png)
 
-For this we will first define  
+   - Start the NiFi Flow by right clicking in the canvas anywhere. This will start all the processors. If you see any processor with a red top corner, it means your processor configurations have errors. You will need to fix the configurations for those processors. You can also start each individual processor by right-clicking on each processor.
+   
+   - Start the 'publish-clickstream-to-nifi.sh' script from your ssh terminal. This will start publishing log events to the ListenTCP processor and the events will now flow to the other processors. 
+   
+   - 
+  
+  
 - **Step 7 TODO:** Add an UpdateAttribute connector to the canvas and link from ConnectWebSocket on **text message** relationship
   - Double click on the processor
   - On properties tab add new property **mime.type** clicking on + icon and give the value **application/json**. This will tell the next processor that the messages sent by the Meetup WebSocket is in JSON format.
