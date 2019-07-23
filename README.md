@@ -350,7 +350,7 @@ Drag a **EvaluateJsonPath** processor to the canvas and perform the following co
    
    - Connect the **SplitRecord** processor to the **EvaluateJsonPath** processor.
    
-   ![EvaluateJsonPath Config-1](images/EvaluateJsonPath-1.png.png)
+   ![EvaluateJsonPath Config-1](images/EvaluateJSONPath-1.png.png)
    
 Connect  
 
