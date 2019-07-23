@@ -272,6 +272,7 @@ To be able to parse the data received from the clickstream log events, we will n
    ![Avro schema creation](images/avro_schema_creation.png)   
 
    You should end up with a newly versioned schema as follow:   
+   
    ![Avro schema versioned](images/avro_schema_versioned.png)   
 
    Explore the [REST API](http://demo.cloudera.com:7788/swagger) as well. You can use these APIs to perform various actions on the schemas.   
@@ -280,12 +281,14 @@ To be able to parse the data received from the clickstream log events, we will n
   
  - **Step 3: Configure a SplitRecord Procesor**
    
-In this step, we will configure a **SplitRecord** processor. There are two reasons for this. (1) to be able to split the content received into individual records. The content received over ListenTCP processor can have multiple records coming in one data flow file depending on the speed of the streaming data as well as the size of the buffer configured. (2) Convert the data format into a format required for further processing or delivering it to a destination.   
+In this step, we will configure a **SplitRecord** processor. There are two reasons for this:     
+   (1) to be able to split the content received into individual records. The content received over ListenTCP processor can have multiple records coming in one data flow file depending on the speed of the streaming data as well as the size of the buffer configured.   
+   (2) Convert the data format into a format required for further processing or delivering it to a destination.   
 
-The data coming in is in the pipe delimited format. We will convert it into json format so we can extract the data we need using another processor in the next step. 
+   The data coming in is in the pipe delimited format. We will convert it into json format so we can extract the data we need using another processor in the next step.    
 
-Drag the SplitRecord processor on the canvas and perform the following steps:  
-    - On the **PROPETIES** tab  
+   - Drag the SplitRecord processor on the canvas and perform the following steps:    
+     - On the **PROPETIES** tab  
       - RecordReader: Click on CreateNewService in the dropdown and select CSVReader
       - RecordWriter: Click on the CreateNewService in the dropdwon and select JsonRecordSetWriter
       - Records Per Split: 1  
