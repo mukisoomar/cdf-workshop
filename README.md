@@ -391,8 +391,9 @@ We will now test the flow. Perform the following steps to start the controller s
    ![Test-SaveToFlowRegistry](images/Test-SaveToFlowRegistry-2.png.png)
    ![Test-SaveToFlowRegistry](images/Test-SaveToFlowRegistry-3.png.png)
    
-   - Confirm that 
-   
+   - Open up NiFi Registry UI : http://demo.cloudera.com:61080/nifi-registry. You can see your flow shows up in registry.
+   ![Test-NiFiRegistryConfirmation](images/Test-NiFiRegistryConfirmation.png.png)
+     
    - You have now successfully completed this lab.
    
    
