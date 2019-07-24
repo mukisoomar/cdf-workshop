@@ -463,6 +463,9 @@ Zeppelin is a notebook application that provides an interactive environment to c
     # Confirm the table was created with the data loaded by executing a select statement on the table 
     SELECT * FROM products_orc limit 10
     ```
+    
+  - This concludes the lab. In this lab we had the users.tsv and products.tsv data files were already moved to HDFS. We inspected that through the %s interpreter and created Hive tables using those files. We then created the corresponding ORC tables for them which are optimized for performance. We will use the ORC tables in NiFi to enrich click stream events with user information.
+  
 
 
 ******    
