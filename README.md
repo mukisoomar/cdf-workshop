@@ -370,7 +370,7 @@ We will now test the flow. Perform the following steps to start the controller s
    - Click on the canvas within the process group where you are building the NiFi flow to get the context to the process group. In the **Operate** window at the right side of the canvas, click on the **Gear** icon. This will take you to the controller services window.   
    ![ControllerService-1](images/ControllerServices-1.png.png)   
    
-   - Start the HortonworksSchemaRegistry, CSVReader and JsonRecordSetWriter services by clicking on the **bolt** icon on the right side (need to start HortonworksSchemaRegistry service first). 
+   - Start the **HortonworksSchemaRegistry**, **CSVReader** and **JsonRecordSetWriter** services by clicking on the **bolt** icon on the right side (need to start HortonworksSchemaRegistry service first). 
 
    ![ControllerService-2](images/ControllerServices-2.png.png)
 
