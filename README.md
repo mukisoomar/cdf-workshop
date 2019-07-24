@@ -410,28 +410,23 @@ Zeppelin is a notebook application that provides an interactive environment to c
   
   - Perform the following steps to get familiarized with Zeppelin notebooks and the interpreters we will use in this lab to inspect HDFS directories and create Hive tables.   
 
-    - Using a shell interpreter, execute the following HDFS commands. You can use multiple paragraphs with shell interpreter using the symbol '%s'. You can view the HDFS directories and the files that were ingested for creating hive tables we will use in the lab.   
+    - Using a shell interpreter (%s), execute the following HDFS commands. You can use one paragraph for each command to execute the below commands. You can view the HDFS directories and the files that were ingested for creating hive tables we will use in the lab.   
 
-   ```
+     ```
    hdfs dfs -ls /workshop/clickstream/data
    hdfs dfs -ls /workshop/clickstream/data/products
    hdfs dfs -ls /workshop/clickstream/data/users
-   
-   ```
+     ```
 
+    - Using a hive interpreter, execute the following HDFS commands. You can use multiple paragraphs with shell interpreter using the symbol '%s'. You can view the HDFS directories and the files that were ingested for creating hive tables we will use in the lab.   
 
-The first one is a shell script paragraph with an HDFS list command that will show the sub-directories in the  **/workshop/clickstream/data** directory. Each subdirectory within this directory was created to store files for products, users, raw click-events and processed click-event files.
+     ```
+   hdfs dfs -ls /workshop/clickstream/data
+   hdfs dfs -ls /workshop/clickstream/data/products
+   hdfs dfs -ls /workshop/clickstream/data/users
+     ```
+
     
-    The product directory has the product.tsv file
-    The users directory has the user.tsv file
-    The raw directory file will be used to ingest the raw click events.
-    The processed directory will be used to ingest the processed click events. 
-    
-    - The next 3 paragraphs show the hive tables. Hive tables were created using the products.tsv and users.tsv files within their respective directories. 
-    that were ingested (or uploaded) into HDFS (The Hadooop Distributed File System). You can explore further HDFS commands here. This paragraph was created to show the two sets of files that were upluser, product files that were uploaded here for builiding Hive tables that we will use in our later labs.
-    - HDFS paragraph
-
-  
   
 - Step 8: Add a PutFile processor to the canvas and link from AttributesToCSV on **success** relationship
   - Double click on the processor
