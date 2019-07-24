@@ -477,11 +477,14 @@ In this lab, we will configure some more processors to enrich the in-flight stre
 Go to the process group, where your nifi flow was built and perform the following steps:
 
 - **Step 1: Configure a SelectHive3QL processor for querying user Data**   
-   Drag a SelectHive3QL processor on the canvas and perform the following configurations:
+   Drag a SelectHive3QL processor on the canvas. Double click on the processor. On the PROPERTIES tab perform the following configurations:
      - *Hive Database Connection Pooling Service* : Create a new service and select Hive3ConnectionPool from the options.
-     - *HiveQL Pre-Query* : 'use clickstream'
-     - *HiveQL Select Query* : "select * from users_orc where users_orc.swid = '${user_session_id}'"
-
+     - *HiveQL Pre-Query* : use clickstream
+     - *HiveQL Select Query* : select * from users_orc where users_orc.swid = '${user_session_id}'
+     - On the SETTINGS tab, check the box for terminating the failure relationship.     
+     - Apply changes.
+     - Connect the **EvaluateJsonPath** processor configured earlier to the SelectHive3QL procssor for the success relationship.    
+     ![Hive3QL-1-config](images/Hive3QL-1-config.png.png)
     
 **TODO**  
 - Step 8: Add a PutFile processor to the canvas and link from AttributesToCSV on **success** relationship
