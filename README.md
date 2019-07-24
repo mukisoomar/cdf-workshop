@@ -493,7 +493,20 @@ Go to the process group, where your nifi flow was built and perform the followin
    
    Connect the **SelectHive3QL** processor to the **ConvertAvroToJSON** processor using the success relationship.
    
+- **Step 3: Configure a EvaluateJsonPath processor**   
+   We will now extract the user data values from the json format result that the previous processor will output.
     
+   Drag a EvaluateJsonPath processor on the canvas. Double click on the processor and perform the following configurations:
+   - On the SETTINGS tab
+     - **Name** : Extract user data from JSON
+     - **Terminate Relationships** : check box for failure
+   - On the PROPERTIES tab, add two properties: bday and gender and set values as follows:
+     - *bday* : $.birth_dt
+     - *gender* : $.gender_cd
+   - Click Apply
+   - Connect the **ConvertAvroToJSON** processor to the **EvaluateJsonPath** processor using the success relationships.
+   ![UserData-EvaluateJSONPath-1](images/UserData-EvaluateJSONPath-1.png.png)
+       
 **TODO**  
 - Step 8: Add a PutFile processor to the canvas and link from AttributesToCSV on **success** relationship
   - Double click on the processor
