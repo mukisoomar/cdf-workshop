@@ -565,7 +565,19 @@ Follow the same steps as above except for the last step where we are going to op
 Type anything and click enter. Then go back to the first terminal with the consumer running. You should see the same message get displayed!
 
 ******
-**Publish clickstream events to Kafka**
+## Publish Enriched Clickstream Events to Kafka and ingest into Druid
+In this lab we will add a few more attributes to the click stream event data that are necessary for sending the event data into Druid for aggregation and then convert the attributes of the flow file into json content of the flow file. We will then publish the data to Kafka. 
+
+We will then create a table in Druid through the hive interface and initiate data ingestion into Druid.
+
+- Step 1: Add a **PublishKafka_2_0** connector to the canvas and link from QueryRecord on **comments_in_english** relationship
+  - Double click on the processor
+  - On settings tab, check all relationships
+  - On properties tab
+  - Change **Kafka Brokers** value to **demo.cloudera.com:6667**
+  - Change **Topic Name** value to **meetup_comment_ws**
+  - Change **Use Transactions** value to **false**
+  - Apply changes
 
 - Step 2: Add a **PublishKafka_2_0** connector to the canvas and link from QueryRecord on **comments_in_english** relationship
   - Double click on the processor
