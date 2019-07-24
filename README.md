@@ -525,7 +525,9 @@ We will now test the flow to check the results of our flow configuration. Perfor
   - Inspect the contents by clicking the **VIEW** button on the **DETAILS** tab. You will see the results from the Users table query converted into json format. Click on the ATTRIBUTES tab. You will see the bdate and gender attributes have values extracted from the query results.
 ![FlowTest-32](images/FlowTest-3.2.png.png)
 ![FlowTest-4](images/FlowTest-4.png.png)
- 
+
+- **Step 5: Update flow in NiFi Flow Registry**
+Since we have now achieved a substantial amount of flow to work, persist the flow in the NiFi Registry by right-clicking on the canvas, selecting the version option and selecting the "commit local changes".  
        
 **TODO**  
 - Step 8: Add a PutFile processor to the canvas and link from AttributesToCSV on **success** relationship
