@@ -409,6 +409,16 @@ Zeppelin is a notebook application that provides an interactive environment to c
   ![Zepplin-2-initialize-interpreters](images/Zepplin-2-initialize-interpreters.png.png)
   
   - You will see 4 paragraphs in the notebook. 
+    - A shell script paragraph with an HDFS list command showing the directories in the  /workshop/clickstream/data directory. Each subdirectory within this directory was created to store files for products, users, raw click-events and processed click-event files.
+    
+    The product directory has the product.tsv file
+    The users directory has the user.tsv file
+    The raw directory file will be used to ingest the raw click events.
+    The processed directory will be used to ingest the processed click events. 
+    
+    - The next 3 paragraphs show the hive tables. Hive tables were created using the products.tsv and users.tsv files within their respective directories. 
+    that were ingested (or uploaded) into HDFS (The Hadooop Distributed File System). You can explore further HDFS commands here. This paragraph was created to show the two sets of files that were upluser, product files that were uploaded here for builiding Hive tables that we will use in our later labs.
+    - HDFS paragraph
 
   
   
