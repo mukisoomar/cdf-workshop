@@ -399,7 +399,8 @@ We will now test the flow. Perform the following steps to start the controller s
 ****  
 ### Explore Zeppelin and Hive
 In this lab we will explore the HDP platform's HDFS and Hive components using Zeppelin.
-Zeppelin is a notebook application that provides an interactive environment to create notebooks using many scripting languages for which interpreters are available.
+Zeppelin is a notebook application that provides an interactive environment to create notebooks using many scripting languages for which interpreters are available. Graphically rich applications can be created using notebooks and the scripting programming languages the user is familiar with.
+
 
   - Log into Zeppelin [Zeppelin](http://demo.cloudera.com:9995/) as admin (password: admin)
   - Open the notebook **clickstream**.
@@ -420,8 +421,8 @@ Zeppelin is a notebook application that provides an interactive environment to c
     - Using a hive interpreter (%hive), execute the following SQL statements. You can use one paragraph for each command to execute the below commands.
     ```
     # Create a database in Hive
-    CREATE DATABASE IF NOT EXISTS workshop
-    USE workshop
+    CREATE DATABASE IF NOT EXISTS clickstream
+    USE clickstream
     
     # Create a users table with a schema on top of the users.tsv file in HDFS
     # DROP TABLE IF EXISTS users
@@ -468,7 +469,20 @@ Zeppelin is a notebook application that provides an interactive environment to c
   
 
 
-******    
+******
+### Enrich Click Events with User information for downstream analysis
+
+In this lab, we will configure some more processors to enrich the in-flight streaming data with user information. For this we will use the user table in the hive database we created in the previous lab.
+
+Go to the process group, where your nifi flow was built and perform the following steps:
+
+- **Step 1: Configure a SelectHive3QL processor for querying user Data**   
+   Drag a SelectHive3QL processor on the canvas and perform the following configurations:
+     - *Hive Database Connection Pooling Service* : Create a new service and select Hive3ConnectionPool from the options.
+     - *HiveQL Pre-Query* : 'use clickstream'
+     - *HiveQL Select Query* : "select * from users_orc where users_orc.swid = '${user_session_id}'"
+
+    
 **TODO**  
 - Step 8: Add a PutFile processor to the canvas and link from AttributesToCSV on **success** relationship
   - Double click on the processor
