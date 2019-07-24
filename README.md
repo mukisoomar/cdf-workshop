@@ -483,8 +483,16 @@ Go to the process group, where your nifi flow was built and perform the followin
      - *HiveQL Select Query* : select * from users_orc where users_orc.swid = '${user_session_id}'
      - On the SETTINGS tab, check the box for terminating the failure relationship.     
      - Apply changes.
-     - Connect the **EvaluateJsonPath** processor configured earlier to the SelectHive3QL procssor for the success relationship.    
+     - Connect the **EvaluateJsonPath** processor configured earlier to the **SelectHive3QL** procssor for the *matched* and *unmatched* relationships.    
      ![Hive3QL-1-config](images/Hive3QL-1-config.png.png)
+     
+- **Step 2: Configure a ConvertAvroToJSON processor**   
+   The output from the query executed by the **SelectHive3QL** is in avro format. We will convert that into json, so we can extract the user data from the results of the query and assign them to the flowfile attributes.   
+   
+   Drag a ConvertAvroToJSON processor on the canvas. Double click on the processor. On the SETTINGS tab, check the failure check box to terminate that relationship. Leave the default property values as they are. Click APPLY and exit the processor.
+   
+   Connect the **SelectHive3QL** processor to the **ConvertAvroToJSON** processor using the success relationship.
+   
     
 **TODO**  
 - Step 8: Add a PutFile processor to the canvas and link from AttributesToCSV on **success** relationship
