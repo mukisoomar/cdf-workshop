@@ -417,52 +417,52 @@ Zeppelin is a notebook application that provides an interactive environment to c
      hdfs dfs -ls /workshop/clickstream/data/users
     ```   
     
-    - Using a shell interpreter (%s), execute the following HDFS commands. You can use one paragraph for each command to execute the below commands. You can view the HDFS directories and the files that were ingested for creating hive tables we will use in the lab.
     - Using a hive interpreter (%hive), execute the following SQL statements. You can use one paragraph for each command to execute the below commands.
-
-```
-# Create a database in Hive
-CREATE DATABASE IF NOT EXISTS workshop
-USE workshop
-
-# Create a users table with a schema on top of the users.tsv file in HDFS
-DROP TABLE IF EXISTS users;
-CREATE EXTERNAL TABLE IF NOT EXISTS users 
-(swid string, birth_dt string, gender_cd string) 
-ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE 
-LOCATION "/workshop/clickstream/data/users"
-
-# Confirm the table was created with the data loaded by executing a select statement on the table
-SELECT * FROM users limit 10
-
-# Create a users_orc table using the users table created in previous step using a CTAS statement
-# The ORC format is an Optimized Row Columnar format that speeds up the query response
-DROP TABLE IF EXISTS users_orc;
-CREATE TABLE IF NOT EXISTS users_orc as
-SELECT * FROM users
-
-# Confirm the table was created with the data loaded by executing a select statement on the table
-SELECT * FROM users_orc limit 10
-
-# Create a users table with a schema on top of the products.tsv file in HDFS
-DROP TABLE IF EXISTS products;
-CREATE EXTERNAL TABLE IF NOT EXISTS products
-(url string, category string, description string) 
-ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE 
-LOCATION "/workshop/clickstream/data/products"
-
-# Confirm the table was created with the data loaded by executing a select statement on the table
-SELECT * FROM products limit 10
-
-# Create a products_orc table using the products table created in previous step using a CTAS statement
-DROP TABLE IF EXISTS products_orc;
-CREATE TABLE IF NOT EXISTS products_orc as
-SELECT * FROM products
-
-# Confirm the table was created with the data loaded by executing a select statement on the table
-SELECT * FROM products_orc limit 10
-
-```
+    ```
+    # Create a database in Hive
+    CREATE DATABASE IF NOT EXISTS workshop
+    USE workshop
+    
+    # Create a users table with a schema on top of the users.tsv file in HDFS
+    # DROP TABLE IF EXISTS users
+     
+    CREATE EXTERNAL TABLE IF NOT EXISTS users 
+    (swid string, birth_dt string, gender_cd string) 
+    ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE 
+    LOCATION "/workshop/clickstream/data/users" 
+    
+    # Confirm the table was created with the data loaded by executing a select statement on the table 
+    SELECT * FROM users limit 10 
+    
+    # Create a users_orc table using the users table created in previous step using a CTAS statement. 
+    # The ORC format is an Optimized Row Columnar format that speeds up the query response 
+    # DROP TABLE IF EXISTS users_orc; 
+    CREATE TABLE IF NOT EXISTS users_orc as 
+    SELECT * FROM users 
+    
+    # Confirm the table was created with the data loaded by executing a select statement on the table 
+    SELECT * FROM users_orc limit 10 
+    
+    # Create a users table with a schema on top of the products.tsv file in HDFS 
+    # DROP TABLE IF EXISTS products
+     
+    CREATE EXTERNAL TABLE IF NOT EXISTS products 
+    (url string, category string, description string) 
+    ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE 
+    LOCATION "/workshop/clickstream/data/products" 
+    
+    # Confirm the table was created with the data loaded by executing a select statement on the table 
+    SELECT * FROM products limit 10
+    
+    # Create a products_orc table using the products table created in previous step using a CTAS statement 
+    # DROP TABLE IF EXISTS products_orc; 
+    
+    CREATE TABLE IF NOT EXISTS products_orc as 
+    SELECT * FROM products 
+    
+    # Confirm the table was created with the data loaded by executing a select statement on the table 
+    SELECT * FROM products_orc limit 10
+    ```
 
 
 ******    
