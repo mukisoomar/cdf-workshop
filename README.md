@@ -529,34 +529,10 @@ We will now test the flow to check the results of our flow configuration. Perfor
 - **Step 5: Update flow in NiFi Flow Registry**
 Since we have now achieved a substantial amount of flow to work, persist the flow in the NiFi Registry by right-clicking on the canvas, selecting the version option and selecting the "commit local changes".  
        
-**TODO**  
-- Step 8: Add a PutFile processor to the canvas and link from AttributesToCSV on **success** relationship
-  - Double click on the processor
-  - On settings tab, check all relationships
-  - Change **Directory** value to **/tmp/workshop**
-  - Apply changes
-
-- Step 9: Right-click anywhere on the canvas and commit your first flow!
-
-![NiFi commit 1](images/commit-1.png)
-![NiFi commit 2](images/commit-2.png)
-
-If you visit the [NiFi Registry UI](http://demo.cloudera.com:61080/nifi-registry/explorer/grid-list) again you should see your commit.
-
-![NiFi commit 3](images/commit-3.png)
-
-- Step 10: Start the entire flow
-
-![NiFi Flow 1](images/flow1.png)
-
-SSH to the sandbox and explore the files created under /tmp/workshop.
-
-On the NiFi UI, explore the FlowFiles' attributes and content looking at Data provenance.
-
-**Once done, stop the flow and delete all files ```sudo rm -rf /tmp/workshop/*```**
-
 ******
 ## Explore Kafka
+
+In this lab, we will explore basic functions of Kafka and the scripts available to interact with Kafka that come packaged with the Kafka installation binaries.
 
 ssh to the AWS instance as explained above then become root
 
@@ -566,9 +542,9 @@ Navigate to Kafka
 
 ```cd /usr/hdp/current/kafka-broker```
 
-Create a topic named **meetup_comment_ws**
+Create a topic named **clickstream_events_test**
 
-```./bin/kafka-topics.sh --create --zookeeper demo.cloudera.com:2181 --replication-factor 1 --partitions 1 --topic meetup_comment_ws```
+```./bin/kafka-topics.sh --create --zookeeper demo.cloudera.com:2181 --replication-factor 1 --partitions 1 --topic clickstream_events```
 
 List topics to check that it's been created
 
@@ -576,7 +552,7 @@ List topics to check that it's been created
 
 Open a consumer so later we can monitor and verify that JSON records will stream through this topic:
 
-```./bin/kafka-console-consumer.sh --bootstrap-server demo.cloudera.com:6667 --topic meetup_comment_ws```
+```./bin/kafka-console-consumer.sh --bootstrap-server demo.cloudera.com:6667 --topic clickstream_events```
 
 Keep this terminal open.
 
@@ -584,45 +560,12 @@ We will now open a new terminal to publish some messages...
 
 Follow the same steps as above except for the last step where we are going to open a producer instead of a consumer:
 
-```./bin/kafka-console-producer.sh --broker-list demo.cloudera.com:6667 --topic meetup_comment_ws```
+```./bin/kafka-console-producer.sh --broker-list demo.cloudera.com:6667 --topic clickstream_events```
 
 Type anything and click enter. Then go back to the first terminal with the consumer running. You should see the same message get displayed!
 
-## Integrate with Schema Registry
-  
-
---- Muki TODO: -----
-Remove the last processor PutFile as we are going to stream the avro record to some Kafka topic.
-
-Now we are going to filter the records we are interested in and convert them from CSV to Avro in the process.
-
-- Step 1: Remove the existing PutFile processor and add a QueryRecord processor to the canvas and link from AttributesToCSV on **success** relationship
-  - Double click on the processor
-  - On properties tab
-  	- For RecordReader, create a CSVReader service
-  	- For RecordWrite, create a AvroRecordSetWriter service
-  	- Configure both services
-  	  - For CSVReader, use String Fields From Header for the Schema Access Strategy
-  	  - For AvroRecordSetWriter, we are going to connect to the Schema Registry API (http://demo.cloudera.com:7788/api/v1) and use the avro schema created before. For the **Schema Registry** property choose **HortonworksSchemaRegistry** as shown in the screen shot below and configure it.
-  	    - For **Schema Access Strategy** use 'Schema Name' property
-  	    - For **Schema Name** property add ```meetup_comment_avro```
-  	- Filter comments per country as our sentiment analysis model supports English only
-  	  - Add a property **comments_in_english** with value ```SELECT * FROM FLOWFILE WHERE country IN ('gb', 'us', 'sg')```
-  	- Set **Include Zero Record FlowFiles** to false
-  - On settings tab, check **failure** and **original** relationships
-  - Apply changes
-  
-![Query Record](images/query_record.png)
-
-![CSVReader](images/csv_reader.png)
-
-![AvroRecordSetWriter](images/avro_record_set_writer.png)
-
-Set the HortonworksSchemaRegistry controller service as follow
-
-![HWXSchemaRegistry](images/hwx_schema_registry.png)
-
-Enable all controller services.
+******
+**Publish clickstream events to Kafka**
 
 - Step 2: Add a **PublishKafka_2_0** connector to the canvas and link from QueryRecord on **comments_in_english** relationship
   - Double click on the processor
