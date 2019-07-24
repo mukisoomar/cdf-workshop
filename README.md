@@ -413,9 +413,8 @@ Zeppelin is a notebook application that provides an interactive environment to c
     - Using a shell interpreter (%s), execute the following HDFS commands. You can use one paragraph for each command to execute the below commands. You can view the HDFS directories and the files that were ingested for creating hive tables we will use in the lab.   
 
 ```hdfs dfs -ls /workshop/clickstream/data
-   hdfs dfs -ls /workshop/clickstream/data/products
-   hdfs dfs -ls /workshop/clickstream/data/users```
-
+hdfs dfs -ls /workshop/clickstream/data/products
+hdfs dfs -ls /workshop/clickstream/data/users```
     
   
 - Step 8: Add a PutFile processor to the canvas and link from AttributesToCSV on **success** relationship
