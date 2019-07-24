@@ -411,12 +411,12 @@ Zeppelin is a notebook application that provides an interactive environment to c
   - Perform the following steps to get familiarized with Zeppelin notebooks and the interpreters we will use in this lab to inspect HDFS directories and create Hive tables.   
 
     - Using a shell interpreter, execute the following HDFS commands. You can use multiple paragraphs with shell interpreter using the symbol '%s'.
-    '''
+    ```
     # Use a paragraphs with a shell interpreter to execute HDFS scripts to see the files that were ingested into HDFS
 hdfs dfs -ls /workshop/clickstream/data
 hdfs dfs -ls /workshop/clickstream/data/products
 hdfs dfs -ls /workshop/clickstream/data/users
-'''
+```
 
 The first one is a shell script paragraph with an HDFS list command that will show the sub-directories in the  **/workshop/clickstream/data** directory. Each subdirectory within this directory was created to store files for products, users, raw click-events and processed click-event files.
     
