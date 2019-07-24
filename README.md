@@ -296,8 +296,8 @@ In this step, we will configure a **SplitRecord** processor. There are two reaso
      - On the **PROPERTIES** tab    
         - *RecordReader*: Click on **CreateNewService** in the dropdown and select **CSVReader**
         - *RecordWriter*: Click on the **CreateNewService** in the dropdwon and select **JsonRecordSetWriter**
-        - *Records Per Split*: 1  
-      ![CSVReader Config-1](images/SplitRecord-CSVReader-1.png.png)
+        - *Records Per Split*: 1
+        ![CSVReader Config-1](images/SplitRecord-CSVReader-1.png.png)
         - **Configure CSVReader Controller Service** Click on arrow next to CSVReader. It will ask you to save the configurations, which you can accept. It will then take you to the **CONTROLLER SERVICES** window. Click on the **Gear** icon. ![CSVReader Config-2](images/SplitRecord-CSVReader-2.png.png).   
         
         This will take you to the CSVReader's configuration window. Select the **PROPERTIES** tab.   
@@ -311,7 +311,8 @@ In this step, we will configure a **SplitRecord** processor. There are two reaso
            ![CSVReader Config-3](images/SplitRecord-CSVReader-3.png.png)   
            - Click **APPLY** and get out of the CSVReader Configuration Window.   
            
-           - **Configure JsonRecordSetWriter Controller Service** From the Controller Service window (or by clicking on arrow next to JsonRecordSetWriter service, if you closed it). Click on the **Gear** icon. ![JsonRecordSetWriter Config-1](images/SplitRecord-JsonRecordSetWriter-1.png.png).   
+           - **Configure JsonRecordSetWriter Controller Service** From the Controller Service window (or by clicking on arrow next to JsonRecordSetWriter service, if you closed it). Click on the **Gear** icon.
+           ![JsonRecordSetWriterConfig-1](images/SplitRecord-JsonRecordSetWriter-1.png.png).   
         
         This will take you to the JsonRecordSetWriter's configuration window. Select the **PROPERTIES** tab.   
          
@@ -325,7 +326,11 @@ In this step, we will configure a **SplitRecord** processor. There are two reaso
       - On the **SplitRecord** configuration **SETTINGS** tab  
         - Check the *failure* and *original* check boxes.   
         - Click **APPLY** and close the processor configuration window.
-      - Connect the **UpdateAttribute** processor with the **SplitRecord** Processor for the **success** path.  
+      - Connect the **UpdateAttribute** processor with the **SplitRecord** Processor for the **success** path.
+      - Configure **HortonworksSchemaRegistry** controller service. Click on the canvas anywhere (not on a processor!) in the process group you are working. Click on the Gear icon in the **Operate** window on the left side. This will open up a configuration window for the process group. Click on the **CONTROLLER SERVICES** tab. Click on the **HortonworksSchemaRegistry** controller service gear icon. This will open up the configuration window for the service. Set the attribute values as follows:
+        - **Schema Registry URL** : http://demo.cloudera.com:7788/api/v1
+        - leave the rest of the default settings. Click ok and exit out of the configuration window. Exit out of the controller services window. 
+        ![HortonworksSchemaRegistryConfig-1](images/HortonworksSchemaRegistryConfig-1.png.png)
         
  - **Step 4: Configure a EvaluateJsonPath Procesor**
 In the previous step, our processor will convert the CSV (pipe delimited) format into a json object. In this step, we will extract values from the flow file content and assign those values to flow file attributes that we will create.   
@@ -362,7 +367,7 @@ Drag a **EvaluateJsonPath** processor to the canvas and perform the following co
  - **Step 5: Test the Flow**   
 We will now test the flow. Perform the following steps to start the controller services. 
    
-   - In the **Operate** window at the right side of the canvas, click on the **Gear** icon. This will take you to the controller services window.   
+   - Click on the canvas within the process group where you are building the NiFi flow to get the context to the process group. In the **Operate** window at the right side of the canvas, click on the **Gear** icon. This will take you to the controller services window.   
    ![ControllerService-1](images/ControllerServices-1.png.png)   
    
    - Start the HortonworksSchemaRegistry, CSVReader and JsonRecordSetWriter services by clicking on the **bolt** icon on the right side (need to start HortonworksSchemaRegistry service first). 
