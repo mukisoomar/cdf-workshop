@@ -487,9 +487,11 @@ Go to the process group, where your nifi flow was built and perform the followin
      ![Hive3QL-1-config](images/Hive3QL-1-config.png.png)
      
 - **Step 2: Configure a ConvertAvroToJSON processor**   
-   The output from the query executed by the **SelectHive3QL** is in avro format. We will convert that into json, so we can extract the user data from the results of the query and assign them to the flowfile attributes.   
+The output from the query executed by the **SelectHive3QL** is in avro format. We will convert that into json, so we can extract the user data from the results of the query and assign them to the flowfile attributes.   
    
-   Drag a ConvertAvroToJSON processor on the canvas. Double click on the processor. On the SETTINGS tab, check the failure check box to terminate that relationship. Leave the default property values as they are. Click APPLY and exit the processor.
+Drag a ConvertAvroToJSON processor on the canvas. 
+   - Double click on the processor. On the SETTINGS tab, check the *failure** check box to terminate that relationship.
+   - Leave the default property values as they are. Click APPLY and exit the processor.
    
    Connect the **SelectHive3QL** processor to the **ConvertAvroToJSON** processor using the success relationship.
    
@@ -499,13 +501,27 @@ Go to the process group, where your nifi flow was built and perform the followin
    Drag a EvaluateJsonPath processor on the canvas. Double click on the processor and perform the following configurations:
    - On the SETTINGS tab
      - **Name** : Extract user data from JSON
-     - **Terminate Relationships** : check box for failure
+     - **Terminate Relationships** : check box for failure, matched and unmatched relationships.
    - On the PROPERTIES tab, add two properties: bday and gender and set values as follows:
      - *bday* : $.birth_dt
      - *gender* : $.gender_cd
    - Click Apply
    - Connect the **ConvertAvroToJSON** processor to the **EvaluateJsonPath** processor using the success relationships.
    ![UserData-EvaluateJSONPath-1](images/UserData-EvaluateJSONPath-1.png.png)
+   
+- **Step 4: Test the Flow**   
+
+We will now test the flow to check the results of our flow configuration. Perform the following steps:
+  - Connect the **EvaluateJsonPath** to the funnel and disconnect it from the processor it was connected to earlier. Check the matched and unmatched relationships for the connection. 
+  Your flow should look now as below.
+![FlowTest-1](images/FlowTest-1.png.png)
+  - Click anywhere on the canvas (not on a processor) and click the configuration Gear in the Operate window. Go to the Controller Service tab and enable all the controller services. Exit out of the window.
+  - Start all the processors in the flow by right-clicking on the canvas and selecting Start in the options menu. You can also start each processor individually if you want by right clicking on them and starting them.
+  - Go to your ssh terminal window and execute the **publish-clickstream-to-nifi.sh** script to publish the clickstream data.
+  - Go back to the Nifi flow. You should start seeing the data flowing between the processors. 
+
+   
+   
        
 **TODO**  
 - Step 8: Add a PutFile processor to the canvas and link from AttributesToCSV on **success** relationship
@@ -533,6 +549,7 @@ On the NiFi UI, explore the FlowFiles' attributes and content looking at Data pr
 
 **Once done, stop the flow and delete all files ```sudo rm -rf /tmp/workshop/*```**
 
+******
 ## Explore Kafka
 
 ssh to the AWS instance as explained above then become root
