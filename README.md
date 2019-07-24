@@ -396,42 +396,21 @@ We will now test the flow. Perform the following steps to start the controller s
      
    - You have now successfully completed this lab.
    
-   
-  
-  
-- **Step 7 TODO:** Add an UpdateAttribute connector to the canvas and link from ConnectWebSocket on **text message** relationship
-  - Double click on the processor
-  - On properties tab add new property **mime.type** clicking on + icon and give the value **application/json**. This will tell the next processor that the messages sent by the Meetup WebSocket is in JSON format.
-  - Add another property **event** to set an event name **CDF workshop** for the purpose of this exercise as explained before
-  - Apply changes
-  
-![UpdateAtrribute 1 properties](images/updateattibute1properties.png)
-  
-- **Step 6:** Add EvaluateJsonPath to the canvas and link from UpdateAttribute on **success** relationship
-  - Double click on the processor
-  - On settings tab, check both **failure** and **unmatched** relationships
-  - On properties tab, change **Destination** value to **flowfile-attribute**
-  - And add properties as follow
-    - comment: $.comment
-    - member: $.member.member_name
-    - timestamp: $.mtime
-    - country: $.group.country
-    
-![EvaluateJsonPath 1 properties](images/evaluatejsonpathproperties1.png)
-    
-    The messages coming out of the web sockets look like this:
-    
-    ```json
-    {"visibility":"public","member":{"member_id":11643711,"photo":"https:\/\/secure.meetupstatic.com\/photos\/member\/3\/1\/6\/8\/thumb_273072648.jpeg","member_name":"Loka Murphy"},"comment":"I didn’t when I registered but now thinking I want to try and get one since it’s only taking place once.","id":-259414201,"mtime":1541557753087,"event":{"event_name":"Tunnel to Viaduct 8k Run","event_id":"256109695"},"table_name":"event_comment","group":{"join_mode":"open","country":"us","city":"Seattle","name":"Seattle Green Lake Running Group","group_lon":-122.34,"id":1608555,"state":"WA","urlname":"Seattle-Greenlake-Running-Group","category":{"name":"fitness","id":9,"shortname":"fitness"},"group_photo":{"highres_link":"https:\/\/secure.meetupstatic.com\/photos\/event\/9\/e\/f\/4\/highres_465640692.jpeg","photo_link":"https:\/\/secure.meetupstatic.com\/photos\/event\/9\/e\/f\/4\/600_465640692.jpeg","photo_id":465640692,"thumb_link":"https:\/\/secure.meetupstatic.com\/photos\/event\/9\/e\/f\/4\/thumb_465640692.jpeg"},"group_lat":47.61},"in_reply_to":496130460,"status":"active"}
-    ```
+****  
+### Explore Zeppelin and Hive
+In this lab we will explore the HDP platform's HDFS and Hive components using Zeppelin.
+Zeppelin is a notebook application that provides an interactive environment to create notebooks using many scripting languages for which interpreters are available.
 
-- Step 7: Add an AttributesToCSV processor to the canvas and link from EvaluateJsonPath on **matched** relationship
-  - Double click on the processor
-  - On settings tab, check **failure** relationship
-  - Change **Destination** value to **flowfile-content**
-  - Change **Attribute List** value to write only the above parsed attributes: **timestamp,event,member,comment,country**
-  - Set **Include Schema** to **true**
-  - Apply changes
+  - Log into Zeppelin [Zeppelin](http://demo.cloudera.com:9995/) as admin (password: admin)
+  - Open the notebook **clickstream**.
+  ![Zepplin-1-open-notebook](images/Zepplin-1-open-notebook.png.png)
+  
+  - Click on the **Gear** icon at the top right corner. This opens up the list of interpreters. Click Save and exit. This will initialize all the interpreters.
+  ![Zepplin-2-initialize-interpreters](images/Zepplin-2-initialize-interpreters.png.png)
+  
+  - You will see 4 paragraphs in the notebook. 
+
+  
   
 - Step 8: Add a PutFile processor to the canvas and link from AttributesToCSV on **success** relationship
   - Double click on the processor
