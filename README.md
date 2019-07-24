@@ -518,10 +518,14 @@ We will now test the flow to check the results of our flow configuration. Perfor
   - Click anywhere on the canvas (not on a processor) and click the configuration Gear in the Operate window. Go to the Controller Service tab and enable all the controller services. Exit out of the window.
   - Start all the processors in the flow by right-clicking on the canvas and selecting Start in the options menu. You can also start each processor individually if you want by right clicking on them and starting them.
   - Go to your ssh terminal window and execute the **publish-clickstream-to-nifi.sh** script to publish the clickstream data.
-  - Go back to the Nifi flow. You should start seeing the data flowing between the processors. 
-
-   
-   
+  - Go back to the Nifi flow. You should start seeing the data flowing between the processors.
+  - Right Click on the last relationship connection, between the funnel and the EvaluateJsonPath processor and list the queue. Select the first message by clicking on the info icon.
+  ![FlowTest-2](images/FlowTest-2.png.png)
+  ![FlowTest-31](images/FlowTest-3.1.png.png)
+  - Inspect the contents by clicking the **VIEW** button on the **DETAILS** tab. You will see the results from the Users table query converted into json format. Click on the ATTRIBUTES tab. You will see the bdate and gender attributes have values extracted from the query results.
+![FlowTest-32](images/FlowTest-3.2.png.png)
+![FlowTest-4](images/FlowTest-4.png.png)
+ 
        
 **TODO**  
 - Step 8: Add a PutFile processor to the canvas and link from AttributesToCSV on **success** relationship
