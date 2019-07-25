@@ -632,23 +632,23 @@ The flow should look like this:
 
 Again commit your changes and start the flow!
 
-You should be able to see records streaming through Kafka looking at the terminal with Kafka consumer opened earlier
+You should be able to see records streaming through Kafka looking at the terminal with Kafka consumer opened earlier **TODO: Image needs update**
 
 ![PublisToKafka-2](images/kafka_topic_avro.png)
 
 When you are happy with the outcome stop the flow and purge the Kafka topic as we are going to use it later:
 
-```./bin/kafka-configs.sh --zookeeper demo.cloudera.com:2181 --entity-type topics --alter --entity-name meetup_comment_ws --add-config retention.ms=1000```
+```./bin/kafka-configs.sh --zookeeper demo.cloudera.com:2181 --entity-type topics --alter --entity-name clickstream_events --add-config retention.ms=1000```
 
 Wait for few second and set the retention back to one hour:
 
-```./bin/kafka-configs.sh --zookeeper demo.cloudera.com:2181 --entity-type topics --alter --entity-name meetup_comment_ws --add-config retention.ms=3600000```
+```./bin/kafka-configs.sh --zookeeper demo.cloudera.com:2181 --entity-type topics --alter --entity-name clickstream_events --add-config retention.ms=3600000```
 
 You can check if the retention was set properly:
 
-```./bin/kafka-configs.sh --zookeeper demo.cloudera.com:2181 --describe --entity-type topics --entity-name meetup_comment_ws```
+```./bin/kafka-configs.sh --zookeeper demo.cloudera.com:2181 --describe --entity-type topics --entity-name clickstream_events```
 
-## Explore Hive, Druid and Zeppelin
+## TODO: Ingest clickstream_events into Druid
 
 Visit [Zeppelin](http://demo.cloudera.com:9995/) and log in as admin (password: admin)
 
@@ -700,99 +700,12 @@ Verify that supervisor and indexing task are running from the [Druid overload co
 
 ![Druid console](images/druid_console.png)
 
-## Stream enhanced data into Hive using NiFi
-
-### Run the sentiment analysis model as a REST-like service
-
-For the purpose of this exercise we are not going to train, test and implement a classification model but re-use an existing sentiment analysis model, provided by the Stanford University as part of their [CoreNLP - Natural language software](https://stanfordnlp.github.io/CoreNLP/)
-
-First, after ssh'ing to the sandbox, download and unzip the CoreNLP using the wget as below:
-
-```bash
-wget http://nlp.stanford.edu/software/stanford-corenlp-full-2018-10-05.zip
-unzip stanford-corenlp-full-2018-10-05.zip
-```
-
-Then, in order to start the [web service](https://stanfordnlp.github.io/CoreNLP/corenlp-server.html), run the [CoreNLP jar file](https://stanfordnlp.github.io/CoreNLP/download.html), with the following commands:
-
-```bash
-cd /path/to/stanford-corenlp-full-2018-10-05
-java -mx1g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9999 -timeout 15000 </dev/null &>/dev/null &
-```
-
-This will run in the background on port 9999 and you can visit the [web page](http://demo.cloudera.com:9999/) to make sure it's running.
-
-If you want to play with it, remove all annotations and use **Sentiment** only
-
-![Image of CoreNLP web service](images/corenlp_web.png)
-
-The model will classify the given text into 5 categories:
-
-- very negative
-- negative
-- neutral
-- positive
-- very positive
-
-### Enhance the Meetup comments with sentiment analysis outcome 
-
-Go back to [NiFi UI](http://demo.cloudera.com:9090/nifi/) and follow the steps below. Between the QueryRecord and PublishKafka_2_0 processors we are going to enhance the Meetup comment with NLP.
-
-- Step 1: Prepare the content to be posted to the sentiment analysis service
-  - Add ReplaceText processor and link from QueryRecord on **comments_in_english** relationship
-  - Keep the PublishKafka_2_0 processor on the canvas unlinked from/to other processors for now
-  - Double click on processor and check **failure** on settings tab
-  - Go to properties tab and remove value for **Search Value** and set it to empty string
-  - Set **Replacement Value** with value: **${comment:replaceAll('\\.', ';')}**. We want to make sure the entire comment is evaluated as one sentence instead of one evaluation per sentence within the same comment.
-  - Set **Replacement Strategy** to **Always Replace**
-  - Apply changes
-  
-- Step 2: Call the web service started earlier on incoming message
-  - Add InvokeHTTP processor and link from ReplaceText on **success** relationship
-  - Double click on processor and check all relationships except **Response** on settings tab
-  - Go to properties tab and set value for **HTTP Method** to **POST**
-  - Set **Remote URL** with value: ```http://demo.cloudera.com:9999/?properties=%7B%22annotators%22%3A%22sentiment%22%2C%22outputFormat%22%3A%22json%22%7D``` which is the url encoded value for **http://demo.cloudera.com:9999/?properties={"annotators":"sentiment","outputFormat":"json"}**
-  - Set **Content-Type** to **application/x-www-form-urlencoded**
-  - Apply changes
-  
-- Step 3: Add EvaluateJsonPath to the canvas and link from InvokeHTTP on **Response** relationship
-  - Double click on the processor
-  - On settings tab, check both **failure** and **unmatched** relationships
-  - On properties tab
-  - Change **Destination** value to **flowfile-attribute**
-  - Add on the property **sentiment** with value **$.sentences[0].sentiment**
-  - Apply changes
-  
-- Step 4: Format post time to comply with [ISO format](https://en.wikipedia.org/wiki/ISO_8601) (Druid requirement)
-  - Add UpdateAttribute processor and link from EvaluateJsonPath on **matched** relationship
-  - Using handy [NiFi's language expression](https://nifi.apache.org/docs/nifi-docs/html/expression-language-guide.html#dates), add a new attribue ```__time``` with value: ```${timestamp:format("yyyy-MM-dd'T'HH:mm:ss'Z'", "Asia/Singapore")}``` to properties tab
-
-- Step 5: Add AttributesToJSON processor to prepare the message to be published to the Kafka topic created before. Link from UpdateAttribute.
-  - Double click on processor
-  - On settings tab, check **failure** relationship
-  - Go to properties tab
-  - In the Attributes List value set ```__time, event, comment, member, sentiment``` to match the previously created Hive table
-  - Change Destination to **flowfile-content**
-  - Set Include Core Attributes to **false**
-  - Apply changes
-  
-- Step 6: Last step, link existing **PublishKafka_2_0** connector to the canvas from AttributesToJSON on **success** relationship
-  
-Before starting the NiFi flow make sure that the [sentiment analysis Web service](https://github.com/charlesb/CDF-workshop#run-the-sentiment-analysis-model-as-a-rest-like-service) is running
-	
-The overall flow should look like this
-
-![NiFi Flow 2](images/nifi_stream_to_kafka.png)
-
-You should be able to see records streaming through Kafka looking at the terminal with Kafka consumer opened earlier
-
-![Kafka topic consumer](images/kafka_topic_consumer.png)
+## TODO: Stream enhanced data into Hive using NiFi
 
 Going back to Zeppelin, we can query the data streamed in real-time
 
-![Kafka topic consumer](images/zeppelin_monitor_sentiment_analysis.png)
 
-## Create live dashboard with Superset
+## TODO: Create live dashboard with Superset
 
 Go to [Superset UI](http://demo.cloudera.com:9088/)
 
@@ -815,7 +728,7 @@ From this query, create a dashboard that will refresh automatically
 ![Druid dashboard](images/druid_dashboard.png)
 
 ******
-## Collect Clickstream Event Data using MiNiFi and EFM
+## TODO: Collect Clickstream Event Data using MiNiFi and EFM
 
 Go to NiFi Registry and create a bucket named **demo**
 
@@ -868,63 +781,6 @@ Visit [NiFi Registry UI](http://demo.cloudera.com:61080/nifi-registry/explorer/g
 Within few seconds, you should be able to see syslog messages streaming through your NiFi flow and be published to the Kafka topic you have created.
 
 ![Syslog message](images/syslog-json.png)
-
-## Process sentiment analysis on tweets
-
-### Apply for Twitter developer account and create an app
-
-Visit [Twitter developer page](https://developer.twitter.com/en/apply-for-access.html) and click on Apply for a developer account. If you don't have a Twitter account, sign up.
-
-After you have added a valid email address, follow the different account creation steps
-
-![twitter-account-details](images/twitter-account-details.png)
-
-![twitter-usecase-details](images/twitter-usecase-details.png)
-
-For the use case details, you can reuse the text below:
-
-```
-1. This account will be used for demo, building streaming data flow with real-time sentiment analyses using NiFi, Kafka and Druid
-2. I intend to compare tweets against a machine learning model using NLP techniques for sentiment analysis
-3. My use case does not involve tweeting, retweeting or liking content
-4. Individual tweets will not be displayed, data will be aggregated per sentiment: very negative, negative, neutral, positive and very positive
-```
-
-Agree to the Terms of Services
-
-![twitter-termsofservices-details](images/twitter-termsofservices-details.png)
-
-Finally click on the link from the email you have received and create an app
-
-![twitter-createanapp](images/twitter-createanapp.png)
-
-![twitter-appdetails](images/twitter-appdetails.png)
-
-Finally create the Keys and Tokens that will be needed by the NiFi processor to pull Tweets using the Twitter API
-
-![twitter-keysandtokens](images/twitter-keysandtokens.png)
-
-## Create a NiFi flow
-
-- Step 1: Get the tweets to be analysed
-  - Add GetTwitter processor to the canvas
-  - **Important!** From Scheduling tab change Run Schedule property to **2 sec**
-  - On the Properties tab
-    - Set Twitter Endpoint to **Filter Endpoint**
-    - Fill the Consumer Key, Consumer Secret, Access Token and Access Token Secret with the app keys and token
-    - Set Languages to **en**
-    - Provide a set of Terms to Filter On, i.e. 'cloudera'
-  - Apply changes
-  
-- Step 2: Call the web service started earlier on incoming message
-  - Add InvokeHTTP processor and link from ReplaceText on **success** relationship
-  - Double click on processor and check all relationships except **Response** on settings tab
-  - Go to properties tab and set value for **HTTP Method** to **POST**
-  - Set **Remote URL** with value: ```http://demo.cloudera.com:9999/?properties=%7B%22annotators%22%3A%22sentiment%22%2C%22outputFormat%22%3A%22json%22%7D``` which is the url encoded value for **http://demo.cloudera.com:9999/?properties={"annotators":"sentiment","outputFormat":"json"}**
-  - Set **Content-Type** to **application/x-www-form-urlencoded**
-  - Apply changes
-
-
 
 
 
