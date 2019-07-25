@@ -495,8 +495,9 @@ Go to the process group, where your nifi flow was built and perform the followin
   - *HiveQL Select Query* : select * from users_orc where users_orc.swid = '${user_session_id}'
   - On the SETTINGS tab, check the box for terminating the failure relationship.     
   - Apply changes.
-  - Connect the **EvaluateJsonPath** processor configured earlier to the **SelectHive3QL** procssor for the *matched* and *unmatched* relationships.    
-     ![Hive3ConnectionPool-1](images/Hive3ConnectionPool-1.png.png)
+  - Connect the **EvaluateJsonPath** processor configured earlier to the **SelectHive3QL** procssor for the *matched* and *unmatched* relationships.  
+  ![Hive3QL-1-config](images/Hive3QL-1-config.png.png)  
+
      
 - **Step 2: Configure a Hive3ConnectionPool Controller Service**   
    Open the Controller Services window for the process group from the Operate Window.
@@ -505,8 +506,8 @@ Go to the process group, where your nifi flow was built and perform the followin
   - *Hive Configuration Resources* : /etc/hive/conf/hive-site.xml
   - *Database User* : hive     
   - Apply changes and exit out of the controller services window.
-  
-     ![Hive3QL-1-config](images/Hive3QL-1-config.png.png)
+![Hive3ConnectionPool-1](images/Hive3ConnectionPool-1.png.png)
+     
      
 - **Step 3: Configure a ConvertAvroToJSON processor**   
 The output from the query executed by the **SelectHive3QL** is in avro format. We will convert that into json, so we can extract the user data from the results of the query and assign them to the flowfile attributes.   
