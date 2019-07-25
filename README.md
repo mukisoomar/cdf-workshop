@@ -608,7 +608,8 @@ Every attribute that we have added to any processor in the flow we built will be
       - Change **Attributes List** value to ***__time,clickstream_id,user_session_id,IPaddress,ts,gender,bday,is_purchased,is_page_errored,url,city,state,country***
       - Change **Destination** value to **flowfile-content**
       - Appliy changes
-
+      - Connect **UpdateAttribute** processor to **AttributesToJSON** processor through the **success** relationship.
+![AttributesToJSON-1](images/AttributesToJSON-1.png.png)
 
 
 - **Step 3: Add PublishKafka_2_0 Processor**
