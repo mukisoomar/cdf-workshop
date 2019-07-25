@@ -595,7 +595,7 @@ We will then create a table in Druid through the hive interface and initiate dat
    - Click APPLY and exit out of the configuration window.   
      
    - Link **EvaluateJSONPath(Extract user data from JSON)** processor to the **UpdateAttribute** processor using the **success** relationship path.
-    
+    ![UpdateAttribute__time_link](images/UpdateAttribute__time_link.png.png)
 
 
 - **PublishKafka_2_0** connector to the canvas and link from QueryRecord on **comments_in_english** relationship
