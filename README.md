@@ -18,8 +18,9 @@
 
 ## Content
 
-* [Setup Accessing the sandbox](#accessing-the-sandbox)
-* [Workshop Overview](#stream-data-using-nifi)
+* [Setup for Accessing the sandbox](#accessing-the-sandbox)
+* [Workshop Overview](#stream-data-using-nifi)   
+   
 * [Lab 1 - Build the first NiFi flow](#Build-the-first-NiFi-flow)
 * [Lab 2 - Process and enrich content](#Process-and-enrich-content)
 * [Lab 3 - Explore Zeppelin and Hive](#explore-Zeooelin-and-Hive)
@@ -28,7 +29,7 @@
 * [Lab 6 - Publish Enriched Clickstream Events to Kafka and ingest into Druid](#integrate-with-schema-registry)
 * [Lab 7 - Ingest clickstream_events into Druid](#explore-hive-druid-and-zeppelin)
 * [Lab 8 - Create live dashboard with Superset](#create-live-dashboard-with-superset)
-* [Lab 9 - Collect clickstream events= data using MiNiFi and EFM](#collect-syslog-data-using-minifi-and-efm)
+* [Lab 9 - Collect clickstream events data using MiNiFi and EFM](#collect-syslog-data-using-minifi-and-efm)
 * [Bonus - Lab 10 - Stream enhanced data into Hive using NiFi](#stream-enhanced-data-into-hive-using-nifi)
 
 ## Setup for Accessing the sandbox
