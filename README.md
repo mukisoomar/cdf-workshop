@@ -1,4 +1,4 @@
-# CDF Labs: Real-time Web Click Stream Data analysis with NiFi, Kafka, Druid, Zeppelin and Superset
+# CDF Labs: Real-time Web Click Stream Data analysis with NiFi, Kafka, Druid, Hive, Zeppelin and Superset
 
 
 ## Prerequisite
@@ -18,17 +18,18 @@
 
 ## Content
 
-* [Lab 1 - Accessing the sandbox](#accessing-the-sandbox)
-* [Lab 2 - Stream data using NiFi](#stream-data-using-nifi)
-* [Lab 2.1 - Build the first NiFi flow](#Build-the-first-NiFi-flow)
-* [Lab 2.2 - Process and enrich content](#Process-and-enrich-content)
-* [Lab 3 - Explore Kafka](#explore-kafka)
-* [Lab 4 - Integrate with Schema Registry](#integrate-with-schema-registry)
-* [Lab 5 - Explore Hive, Druid and Zeppelin](#explore-hive-druid-and-zeppelin)
-* [Lab 6 - Stream enhanced data into Hive using NiFi](#stream-enhanced-data-into-hive-using-nifi)
-* [Lab 7 - Create live dashboard with Superset](#create-live-dashboard-with-superset)
-* [Lab 8 - Collect syslog data using MiNiFi and EFM](#collect-syslog-data-using-minifi-and-efm)
-* [Bonus - Process sentiment analysis on tweets](#process-sentiment-analysis-on-tweets)
+* [Setup Accessing the sandbox](#accessing-the-sandbox)
+* [Workshop Overview](#stream-data-using-nifi)
+* [Lab 1 - Build the first NiFi flow](#Build-the-first-NiFi-flow)
+* [Lab 2 - Process and enrich content](#Process-and-enrich-content)
+* [Lab 3 - Explore Zeppelin and Hive](#explore-Zeooelin-and-Hive)
+* [Lab 4 - Enrich Clickstream Events with User Information for Downstream Analysis](#Enrich-Clickstream-Events)
+* [Lab 5 - Explore Kafka](#explore-kafka)
+* [Lab 6 - Publish Enriched Clickstream Events to Kafka and ingest into Druid](#integrate-with-schema-registry)
+* [Lab 7 - Ingest clickstream_events into Druid](#explore-hive-druid-and-zeppelin)
+* [Lab 8 - Create live dashboard with Superset](#create-live-dashboard-with-superset)
+* [Lab 9 - Collect clickstream events= data using MiNiFi and EFM](#collect-syslog-data-using-minifi-and-efm)
+* [Bonus - Lab 10 - Stream enhanced data into Hive using NiFi](#stream-enhanced-data-into-hive-using-nifi)
 
 ## Setup for Accessing the sandbox
 
@@ -92,7 +93,10 @@ In these labs while exploring the Cloudera Platform technologies, we are going t
 
 While this example is for a financial institution, this use case in general is applicable in any vertical including retail and other consumer oriented businesses. The monitoring aspect of the interest in the products could generally be for understanding the consumer behavior for the products or also for understanding the efficacy of a marketing campaign for new products or for promotions of existing products through a website. The insights derived from real-time monitoring and notifications can be leveraged for making decisions in real-time on which products to focus the most or which segment of the consumers to target the most. Analysis of many such scenarios become feasible when you have the right information at the right time, particularly in real-time so that you can take pro-active actions in real-time. 
 
-In order to have a web-click stream data source available for our workshop, we are going to make use of a script that will simulate the web application and generate web-clicks streaming data. We will capture that data via **NiFi**, filter appropriate events for routing purposes, process it where required, and forward it to downstream applications via **Kafka** for further analysis. We will ingest the data into **Druid**. **Druid** provides us the capabilities to execute queries on streaming data in real-time. To visualize data and run queries in real-time, we will use **Superset** to build our real-time dashboards. access to real-time data and  **NiFi and Kafka**, together make streaming analytics possible as you will see by working through the labs. 
+In order to have a web-click stream data source available for our workshop, we are going to make use of a script that will simulate the web application and generate web-clicks streaming data. We will capture that data via **NiFi**, filter appropriate events for routing purposes, process it where required, and forward it to downstream applications via **Kafka** for further analysis. We will ingest the data into **Druid**. **Druid** provides us the capabilities to execute queries on streaming data in real-time. To visualize data and run queries in real-time, we will use **Superset** to build our real-time dashboards.
+
+Since the sandbox for the labs was built using **HDP/CDP** and **HDF/CDF** platforms, we will also use **HDFS** to store our data files, **Hive** to build our database and tables on top of those data files. We will make use of these tables in our NiFi flows for enriching clickstream_events in flight, with user and product data. For interacting with HDFS and Hive, we will make use of **Zeppelin**.
+
 
 **TODO: Image of the overall architecture.**
 
