@@ -613,21 +613,14 @@ Every attribute that we have added to any processor in the flow we built will be
 
 
 - **Step 3: Add PublishKafka_2_0 Processor**
+We will now publish the JSON contents created in the previous processor to Kafka. You worked in the previous lab on Kafka and explored how messages can be published and consumed from Kafka. In NiFi we have Kafka connectors using which, through simple configurations, messages can be published and consumed from Kafka.
+
    - Add **PublishKafka_2_0** connector to the canvas and link from QueryRecord on **comments_in_english** relationship
   - Double click on the processor
   - On settings tab, check all relationships
   - On properties tab
   - Change **Kafka Brokers** value to **demo.cloudera.com:6667**
-  - Change **Topic Name** value to **meetup_comment_ws**
-  - Change **Use Transactions** value to **false**
-  - Apply changes
-
-- Step 2: Add a **PublishKafka_2_0** connector to the canvas and link from QueryRecord on **comments_in_english** relationship
-  - Double click on the processor
-  - On settings tab, check all relationships
-  - On properties tab
-  - Change **Kafka Brokers** value to **demo.cloudera.com:6667**
-  - Change **Topic Name** value to **meetup_comment_ws**
+  - Change **Topic Name** value to **clickstream_events**
   - Change **Use Transactions** value to **false**
   - Apply changes
 
