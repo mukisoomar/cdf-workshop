@@ -612,8 +612,8 @@ Every attribute that we have added to any processor in the flow we built will be
 ![AttributesToJSON-1](images/AttributesToJSON-1.png.png)
 
 
-- **Step 3: Add PublishKafka_2_0 Processor**
-We will now publish the JSON contents created in the previous processor to Kafka. You worked in the previous lab on Kafka and explored how messages can be published and consumed from Kafka. In NiFi we have Kafka connectors using which, through simple configurations, messages can be published and consumed from Kafka.
+- **Step 3: Add PublishKafka_2_0 Processor**   
+   We will now publish the JSON contents created in the previous processor to Kafka. You worked in the previous lab on Kafka and explored how messages can be published and consumed from Kafka. In NiFi we have Kafka connectors using which, through simple configurations, messages can be published and consumed from Kafka.
 
    - Add **PublishKafka_2_0** connector to the canvas and link from QueryRecord on **comments_in_english** relationship
   - Double click on the processor
