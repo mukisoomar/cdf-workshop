@@ -311,6 +311,7 @@ In this step, we will configure a **SplitRecord** processor. There are two reaso
            - *Schema Access Strategy*: *Use 'Schema Name' Property*
            - *Schema Registry*: Select *'create new service'* and select **HortonworksSchemaRegistry** from the dropdown.
            - *Schema Name*: $(schema.name)   
+           - *Value Separator*: | 
         
            ![CSVReader Config-4](images/SplitRecord-CSVReader-4.png.png)
            ![CSVReader Config-3](images/SplitRecord-CSVReader-3.png.png)   
@@ -489,15 +490,25 @@ Go to the process group, where your nifi flow was built and perform the followin
 
 - **Step 1: Configure a SelectHive3QL processor for querying user Data**   
    Drag a SelectHive3QL processor on the canvas. Double click on the processor. On the PROPERTIES tab perform the following configurations:
-  - *Hive Database Connection Pooling Service* : Create a new service and select Hive3ConnectionPool from the options.
+  - *Hive Database Connection Pooling Service* : Create a new service and select **Hive3ConnectionPool** from the options.
   - *HiveQL Pre-Query* : use clickstream
   - *HiveQL Select Query* : select * from users_orc where users_orc.swid = '${user_session_id}'
   - On the SETTINGS tab, check the box for terminating the failure relationship.     
   - Apply changes.
   - Connect the **EvaluateJsonPath** processor configured earlier to the **SelectHive3QL** procssor for the *matched* and *unmatched* relationships.    
+     ![Hive3ConnectionPool-1](images/Hive3ConnectionPool-1.png.png)
+     
+- **Step 2: Configure a Hive3ConnectionPool Controller Service**   
+   Open the Controller Services window for the process group from the Operate Window.
+   Click on the gear icon for the **Hive3ConnectionPool** controller service and perform the following configurations:
+  - *Database Connection URL* : jdbc:hive2://demo.cloudera.com:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2-interactive
+  - *Hive Configuration Resources* : /etc/hive/conf/hive-site.xml
+  - *Database User* : hive     
+  - Apply changes and exit out of the controller services window.
+  
      ![Hive3QL-1-config](images/Hive3QL-1-config.png.png)
      
-- **Step 2: Configure a ConvertAvroToJSON processor**   
+- **Step 3: Configure a ConvertAvroToJSON processor**   
 The output from the query executed by the **SelectHive3QL** is in avro format. We will convert that into json, so we can extract the user data from the results of the query and assign them to the flowfile attributes.   
 
    - Drag a ConvertAvroToJSON processor on the canvas. 
@@ -505,7 +516,7 @@ The output from the query executed by the **SelectHive3QL** is in avro format. W
      - Leave the default property values as they are. Click APPLY and exit the processor.  
      - Connect the **SelectHive3QL** processor to the **ConvertAvroToJSON** processor using the success relationship.
    
-- **Step 3: Configure a EvaluateJsonPath processor**   
+- **Step 4: Configure a EvaluateJsonPath processor**   
    We will now extract the user data values from the json format result that the previous processor will output.
     
    Drag a EvaluateJsonPath processor on the canvas. Double click on the processor and perform the following configurations:
@@ -519,7 +530,7 @@ The output from the query executed by the **SelectHive3QL** is in avro format. W
    - Connect the **ConvertAvroToJSON** processor to the **EvaluateJsonPath** processor using the success relationships.
    ![UserData-EvaluateJSONPath-1](images/UserData-EvaluateJSONPath-1.png.png)
    
-- **Step 4: Test the Flow**
+- **Step 5: Test the Flow**
 We will now test the flow to check the results of our flow configuration. Perform the following steps:
   - Connect the **EvaluateJsonPath** to the funnel and disconnect it from the processor it was connected to earlier. Check the matched and unmatched relationships for the connection. Your flow should look now as below.
 ![FlowTest-1](images/FlowTest-1.png.png)
@@ -540,7 +551,7 @@ We will now test the flow to check the results of our flow configuration. Perfor
 ![FlowTest-32](images/FlowTest-3.2.png.png)
 ![FlowTest-4](images/FlowTest-4.png.png)
 
-- **Step 5: Update flow in NiFi Flow Registry**
+- **Step 6: Update flow in NiFi Flow Registry**
 Since we have now achieved a substantial amount of flow to work, persist the flow in the NiFi Registry by right-clicking on the canvas, selecting the version option and selecting the "commit local changes".  
        
 ******
