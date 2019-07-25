@@ -580,16 +580,20 @@ We will then create a table in Druid through the hive interface and initiate dat
 
 - **Step 1**: We will first add the **UpdateAttribute** processor with an attribute that we will name as `__time`. This will be used to store the timestamp value. Since we will be using Druid as the database to store clickstream time series data, we need this attribute named as such as per Druid's requirement to store time series data.   
 
-Although, the clickstream event also has a time stamp value that we could have extracted and stored that value in the `__time` attribute, to demonstrate the NiFi's built in functions within its [expression language](https://nifi.apache.org/docs/nifi-docs/html/expression-language-guide.html), we will use the `now()` function to generate a timestamp value and format it the way we want.   
+   Although, the clickstream event also has a time stamp value that we could have extracted and stored that value in the `__time` attribute, to demonstrate the NiFi's built in functions within its [expression language](https://nifi.apache.org/docs/nifi-docs/html/expression-language-guide.html), we will use the `now()` function to generate a timestamp value and format it the way we want.   
 
-Configure the **UpdateAttribute** processor as follows:     
-  - On the ATTRIBUTES tab, 
-  	- add the property `__time`
-  	- Assign its value: `${now():format("yyyy-MM-dd'T'HH:mm:ss'Z'", "America,Chicago")}`
-  - On the SETTINGS tab set the properties as follows
-    -  **NAME** : Add __time attribute
-  - Click APPLY and exit out of the configuration window.
-  - Link **EvaluateJSONPath(Extract user data from JSON)** processor to the **UpdateAttribute** processor using the **success** relationship path. 
+   Configure the **UpdateAttribute** processor as follows:   
+   - On the ATTRIBUTES tab,   
+     - add the property `__time`
+     - Assign its value: `${now():format("yyyy-MM-dd'T'HH:mm:ss'Z'", "America,Chicago")}`   
+     
+   - On the SETTINGS tab set the properties as follows   
+     -  **NAME** : Add __time attribute
+     - Click APPLY and exit out of the configuration window.   
+     
+   - Link **EvaluateJSONPath(Extract user data from JSON)** processor to the **UpdateAttribute** processor using the **success** relationship path.
+   ![UpdateAttribute__time](images/UpdateAttribute__time.png.png) 
+
 
 - **PublishKafka_2_0** connector to the canvas and link from QueryRecord on **comments_in_english** relationship
   - Double click on the processor
