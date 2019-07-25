@@ -665,44 +665,50 @@ You can check if the retention was set properly:
 
 ```./bin/kafka-configs.sh --zookeeper demo.cloudera.com:2181 --describe --entity-type topics --entity-name clickstream_events```
 
+********
 ## TODO: Ingest clickstream_events into Druid
 
 Visit [Zeppelin](http://demo.cloudera.com:9995/) and log in as admin (password: admin)
 
-Create a new note(book) called Demo (use jdbc as default interpreter)
+Create a new note(book) called Demo (use hive as default interpreter)
 
-![Zeppelin note creation](images/zeppelin_create_note.png)
+![Zeppelin note creation](images/zeppelin_create_note.png.png)
 
-Add the interpreter to connect to Hive LLAP
-
-```%jdbc(hive_interactive)```
 
 Create a database named workshop and run the SQL
 
 ```SQL
-CREATE DATABASE workshop;
+CREATE DATABASE workshop
 ```
 
 Create the Hive table backed by Druid storage where the social medias sentiment analysis will be streamed into
 
 ```SQL
-CREATE EXTERNAL TABLE workshop.meetup_comment_sentiment (
+CREATE EXTERNAL TABLE clickstream_events (
 `__time` timestamp,
-`event` string,
-`member` string,
-`comment` string,
-`sentiment` string
+clickstream_id string,
+user_session_id string,
+ipaddress string,
+ts string,
+gender string,
+bday string,
+is_purchased string,
+is_page_errored string,
+url string,
+city string,
+state string,
+country string
 )
 STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler'
 TBLPROPERTIES (
 "kafka.bootstrap.servers" = "demo.cloudera.com:6667",
-"kafka.topic" = "meetup_comment_ws",
+"kafka.topic" = "clickstream_events",
 "druid.kafka.ingestion.useEarliestOffset" = "true",
 "druid.kafka.ingestion.maxRowsInMemory" = "5",
 "druid.kafka.ingestion.startDelay" = "PT1S",
 "druid.kafka.ingestion.period" = "PT1S",
 "druid.kafka.ingestion.consumer.retries" = "2"
-);
+)
 ```
 
 ![Zeppelin create DB and table](images/zeppelin_create_db_and_table.png)
@@ -710,7 +716,7 @@ TBLPROPERTIES (
 Start Druid indexing
 
 ```SQL
-ALTER TABLE workshop.meetup_comment_sentiment SET TBLPROPERTIES('druid.kafka.ingestion' = 'START');
+ALTER TABLE workshop.meetup_comment_sentiment SET TBLPROPERTIES('druid.kafka.ingestion' = 'START')
 ```
 
 Verify that supervisor and indexing task are running from the [Druid overload console](http://demo.cloudera.com:8090/console.html)

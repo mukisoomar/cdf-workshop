@@ -46,3 +46,33 @@ SELECT * FROM products
 # Confirm the table was created with the data loaded by executing a select statement on the table
 SELECT * FROM products_orc limit 10
 
+
+## For DRUID Ingestion
+CREATE EXTERNAL TABLE clickstream_events (
+`__time` timestamp,
+clickstream_id string,
+user_session_id string,
+ipaddress string,
+ts string,
+gender string,
+bday string,
+is_purchased string,
+is_page_errored string,
+url string,
+city string,
+state string,
+country string
+)
+STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler'
+TBLPROPERTIES (
+"kafka.bootstrap.servers" = "demo.cloudera.com:6667",
+"kafka.topic" = "clickstream_events",
+"druid.kafka.ingestion.useEarliestOffset" = "true",
+"druid.kafka.ingestion.maxRowsInMemory" = "5",
+"druid.kafka.ingestion.startDelay" = "PT1S",
+"druid.kafka.ingestion.period" = "PT1S",
+"druid.kafka.ingestion.consumer.retries" = "2"
+)
+
+
+
