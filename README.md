@@ -578,9 +578,9 @@ In this lab we will add a few more attributes to the click stream event data tha
 
 We will then create a table in Druid through the hive interface and initiate data ingestion into Druid.
 
-- **Step 1**: We will first add the **UpdateAttribute** processor with an attribute that we will name as `__time`. This will be used to store the timestamp value. Since we will be using Druid as the database to store clickstream time series data, we need this attribute named as such as per Druid's requirement to store time series data.
+- **Step 1**: We will first add the **UpdateAttribute** processor with an attribute that we will name as `__time`. This will be used to store the timestamp value. Since we will be using Druid as the database to store clickstream time series data, we need this attribute named as such as per Druid's requirement to store time series data. 
 
-Although, the clickstream event also has a time stamp value that we could have extracted and stored that value in the `__time` attribute, to demonstrate the NiFi's built in functions within its expression language (more here <link>), we will use the `now` function to generate a timestamp value and format it the way we want.
+Although, the clickstream event also has a time stamp value that we could have extracted and stored that value in the `__time` attribute, to demonstrate the NiFi's built in functions within its [expression language](https://nifi.apache.org/docs/nifi-docs/html/expression-language-guide.html), we will use the `now()` function to generate a timestamp value and format it the way we want. 
 
 Configure the **UpdateAttribute** processor as follows:  
   - On the ATTRIBUTES tab, 
