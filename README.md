@@ -578,7 +578,8 @@ In this lab we will add a few more attributes to the click stream event data tha
 
 We will then create a table in Druid through the hive interface and initiate data ingestion into Druid.
 
-- **Step 1**: We will first add the **UpdateAttribute** processor with an attribute that we will name as `__time`. This will be used to store the timestamp value. Since we will be using Druid as the database to store clickstream time series data, we need this attribute named as such as per Druid's requirement to store time series data.   
+- **Step 1: Add UpdateAttribute Processor**   
+We will first add the **UpdateAttribute** processor with an attribute that we will name as `__time`. This will be used to store the timestamp value. Since we will be using Druid as the database to store clickstream time series data, we need this attribute named as such as per Druid's requirement to store time series data.   
 
    Although, the clickstream event also has a time stamp value that we could have extracted and stored that value in the `__time` attribute, to demonstrate the NiFi's built in functions within its [expression language](https://nifi.apache.org/docs/nifi-docs/html/expression-language-guide.html), we will use the `now()` function to generate a timestamp value and format it the way we want.   
 
@@ -594,11 +595,24 @@ We will then create a table in Druid through the hive interface and initiate dat
      
    - Click APPLY and exit out of the configuration window.   
      
-   - Link **EvaluateJSONPath(Extract user data from JSON)** processor to the **UpdateAttribute** processor using the **success** relationship path.
+   - Link **EvaluateJSONPath(Extract user data from JSON)** processor to the **UpdateAttribute** processor using the **matched and unmatched** relationship paths.
     ![UpdateAttribute__time_link](images/UpdateAttribute__time_link.png.png)
 
+- **Step 2: Add AttributesToJSON Processor**   
+Every attribute that we have added to any processor in the flow we built will be attached to the flow file. We need to now recreate flow file content with all the attributes we collected so far along with their values. For this we will use the **AttributesToJSON** processor.   
 
-- **PublishKafka_2_0** connector to the canvas and link from QueryRecord on **comments_in_english** relationship
+   - Add an **AttributesToJSON** processor to the canvas
+   - Double click on the processor
+   - On SETTINGS tab, click on all relationships
+   - On PROPERTIES tab:
+      - Change **Attributes List** value to ***__time,clickstream_id,user_session_id,IPaddress,ts,gender,bday,is_purchased,is_page_errored,url,city,state,country***
+      - Change **Destination** value to **flowfile-content**
+      - Appliy changes
+
+
+
+- **Step 3: Add PublishKafka_2_0 Processor**
+   - Add **PublishKafka_2_0** connector to the canvas and link from QueryRecord on **comments_in_english** relationship
   - Double click on the processor
   - On settings tab, check all relationships
   - On properties tab
