@@ -494,12 +494,11 @@ Go to the process group, where your nifi flow was built and perform the followin
      
 - **Step 2: Configure a ConvertAvroToJSON processor**   
 The output from the query executed by the **SelectHive3QL** is in avro format. We will convert that into json, so we can extract the user data from the results of the query and assign them to the flowfile attributes.   
-   
-Drag a ConvertAvroToJSON processor on the canvas. 
-   - Double click on the processor. On the SETTINGS tab, check the *failure** check box to terminate that relationship.
-   - Leave the default property values as they are. Click APPLY and exit the processor.
-   
-   Connect the **SelectHive3QL** processor to the **ConvertAvroToJSON** processor using the success relationship.
+
+   - Drag a ConvertAvroToJSON processor on the canvas. 
+     - Double click on the processor. On the SETTINGS tab, check the **failure** check box to terminate that relationship.
+     - Leave the default property values as they are. Click APPLY and exit the processor.  
+     - Connect the **SelectHive3QL** processor to the **ConvertAvroToJSON** processor using the success relationship.
    
 - **Step 3: Configure a EvaluateJsonPath processor**   
    We will now extract the user data values from the json format result that the previous processor will output.
@@ -515,19 +514,23 @@ Drag a ConvertAvroToJSON processor on the canvas.
    - Connect the **ConvertAvroToJSON** processor to the **EvaluateJsonPath** processor using the success relationships.
    ![UserData-EvaluateJSONPath-1](images/UserData-EvaluateJSONPath-1.png.png)
    
-- **Step 4: Test the Flow**   
-
+- **Step 4: Test the Flow**
 We will now test the flow to check the results of our flow configuration. Perform the following steps:
-  - Connect the **EvaluateJsonPath** to the funnel and disconnect it from the processor it was connected to earlier. Check the matched and unmatched relationships for the connection. 
-  Your flow should look now as below.
+  - Connect the **EvaluateJsonPath** to the funnel and disconnect it from the processor it was connected to earlier. Check the matched and unmatched relationships for the connection. Your flow should look now as below.
 ![FlowTest-1](images/FlowTest-1.png.png)
+  
   - Click anywhere on the canvas (not on a processor) and click the configuration Gear in the Operate window. Go to the Controller Service tab and enable all the controller services. Exit out of the window.
+  
   - Start all the processors in the flow by right-clicking on the canvas and selecting Start in the options menu. You can also start each processor individually if you want by right clicking on them and starting them.
+  
   - Go to your ssh terminal window and execute the **publish-clickstream-to-nifi.sh** script to publish the clickstream data.
+  
   - Go back to the Nifi flow. You should start seeing the data flowing between the processors.
+  
   - Right Click on the last relationship connection, between the funnel and the EvaluateJsonPath processor and list the queue. Select the first message by clicking on the info icon.
   ![FlowTest-2](images/FlowTest-2.png.png)
   ![FlowTest-31](images/FlowTest-3.1.png.png)
+  
   - Inspect the contents by clicking the **VIEW** button on the **DETAILS** tab. You will see the results from the Users table query converted into json format. Click on the ATTRIBUTES tab. You will see the bdate and gender attributes have values extracted from the query results.
 ![FlowTest-32](images/FlowTest-3.2.png.png)
 ![FlowTest-4](images/FlowTest-4.png.png)
