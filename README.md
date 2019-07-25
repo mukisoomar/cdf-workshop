@@ -476,7 +476,7 @@ Zeppelin is a notebook application that provides an interactive environment to c
 
 
 ******
-### Enrich Click Events with User information for downstream analysis
+### Enrich Clickstream Events with User Information for Downstream Analysis
 
 In this lab, we will configure some more processors to enrich the in-flight streaming data with user information. For this we will use the user table in the hive database we created in the previous lab.
 
@@ -484,12 +484,12 @@ Go to the process group, where your nifi flow was built and perform the followin
 
 - **Step 1: Configure a SelectHive3QL processor for querying user Data**   
    Drag a SelectHive3QL processor on the canvas. Double click on the processor. On the PROPERTIES tab perform the following configurations:
-     - *Hive Database Connection Pooling Service* : Create a new service and select Hive3ConnectionPool from the options.
-     - *HiveQL Pre-Query* : use clickstream
-     - *HiveQL Select Query* : select * from users_orc where users_orc.swid = '${user_session_id}'
-     - On the SETTINGS tab, check the box for terminating the failure relationship.     
-     - Apply changes.
-     - Connect the **EvaluateJsonPath** processor configured earlier to the **SelectHive3QL** procssor for the *matched* and *unmatched* relationships.    
+  - *Hive Database Connection Pooling Service* : Create a new service and select Hive3ConnectionPool from the options.
+  - *HiveQL Pre-Query* : use clickstream
+  - *HiveQL Select Query* : select * from users_orc where users_orc.swid = '${user_session_id}'
+  - On the SETTINGS tab, check the box for terminating the failure relationship.     
+  - Apply changes.
+  - Connect the **EvaluateJsonPath** processor configured earlier to the **SelectHive3QL** procssor for the *matched* and *unmatched* relationships.    
      ![Hive3QL-1-config](images/Hive3QL-1-config.png.png)
      
 - **Step 2: Configure a ConvertAvroToJSON processor**   
@@ -538,32 +538,31 @@ Since we have now achieved a substantial amount of flow to work, persist the flo
 ******
 ## Explore Kafka
 
-In this lab, we will explore basic functions of Kafka and the scripts available to interact with Kafka that come packaged with the Kafka installation binaries.
+In this lab, we will explore basic functions of Kafka and the scripts available to interact with Kafka that come packaged with the Kafka installation binaries. We will use Kafka as our messaging layer in the later labs to publish clickstream events to it. Streaming applications built for real-time analytics generally consume streaming data from Kafka, with Kafka acting as a decoupling layer between the streaming data source and the streaming applications.
 
-ssh to the AWS instance as explained above then become root
+-  ssh to the AWS instance as explained above then become root
 
 ```sudo su -```
 
-Navigate to Kafka
+-  Navigate to Kafka
 
 ```cd /usr/hdp/current/kafka-broker```
 
-Create a topic named **clickstream_events_test**
+-  Create a topic named **clickstream_events_test**
 
 ```./bin/kafka-topics.sh --create --zookeeper demo.cloudera.com:2181 --replication-factor 1 --partitions 1 --topic clickstream_events```
 
-List topics to check that it's been created
+-  List topics to check that it's been created
 
 ```./bin/kafka-topics.sh --list --zookeeper demo.cloudera.com:2181```
 
-Open a consumer so later we can monitor and verify that JSON records will stream through this topic:
+-  Open a consumer so later we can monitor and verify that JSON records will stream through this topic:
 
 ```./bin/kafka-console-consumer.sh --bootstrap-server demo.cloudera.com:6667 --topic clickstream_events```
 
-Keep this terminal open.
+  Keep this terminal open.
 
-We will now open a new terminal to publish some messages...
-
+-  We will now open a new terminal to publish some messages...
 Follow the same steps as above except for the last step where we are going to open a producer instead of a consumer:
 
 ```./bin/kafka-console-producer.sh --broker-list demo.cloudera.com:6667 --topic clickstream_events```
