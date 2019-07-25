@@ -345,7 +345,7 @@ Drag a **EvaluateJsonPath** processor to the canvas and perform the following co
 
    - On the **PROPERTIES** tab, add the following attributes by clicking on the "+" button on the upper right hand corner of the window and assign values as below (please see the image below for help).    
       - **city** : *$.city*
-      - **clicstream_id** : *$.clickstream_id*
+      - **clickstream_id** : *$.clickstream_id*
       - **country** : *$.country*
       - **IPaddress** : *$.IPaddress*
       - **is_page_errored** : *$.is_page_errored*
@@ -525,6 +525,7 @@ The output from the query executed by the **SelectHive3QL** is in avro format. W
      - **Name** : Extract user data from JSON
      - **Terminate Relationships** : check box for failure, matched and unmatched relationships.
    - On the PROPERTIES tab, add two properties: bday and gender and set values as follows:
+     - *Destination* : flowfile-attribute
      - *bday* : $.birth_dt
      - *gender* : $.gender_cd
    - Click Apply
@@ -649,9 +650,8 @@ The flow should look like this:
 
 Again commit your changes and start the flow!
 
-You should be able to see records streaming through Kafka looking at the terminal with Kafka consumer opened earlier **TODO: Image needs update**
-
-![PublisToKafka-2](images/kafka_topic_avro.png)
+You should be able to see records streaming through Kafka looking at the terminal with Kafka consumer opened earlier. 
+![PublishToKafka-2](images/Kafka-console-consumer-1.png.png)
 
 When you are happy with the outcome stop the flow and purge the Kafka topic as we are going to use it later:
 
