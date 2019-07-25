@@ -30,7 +30,7 @@
 * [Lab 8 - Collect syslog data using MiNiFi and EFM](#collect-syslog-data-using-minifi-and-efm)
 * [Bonus - Process sentiment analysis on tweets](#process-sentiment-analysis-on-tweets)
 
-## Accessing the sandbox
+## Setup for Accessing the sandbox
 
 ### Add an alias to your hosts file
 
@@ -87,17 +87,17 @@ On Windows use [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest
 
 ![Image of Putty ssh](images/login_with_putty_2.png)
 
-## Stream data using NiFi
+## Workshop Overview
 In these labs while exploring the Cloudera Platform technologies, we are going to build a Web Click Stream Analytics Application that will allow us to monitor the products that our customers or web site visitors are most interested in. For this we are going to assume that we are a financial institution that exposes its financial products to its customers as well as general public and will monitor the interest in the products advertised through our website.
 
 While this example is for a financial institution, this use case in general is applicable in any vertical including retail and other consumer oriented businesses. The monitoring aspect of the interest in the products could generally be for understanding the consumer behavior for the products or also for understanding the efficacy of a marketing campaign for new products or for promotions of existing products through a website. The insights derived from real-time monitoring and notifications can be leveraged for making decisions in real-time on which products to focus the most or which segment of the consumers to target the most. Analysis of many such scenarios become feasible when you have the right information at the right time, particularly in real-time so that you can take pro-active actions in real-time. 
 
-In order to have a web-click stream data source available for our workshop, we are going to make use of a script that will simulate the web application and generate web-click stream data. We will capture that data via **NiFi**, filter appropriate events for routing purposes, process it where required, and forward it to downstream applications via **Kafka** for further analysis. **NiFi and Kafka**, together make streaming analytics possible as you will see by working through the labs. 
+In order to have a web-click stream data source available for our workshop, we are going to make use of a script that will simulate the web application and generate web-clicks streaming data. We will capture that data via **NiFi**, filter appropriate events for routing purposes, process it where required, and forward it to downstream applications via **Kafka** for further analysis. We will ingest the data into **Druid**. **Druid** provides us the capabilities to execute queries on streaming data in real-time. To visualize data and run queries in real-time, we will use **Superset** to build our real-time dashboards. access to real-time data and  **NiFi and Kafka**, together make streaming analytics possible as you will see by working through the labs. 
 
 **TODO: Image of the overall architecture.**
 
 ****
-### Build the first NiFi flow
+### LAB 1 - Build the first NiFi flow
 
 Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and follow the steps below:
 
