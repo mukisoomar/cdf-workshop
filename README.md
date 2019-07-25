@@ -588,11 +588,14 @@ We will then create a table in Druid through the hive interface and initiate dat
      - Assign its value: `${now():format("yyyy-MM-dd'T'HH:mm:ss'Z'", "America,Chicago")}`   
      
    - On the SETTINGS tab set the properties as follows   
-     -  **NAME** : Add __time attribute
-     - Click APPLY and exit out of the configuration window.   
+     -  **NAME** : `Add __time attribute`  
+     
+     ![UpdateAttribute__time](images/UpdateAttribute__time.png.png)   
+     
+   - Click APPLY and exit out of the configuration window.   
      
    - Link **EvaluateJSONPath(Extract user data from JSON)** processor to the **UpdateAttribute** processor using the **success** relationship path.
-   ![UpdateAttribute__time](images/UpdateAttribute__time.png.png) 
+    
 
 
 - **PublishKafka_2_0** connector to the canvas and link from QueryRecord on **comments_in_english** relationship
