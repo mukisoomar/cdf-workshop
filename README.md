@@ -623,16 +623,18 @@ Every attribute that we have added to any processor in the flow we built will be
   - Change **Topic Name** value to **clickstream_events**
   - Change **Use Transactions** value to **false**
   - Apply changes
+  - Connect the **AttributesToJSON** processor to the **PublishKafka_2_0** processor using the **success** relationship.
+  - Disconnect funnel from the processor it was connected to and connect it to the **PublishKafka_2_0** processor.   
 
 The flow should look like this:
 
-![Avro records to Kafka topic](images/avro_records_to_kafka_topic.png)
+![PublishToKafka-1](images/PublishToKafka-1.png.png)
 
 Again commit your changes and start the flow!
 
 You should be able to see records streaming through Kafka looking at the terminal with Kafka consumer opened earlier
 
-![Kafka topic avro](images/kafka_topic_avro.png)
+![PublisToKafka-2](images/kafka_topic_avro.png)
 
 When you are happy with the outcome stop the flow and purge the Kafka topic as we are going to use it later:
 
