@@ -732,11 +732,11 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
 
 Click on the datasource and create the following query
 
-![Druid query](images/Superset-3-Top25 PieChart.png.png)
+![Druid query](images/Superset-3-Top25PieChart.png.png)
 
 From this slice, create a dashboard as shown.
 
-![Druid dashboard](images/Superset-3-Top25 PieChart-SaveToDashboard.png.png)
+![Druid dashboard](images/Superset-3-Top25PieChart-SaveToDashboard.png.png)
 
 Resize the Dashboard as required. From the **Actions** button, click on **Set Auto Refresh** interval to 10 seconds. You will now see this dashboard update in real-time as the data gets ingested into Druid in Real-Time.
 
