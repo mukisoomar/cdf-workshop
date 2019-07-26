@@ -716,15 +716,17 @@ Verify that supervisor and indexing task are running from the [Druid overload co
 
 You can now start publishing data using the script to the NiFi flow. The data that gets published to Kafka in NiFi now automatically gets ingested into Druid allowing us to query the data streamed in real-time.
 
-## Create live dashboard with Superset
+## Create Live Dashboard with Superset
 
 Go to [Superset UI](http://demo.cloudera.com:9088/)
 
-Log in with user **admin** and password **admin**
-![Refresh druid metadata](images/Superset-1.login.png.png)
+Log in with user **admin** and password **admin**   
 
-Refresh Druid metadata
-![Refresh druid metadata](images/Superset-2-RefreshDruidMetadata.png.png)
+  ![Refresh druid metadata](images/Superset-1.login.png.png)
+
+Refresh Druid metadata   
+
+   ![Refresh druid metadata](images/Superset-2-RefreshDruidMetadata.png.png)
 
 Edit the **workshop.clickstream_events** datasource record and verify that the columns are listed, same for the metric (you might need to scroll down)
 
@@ -745,15 +747,18 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
    
 - **Slice-2 Distribution of Product clicks by State**   
    
-   - Click on the datasource and create the following query
+   - Click on the datasource and create the following query   
+   
    ![Druid query](images/Superset-4-ProductClicksByState.png.png)
    
-   - You can add filters to the query as shown below to limit what you want to visualize.
+   - You can add filters to the query as shown below to limit what you want to visualize.   
+   
    ![Druid query](images/Superset-4-ProductClicksByState-FilterDetails.png.png)
    
    - Save the query and add to dashboard.
    
-   -Resize the Dashboard as required as save. If you had setup the refresh rate, you will now see this slice getting updated in real-time as well.
+   -Resize the Dashboard as required as save. If you had setup the refresh rate, you will now see this slice getting updated in real-time as well.   
+   
    ![Druid dashboard](images/Superset-4-ProductClicksByState-Dashboard.png.png)
    
 - **Slice-3 Distribution of Product clicks by State - Sankey Chart**
