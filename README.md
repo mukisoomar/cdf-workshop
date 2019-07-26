@@ -835,7 +835,25 @@ service minifi start
 
    - Connect the **ListenTCP** processor to the funnel and delete its connection with the **UpdateAttribute** processor. See the figure below for the final result.
    
-   ![NiFi-Main-FromMiniFi-2](images/NiFi-Main-FromMiniFi-2.png.png)   
+   ![NiFi-Main-FromMiniFi-2](images/NiFi-Main-FromMiniFi-2.png.png) 
+   
+   - Go back to the root canvas and connect the Input Port via funnel to the *process group* **clickstream-flow** as shown.
+   
+   ![NiFi-Main-FromMiniFi-3](images/NiFi-Main-FromMiniFi-3.png.png)   
+   
+- **Step 4: Build the MiniFi flow in EFM**   
+
+   Now that our NiFi flow is ready to rec.   
+   
+   - Add an Input Port to the canvas within your Process Group where we built the main NiFi flow. Name the input flow as **from_minifi**   
+   
+   - Connect the Input Port to the **UpdateAttribute** processor which we named as *Set Schema Name from Registry* via a funnel as shown in the figure below.
+   
+   ![NiFi-Main-FromMiniFi-1](images/NiFi-Main-FromMiniFi-1.png.png)
+
+   - Connect the **ListenTCP** processor to the funnel and delete its connection with the **UpdateAttribute** processor. See the figure below for the final result.
+   
+   ![NiFi-Main-FromMiniFi-2](images/NiFi-Main-FromMiniFi-2.png.png)     
     
 ** TODO**
 ![NiFi syslog parser](images/nifi-syslog-parser.png)
