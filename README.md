@@ -666,7 +666,7 @@ You can check if the retention was set properly:
 ```./bin/kafka-configs.sh --zookeeper demo.cloudera.com:2181 --describe --entity-type topics --entity-name clickstream_events```
 
 ********
-## TODO: Ingest clickstream_events into Druid
+## Ingest clickstream_events into Druid
 
 Visit [Zeppelin](http://demo.cloudera.com:9995/) and log in as admin (password: admin)
 
@@ -782,9 +782,15 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
    
    ![Druid query](images/Superset-6-FinalDashBoard.png)
    
+- You can add more slices to do product segmentation across demographics (gender for example or by age) to get more insights and in real-time or daily to see the trends over time. 
+   
    
 ******
-## TODO: Collect Clickstream Event Data using MiNiFi and EFM
+##Collect Clickstream Event Data using MiNiFi and EFM
+
+While we saw one way of collecting data using a direct TCP connection within NiFi, this may in general may not be feasible when your applications are deployed, for example in the cloud or outside your enterprise. In such a situation, we can use minifi as a very light-footprint agent on the web application servers and capture the streaming data from the log files that the web applications can write to.
+
+In this lab, we are going to see how minifi can be used to collect this data from remote applications. We are also going to see how CEM (Cloudera's Edge Managent) tool can be used to manage the remote agents as well as to do the deployments of flows to minifi agents.
 
 Go to NiFi Registry and create a bucket named **demo**
 
@@ -800,19 +806,14 @@ You should see heartbeats coming from the agent
 
 ![EFM agents monitor](images/efm-agents-monitor.png)
 
-Now, **on the root canvas**, create a simple flow to collect local syslog messages and forward them to NiFi, where the logs will be parsed, transformed into another format and pushed to a Kafka topic.
+Now, **on the root canvas**, create a simple flow to collect data from the web application log files and forward them to our flow we built earlier in NiFi.
 
 Our agent has been tagged with the class 'demo' (check nifi.c2.agent.class property in /usr/minifi/conf/bootstrap.conf) so we are going to create a template under this specific class
 
-But first we need to add an Input Port to the root canvas of NiFi and build a flow as described before. Input Port are used to receive flow files from remote MiNiFi agents or other NiFi instances.
-
+But first we need to add an Input Port to the root canvas of NiFi and build a flow as described before. Input Ports are used to receive flow files from remote MiNiFi agents or other NiFi instances.
+** TODO**
 ![NiFi syslog parser](images/nifi-syslog-parser.png)
 
-Don't forget to create a new Kafka topic as explained in Lab 3 above.
-
-We are going to use a Grok parser to parse the syslog messages. Here is a Grok expression that can be used to parse such logs format:
-
-```%{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} %{DATA:syslog_program}(?:\[%{POSINT:syslog_pid}\])?: %{GREEDYDATA:syslog_message}```
 
 Now that we have built the NiFi flow that will receive the logs, let's go back to the EFM UI and build the MiNiFi flow as below:
 
