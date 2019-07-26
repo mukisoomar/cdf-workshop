@@ -5,74 +5,87 @@ hdfs dfs -ls /workshop/clickstream/data/users
 
 # Use paragraphs with a %hive interpreter to execute Hive database scripts
 
-# Create a database in Hive
-CREATE DATABASE IF NOT EXISTS workshop
-USE workshop
+# CREATE A DATABASE IN HIVE
+CREATE DATABASE IF NOT EXISTS WORKSHOP
+USE WORKSHOP
 
-# Create a users table with a schema on top of the users.tsv file in HDFS
-DROP TABLE IF EXISTS users;
-CREATE EXTERNAL TABLE IF NOT EXISTS users 
-(swid string, birth_dt string, gender_cd string) 
-ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE 
-LOCATION "/workshop/clickstream/data/users"
+# CREATE A USERS TABLE WITH A SCHEMA ON TOP OF THE USERS.TSV FILE IN HDFS
+DROP TABLE IF EXISTS USERS;
+CREATE EXTERNAL TABLE IF NOT EXISTS USERS 
+(SWID STRING, BIRTH_DT STRING, GENDER_CD STRING) 
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\T' STORED AS TEXTFILE 
+LOCATION "/WORKSHOP/CLICKSTREAM/DATA/USERS"
 
-# Confirm the table was created with the data loaded by executing a select statement on the table
-SELECT * FROM users limit 10
+# CONFIRM THE TABLE WAS CREATED WITH THE DATA LOADED BY EXECUTING A SELECT STATEMENT ON THE TABLE
+SELECT * FROM USERS LIMIT 10
 
-# Create a users_orc table using the users table created in previous step using a CTAS statement
-# The ORC format is an Optimized Row Columnar format that speeds up the query response
-DROP TABLE IF EXISTS users_orc;
-CREATE TABLE IF NOT EXISTS users_orc as
-SELECT * FROM users
+# CREATE A USERS_ORC TABLE USING THE USERS TABLE CREATED IN PREVIOUS STEP USING A CTAS STATEMENT
+# THE ORC FORMAT IS AN OPTIMIZED ROW COLUMNAR FORMAT THAT SPEEDS UP THE QUERY RESPONSE
+DROP TABLE IF EXISTS USERS_ORC;
+CREATE TABLE IF NOT EXISTS USERS_ORC AS
+SELECT * FROM USERS
 
-# Confirm the table was created with the data loaded by executing a select statement on the table
-SELECT * FROM users_orc limit 10
+# CONFIRM THE TABLE WAS CREATED WITH THE DATA LOADED BY EXECUTING A SELECT STATEMENT ON THE TABLE
+SELECT * FROM USERS_ORC LIMIT 10
 
-# Create a users table with a schema on top of the products.tsv file in HDFS
-DROP TABLE IF EXISTS products;
-CREATE EXTERNAL TABLE IF NOT EXISTS products
-(url string, category string, description string) 
-ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE 
-LOCATION "/workshop/clickstream/data/products"
+# CREATE A USERS TABLE WITH A SCHEMA ON TOP OF THE PRODUCTS.TSV FILE IN HDFS
+DROP TABLE IF EXISTS PRODUCTS;
+CREATE EXTERNAL TABLE IF NOT EXISTS PRODUCTS
+(URL STRING, CATEGORY STRING, DESCRIPTION STRING) 
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\T' STORED AS TEXTFILE 
+LOCATION "/WORKSHOP/CLICKSTREAM/DATA/PRODUCTS"
 
-# Confirm the table was created with the data loaded by executing a select statement on the table
-SELECT * FROM products limit 10
+# CONFIRM THE TABLE WAS CREATED WITH THE DATA LOADED BY EXECUTING A SELECT STATEMENT ON THE TABLE
+SELECT * FROM PRODUCTS LIMIT 10
 
-# Create a products_orc table using the products table created in previous step using a CTAS statement
-DROP TABLE IF EXISTS products_orc;
-CREATE TABLE IF NOT EXISTS products_orc as
-SELECT * FROM products
+# CREATE A PRODUCTS_ORC TABLE USING THE PRODUCTS TABLE CREATED IN PREVIOUS STEP USING A CTAS STATEMENT
+DROP TABLE IF EXISTS PRODUCTS_ORC;
+CREATE TABLE IF NOT EXISTS PRODUCTS_ORC AS
+SELECT * FROM PRODUCTS
 
-# Confirm the table was created with the data loaded by executing a select statement on the table
-SELECT * FROM products_orc limit 10
+# CONFIRM THE TABLE WAS CREATED WITH THE DATA LOADED BY EXECUTING A SELECT STATEMENT ON THE TABLE
+SELECT * FROM PRODUCTS_ORC LIMIT 10
 
 
-## For DRUID Ingestion
-CREATE EXTERNAL TABLE clickstream_events (
-`__time` timestamp,
-clickstream_id string,
-user_session_id string,
-ipaddress string,
-ts string,
-gender string,
-bday string,
-is_purchased string,
-is_page_errored string,
-url string,
-city string,
-state string,
-country string
+## FOR DRUID INGESTION
+CREATE EXTERNAL TABLE CLICKSTREAM_EVENTS (
+`__TIME` TIMESTAMP,
+CLICKSTREAM_ID STRING,
+USER_SESSION_ID STRING,
+IPADDRESS STRING,
+TS STRING,
+GENDER STRING,
+BDAY STRING,
+IS_PURCHASED STRING,
+IS_PAGE_ERRORED STRING,
+URL STRING,
+CITY STRING,
+STATE STRING,
+COUNTRY STRING
 )
-STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler'
+STORED BY 'ORG.APACHE.HADOOP.HIVE.DRUID.DRUIDSTORAGEHANDLER'
 TBLPROPERTIES (
-"kafka.bootstrap.servers" = "demo.cloudera.com:6667",
-"kafka.topic" = "clickstream_events",
-"druid.kafka.ingestion.useEarliestOffset" = "true",
-"druid.kafka.ingestion.maxRowsInMemory" = "5",
-"druid.kafka.ingestion.startDelay" = "PT1S",
-"druid.kafka.ingestion.period" = "PT1S",
-"druid.kafka.ingestion.consumer.retries" = "2"
+"KAFKA.BOOTSTRAP.SERVERS" = "DEMO.CLOUDERA.COM:6667",
+"KAFKA.TOPIC" = "CLICKSTREAM_EVENTS",
+"DRUID.KAFKA.INGESTION.USEEARLIESTOFFSET" = "TRUE",
+"DRUID.KAFKA.INGESTION.MAXROWSINMEMORY" = "5",
+"DRUID.KAFKA.INGESTION.STARTDELAY" = "PT1S",
+"DRUID.KAFKA.INGESTION.PERIOD" = "PT1S",
+"DRUID.KAFKA.INGESTION.CONSUMER.RETRIES" = "2"
 )
 
 
+SELECT 
+    CSE.TS AS TS,
+    CSE.USER_SESSION_ID AS USERSESSION,
+    CSE.GENDER AS GENDER,
+    CSE.BDAY AS BDAY,
+    CSE.IS_PURCHASED AS PURCHASED,
+    CSE.IS_PAGE_ERRORED AS ERROR,
+    P.CATEGORY AS PRODUCT,
+    P.DESC AS DESC,
+    CSE.CITY AS CITY,
+    CSE.STATE AS STATE
+FROM CLICKSTREAM_EVENTS CSE, PRODUCTS P 
+WHERE CSE.URL = P.URL LIMIT 100
 

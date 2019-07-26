@@ -491,7 +491,7 @@ Go to the process group, where your nifi flow was built and perform the followin
 - **Step 1: Configure a SelectHive3QL processor for querying user Data**   
    Drag a SelectHive3QL processor on the canvas. Double click on the processor. On the PROPERTIES tab perform the following configurations:
   - *Hive Database Connection Pooling Service* : Create a new service and select **Hive3ConnectionPool** from the options.
-  - *HiveQL Pre-Query* : use clickstream
+  - *HiveQL Pre-Query* : use workshop
   - *HiveQL Select Query* : select * from users_orc where users_orc.swid = '${user_session_id}'
   - On the SETTINGS tab, check the box for terminating the failure relationship.     
   - Apply changes.
@@ -675,16 +675,10 @@ Create a new note(book) called Demo (use hive as default interpreter)
 ![Zeppelin note creation](images/zeppelin_create_note.png.png)
 
 
-Create a database named workshop and run the SQL
+Create the Hive table backed by Druid storage where the clickstream_events data will be streamed into
 
 ```SQL
-CREATE DATABASE workshop
-```
-
-Create the Hive table backed by Druid storage where the social medias sentiment analysis will be streamed into
-
-```SQL
-CREATE EXTERNAL TABLE clickstream_events (
+CREATE EXTERNAL TABLE workshop.clickstream_events (
 `__time` timestamp,
 clickstream_id string,
 user_session_id string,
@@ -716,17 +710,14 @@ TBLPROPERTIES (
 Start Druid indexing
 
 ```SQL
-ALTER TABLE workshop.meetup_comment_sentiment SET TBLPROPERTIES('druid.kafka.ingestion' = 'START')
+ALTER TABLE workshop.clickstream_events SET TBLPROPERTIES('druid.kafka.ingestion' = 'START')
 ```
 
 Verify that supervisor and indexing task are running from the [Druid overload console](http://demo.cloudera.com:8090/console.html)
 
 ![Druid console](images/druid_console.png)
 
-## TODO: Stream enhanced data into Hive using NiFi
-
-Going back to Zeppelin, we can query the data streamed in real-time
-
+You can now start publishing data using the script to the NiFi flow. The data that gets published to Kafka in NiFi now automatically gets ingested into Druid allowing us to query the data streamed in real-time.
 
 ## TODO: Create live dashboard with Superset
 
