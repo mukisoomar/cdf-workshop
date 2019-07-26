@@ -815,15 +815,28 @@ service minifi start
    
    ![NiFi-RecieveFromMiniFi-1](images/NiFi-RecieveFromMiniFi-1.png.png)   
    
-   - Name the input port as **minifi-clickstream-events**   
+   - Double click on the input port and change the **Name** of the input port as **minifi-clickstream-events**   
    
    ![NiFi-RecieveFromMiniFi-2](images/NiFi-RecieveFromMiniFi-2.png.png)   
    
    - Connect it to a funnel.   
    
-   ![NiFi-RecieveFromMiniFi-3](images/NiFi-RecieveFromMiniFi-3.png.png)
+   ![NiFi-RecieveFromMiniFi-3](images/NiFi-RecieveFromMiniFi-3.png.png)   
+   
+- **Step 3: Update your main NiFi flow to receive data from root canvas flow**   
 
-Go to the root canvas in your NiFi UI and drag an input port. 
+   Since our main NiFi flow is in a process group, we need to enable this flow to receive data from the root canvas flows. Perform the following steps.   
+   
+   - Add an Input Port to the canvas within your Process Group where we built the main NiFi flow. Name the input flow as **from_minifi**   
+   
+   - Connect the Input Port to the **UpdateAttribute** processor which we named as *Set Schema Name from Registry* via a funnel as shown in the figure below.
+   
+   ![NiFi-Main-FromMiniFi-1](images/NiFi-Main-FromMiniFi-1.png.png)
+
+   - Connect the **ListenTCP** processor to the funnel and delete its connection with the **UpdateAttribute** processor. See the figure below for the final result.
+   
+   ![NiFi-Main-FromMiniFi-2](images/NiFi-Main-FromMiniFi-2.png.png)   
+    
 ** TODO**
 ![NiFi syslog parser](images/nifi-syslog-parser.png)
 
