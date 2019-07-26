@@ -702,7 +702,7 @@ TBLPROPERTIES (
 )
 ```
 
-![Zeppelin create DB and table](images/zeppelin_create_db_and_table.png)
+![Zeppelin create DB and table](images/Zeppelin-Druid.png)
 
 Start Druid indexing
 
