@@ -778,16 +778,9 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
    
    - Add it to the dashboard.   
 
+   - Your dashboard may look like here   
    
-- **Slice-5 Product Clicks by Gender by State**
-   
-   - Create a Sankey Visualization from the clickstream events data   
-   
-   ![Druid query](images/Superset-5-ProductClicksByState-SankeyChart.png.png)
-   
-   - Add it to the dashboard.   
-   
-   ![Druid query](images/Superset-5-ProductClicksByState-SankeyChart-Dashboard.png.png)
+   ![Druid query](images/Superset-6-FinalDashBoard.png)
    
    
 ******
