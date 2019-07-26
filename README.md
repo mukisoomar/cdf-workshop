@@ -786,34 +786,46 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
    
    
 ******
-##Collect Clickstream Event Data using MiNiFi and EFM
+## Collect Clickstream Event Data using MiNiFi and EFM
 
-While we saw one way of collecting data using a direct TCP connection within NiFi, this may in general may not be feasible when your applications are deployed, for example in the cloud or outside your enterprise. In such a situation, we can use minifi as a very light-footprint agent on the web application servers and capture the streaming data from the log files that the web applications can write to.
+While we saw one way of collecting data using a direct TCP connection within NiFi, this may in general not be feasible when your applications are deployed, for example in the cloud or outside your enterprise. In such a situation, we can use minifi as a very light-footprint agent on the web application servers and capture the streaming data from the log files that the web applications write to and stream that over to NiFi.
 
 In this lab, we are going to see how minifi can be used to collect this data from remote applications. We are also going to see how CEM (Cloudera's Edge Managent) tool can be used to manage the remote agents as well as to do the deployments of flows to minifi agents.
 
-Go to NiFi Registry and create a bucket named **demo**
+Perform the following Steps for the lab:
 
-As root (sudo su -) start EFM and MiNiFi
+- **Step 1: Start the minifi agent and the efm service**   
+
+   - Go to NiFi Registry and create a bucket named **demo**
+   - As root (sudo su -) start EFM and MiNiFi
 
 ```bash
 service efm start
 service minifi start
 ```
-Visit [EFM UI](http://demo.cloudera.com:10080/efm/ui/)
+   - Visit [EFM UI](http://demo.cloudera.com:10080/efm/ui/)
+   - You should see heartbeats coming from the agent   
+   ![EFM agents monitor](images/efm-agents-monitor.png)   
+   
+- **Step 2: Build the NiFi Flow to receive data from MiniFi**
 
-You should see heartbeats coming from the agent
+Before we configure MiniFi to send data to NiFi, we must build the receiving flow in NiFi first. Perform the following steps.   
+   - Add an Input Port to the root canvas of NiFi. Input Ports are used to receive flow files from remote MiNiFi agents or other NiFi instances.
+   ![NiFi-RecieveFromMiniFi-1](images/NiFi-RecieveFromMiniFi-1.png.png)
+   
+   - Name the input port as **minifi-clickstream-events**
+   ![NiFi-RecieveFromMiniFi-2](images/NiFi-RecieveFromMiniFi-2.png.png)
+   
+   - Connect it to a funnel. 
+   ![NiFi-RecieveFromMiniFi-3](images/NiFi-RecieveFromMiniFi-3.png.png)
 
-![EFM agents monitor](images/efm-agents-monitor.png)
-
-Now, **on the root canvas**, create a simple flow to collect data from the web application log files and forward them to our flow we built earlier in NiFi.
-
-Our agent has been tagged with the class 'demo' (check nifi.c2.agent.class property in /usr/minifi/conf/bootstrap.conf) so we are going to create a template under this specific class
-
-But first we need to add an Input Port to the root canvas of NiFi and build a flow as described before. Input Ports are used to receive flow files from remote MiNiFi agents or other NiFi instances.
+Go to the root canvas in your NiFi UI and drag an input port. 
 ** TODO**
 ![NiFi syslog parser](images/nifi-syslog-parser.png)
 
+Now, **on the root canvas**, create a simple flow to collect data from the web application log files and forward them to our flow we built earlier in NiFi. 
+   
+   Our agent has been tagged with the class 'demo' (check nifi.c2.agent.class property in /usr/minifi/conf/bootstrap.conf) so we are going to create a template under this specific class.
 
 Now that we have built the NiFi flow that will receive the logs, let's go back to the EFM UI and build the MiNiFi flow as below:
 
