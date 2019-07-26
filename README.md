@@ -728,13 +728,17 @@ Refresh Druid metadata
 
 Edit the **workshop.clickstream_events** datasource record and verify that the columns are listed, same for the metric (you might need to scroll down)
 
-![Druid datasource columns](images/Superset-3-DS_Columns.png.png)
-- **Slice-1 Build the Top 25 product hits visualization   
-   - Click on the datasource and create the following query
+![Druid datasource columns](images/Superset-3-DS_Columns.png.png)   
+
+- **Slice-1 Build the Top 25 product hits visualization**   
+   - Click on the datasource and create the following query   
+   
    ![Druid query](images/Superset-3-Top25PieChart.png.png)
    
-   - From this slice, create a dashboard as shown.
-   ![Druid dashboard](images/Superset-3-Top25PieChart-SaveToDashboard.png.png)
+   - From this slice, create a dashboard as shown.   
+   
+   ![Druid dashboard](images/Superset-3-Top25PieChart-SaveToDashboard.png.png)   
+   
    Resize the Dashboard as required. From the **Actions** button, click on **Set Auto Refresh** interval to 10 seconds. You will now see this dashboard update in real-time as the data gets ingested into Druid in Real-Time.
    
    You can build several other **slices** from the datasource as below and add them to the dashboard.
@@ -748,7 +752,6 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
    ![Druid query](images/Superset-4-ProductClicksByState-FilterDetails.png.png)
    
    - Save the query and add to dashboard.
-   ![Druid query](images/Superset-4-ProductClicksByState-SaveSlice.png.png)
    
    -Resize the Dashboard as required as save. If you had setup the refresh rate, you will now see this slice getting updated in real-time as well.
    ![Druid dashboard](images/Superset-4-ProductClicksByState-Dashboard.png.png)
@@ -759,9 +762,7 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
    
    ![Druid query](images/Superset-5-ProductClicksByState-SankeyChart.png.png)
    
-   - Add it to the dashboard.   
-   
-   ![Druid query](images/Superset-5-ProductClicksByState-SankeyChart-Dashboard.png.png)
+   - Add it to the dashboard.
 
 
 - **Slice-4 Web Application Clicks By State**
@@ -771,9 +772,6 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
    ![Druid query](Superset-6-WebApplicationClicksByState-HeatMap.png.png)
    
    - Add it to the dashboard.   
-   
-   ![Druid query](images/Superset-6-WebApplicationClicksByState-HeatMap-Dashboard.png.png)
-
 
    
 - **Slice-5 Product Clicks by Gender by State**
