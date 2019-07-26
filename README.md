@@ -739,7 +739,7 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
    
    You can build several other **slices** from the datasource as below and add them to the dashboard.
    
-- **Slice -2 Distribution of Product links by State   
+- **Slice-2 Distribution of Product clicks by State**   
    
    - Click on the datasource and create the following query
    ![Druid query](images/Superset-4-ProductClicksByState.png.png)
@@ -753,6 +753,29 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
    -Resize the Dashboard as required as save. If you had setup the refresh rate, you will now see this slice getting updated in real-time as well.
    ![Druid dashboard](images/Superset-4-ProductClicksByState-Dashboard.png.png)
    
+- **Slice-3 Distribution of Product clicks by State - Sankey Chart**
+   
+   - Create a Sankey Visualization from the clickstream events data
+   ![Druid query](images/Superset-5-ProductClicksByState-SankeyChart.png.png)
+   
+   - Add it to the dashboard.
+   ![Druid query](images/Superset-5-ProductClicksByState-SankeyChart-Dashboard.png.png)
+   
+- **Slice-4 Distribution of Product Clicks by Gender**
+   
+   - Create a Sankey Visualization from the clickstream events data
+   ![Druid query](images/Superset-5-ProductClicksByState-SankeyChart.png.png)
+   
+   - Add it to the dashboard.
+   ![Druid query](images/Superset-5-ProductClicksByState-SankeyChart-Dashboard.png.png)
+
+- **Slice-5 Web Application Clicks By State**
+   
+   - Create a Heat Map Visualization from the clickstream events data
+   ![Druid query](Superset-6-WebApplicationClicksByState-HeatMap.png.png)
+   
+   - Add it to the dashboard.
+   ![Druid query](images/Superset-6-WebApplicationClicksByState-HeatMap-Dashboard.png.png)
 
 ******
 ## TODO: Collect Clickstream Event Data using MiNiFi and EFM
