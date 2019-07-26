@@ -765,7 +765,7 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
    - Add it to the dashboard.
 
 
-- **Slice-4 Web Application Clicks By State**
+- **Slice-4 Web Application Clicks By State - Heat Map**
    
    - Create a Heat Map Visualization from the clickstream events data   
    
