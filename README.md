@@ -755,28 +755,38 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
    
 - **Slice-3 Distribution of Product clicks by State - Sankey Chart**
    
-   - Create a Sankey Visualization from the clickstream events data
+   - Create a Sankey Visualization from the clickstream events data   
+   
    ![Druid query](images/Superset-5-ProductClicksByState-SankeyChart.png.png)
    
-   - Add it to the dashboard.
-   ![Druid query](images/Superset-5-ProductClicksByState-SankeyChart-Dashboard.png.png)
+   - Add it to the dashboard.   
    
-- **Slice-4 Distribution of Product Clicks by Gender**
-   
-   - Create a Sankey Visualization from the clickstream events data
-   ![Druid query](images/Superset-5-ProductClicksByState-SankeyChart.png.png)
-   
-   - Add it to the dashboard.
    ![Druid query](images/Superset-5-ProductClicksByState-SankeyChart-Dashboard.png.png)
 
-- **Slice-5 Web Application Clicks By State**
+
+- **Slice-4 Web Application Clicks By State**
    
-   - Create a Heat Map Visualization from the clickstream events data
+   - Create a Heat Map Visualization from the clickstream events data   
+   
    ![Druid query](Superset-6-WebApplicationClicksByState-HeatMap.png.png)
    
-   - Add it to the dashboard.
+   - Add it to the dashboard.   
+   
    ![Druid query](images/Superset-6-WebApplicationClicksByState-HeatMap-Dashboard.png.png)
 
+
+   
+- **Slice-5 Product Clicks by Gender by State**
+   
+   - Create a Sankey Visualization from the clickstream events data   
+   
+   ![Druid query](images/Superset-5-ProductClicksByState-SankeyChart.png.png)
+   
+   - Add it to the dashboard.   
+   
+   ![Druid query](images/Superset-5-ProductClicksByState-SankeyChart-Dashboard.png.png)
+   
+   
 ******
 ## TODO: Collect Clickstream Event Data using MiNiFi and EFM
 
