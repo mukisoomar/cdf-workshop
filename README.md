@@ -769,7 +769,7 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
    
    - Create a Heat Map Visualization from the clickstream events data   
    
-   ![Druid query](Superset-6-WebApplicationClicksByState-HeatMap.png.png)
+   ![Druid query](images/Superset-6-WebApplicationClicksByState-HeatMap.png.png)
    
    - Add it to the dashboard.   
 
