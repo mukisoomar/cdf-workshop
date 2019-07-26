@@ -670,10 +670,7 @@ You can check if the retention was set properly:
 
 Visit [Zeppelin](http://demo.cloudera.com:9995/) and log in as admin (password: admin)
 
-Create a new note(book) called Demo (use hive as default interpreter)
-
-![Zeppelin note creation](images/zeppelin_create_note.png.png)
-
+Go back to your notebook that you used in the previous lab.
 
 Create the Hive table backed by Druid storage where the clickstream_events data will be streamed into
 
@@ -719,27 +716,33 @@ Verify that supervisor and indexing task are running from the [Druid overload co
 
 You can now start publishing data using the script to the NiFi flow. The data that gets published to Kafka in NiFi now automatically gets ingested into Druid allowing us to query the data streamed in real-time.
 
-## TODO: Create live dashboard with Superset
+## Create live dashboard with Superset
 
 Go to [Superset UI](http://demo.cloudera.com:9088/)
 
 Log in with user **admin** and password **admin**
+![Refresh druid metadata](images/Superset-1.login.png.png)
 
 Refresh Druid metadata
+![Refresh druid metadata](images/Superset-2-RefreshDruidMetadata.png.png)
 
-![Refresh druid metadata](images/superset_refresh_datasources.png)
+Edit the **workshop.clickstream_events** datasource record and verify that the columns are listed, same for the metric (you might need to scroll down)
 
-Edit the **meetup_comment_sentiment** datasource record and verify that the columns are listed, same for the metric (you might need to scroll down)
-
-![Druid datasource columns](images/druid_datasource_columns.png)
+![Druid datasource columns](images/Superset-3-DS_Columns.png.png)
 
 Click on the datasource and create the following query
 
-![Druid query](images/druid_query.png)
+![Druid query](images/Superset-3-Top25 PieChart.png.png)
 
-From this query, create a dashboard that will refresh automatically
+From this slice, create a dashboard as shown.
 
-![Druid dashboard](images/druid_dashboard.png)
+![Druid dashboard](images/Superset-3-Top25 PieChart-SaveToDashboard.png.png)
+
+Resize the Dashboard as required. From the **Actions** button, click on **Set Auto Refresh** interval to 10 seconds. You will now see this dashboard update in real-time as the data gets ingested into Druid in Real-Time.
+
+You can build several other **slices** from the datasource as below and add them to the dashboard.
+
+
 
 ******
 ## TODO: Collect Clickstream Event Data using MiNiFi and EFM
