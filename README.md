@@ -807,16 +807,20 @@ service minifi start
    - You should see heartbeats coming from the agent   
    ![EFM agents monitor](images/efm-agents-monitor.png)   
    
-- **Step 2: Build the NiFi Flow to receive data from MiniFi**
+- **Step 2: Build the NiFi Flow to receive data from MiniFi**   
 
-Before we configure MiniFi to send data to NiFi, we must build the receiving flow in NiFi first. Perform the following steps.   
-   - Add an Input Port to the root canvas of NiFi. Input Ports are used to receive flow files from remote MiNiFi agents or other NiFi instances.
-   ![NiFi-RecieveFromMiniFi-1](images/NiFi-RecieveFromMiniFi-1.png.png)
+   Before we configure MiniFi to send data to NiFi, we must build the receiving flow in NiFi first. Perform the following steps.   
    
-   - Name the input port as **minifi-clickstream-events**
-   ![NiFi-RecieveFromMiniFi-2](images/NiFi-RecieveFromMiniFi-2.png.png)
+   - Add an Input Port to the root canvas of NiFi. Input Ports are used to receive flow files from remote MiNiFi agents or other NiFi instances.   
    
-   - Connect it to a funnel. 
+   ![NiFi-RecieveFromMiniFi-1](images/NiFi-RecieveFromMiniFi-1.png.png)   
+   
+   - Name the input port as **minifi-clickstream-events**   
+   
+   ![NiFi-RecieveFromMiniFi-2](images/NiFi-RecieveFromMiniFi-2.png.png)   
+   
+   - Connect it to a funnel.   
+   
    ![NiFi-RecieveFromMiniFi-3](images/NiFi-RecieveFromMiniFi-3.png.png)
 
 Go to the root canvas in your NiFi UI and drag an input port. 
