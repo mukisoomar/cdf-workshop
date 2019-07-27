@@ -842,7 +842,7 @@ service minifi start
    
 - **Step 4: Build the MiniFi flow in EFM**   
 
-   Now that our NiFi flow is ready to receive data from MiNiFi, let us configure the MiNiFi flow. This MiNiFi agent will tail the file located at ``/home/centos/cdf-workshop-master/data/weblogs/weblogs.log` and send the logs to the **Input Port** we configured on the **root canvas** earlier. The script `write-clickstream-to-file.sh` will write the clickstream data to this directory.   
+   Now that our NiFi flow is ready to receive data from MiNiFi, let us configure the MiNiFi flow. This MiNiFi agent will tail the file located at `/home/centos/cdf-workshop-master/data/weblogs/weblogs.log` and send the logs to the **Input Port** we configured on the **root canvas** earlier. The script `write-clickstream-to-file.sh` will write the clickstream data to this directory.   
      
    ![Tailfile](images/tail-file.png).   
    
@@ -852,7 +852,7 @@ service minifi start
    
    - Our agent has been tagged with the class 'demo' (check nifi.c2.agent.class property in /usr/minifi/conf/bootstrap.conf) so we are going to create a template under this specific class.  
    
-   - Click on the **checkered menu**. This will take you to the **Flow  Designer**. On the canvas, add a processor by dragging the processor to the canvas. A list of processors available to configure are displayed. In the filter, type in **tail**. This will filter out the rest and show the **TailFile** processor. Select this processor and configure it.
+   - Click on the **checkered menu** and select the **demo** template. This will take you to the **Flow  Designer**. On the canvas, add a processor by dragging the processor to the canvas. A list of processors available to configure are displayed. In the filter, type in **tail**. This will filter out the rest and show the **TailFile** processor. Select this processor and configure it.
    
       ![CEMFlow-1-TailFile](images/CEMFlow-1-TailFile.png.png)
       
