@@ -22,7 +22,7 @@
 * [Workshop Overview](#stream-data-using-nifi)   
    
 * [Lab 1 - Build the first NiFi flow](#Lab-1---Build-the-first-NiFi-flow)
-* [Lab 2 - Process Data and Integrate with Schema Registry](#Process-Data)
+* [Lab 2 - Process Data and Integrate with Schema Registry](#Lab-2---Process-Data-and-Integrate-with-Schema-Registry)
 * [Lab 3 - Explore Zeppelin and Hive](#explore-Zeppelin-and-Hive)
 * [Lab 4 - Enrich Clickstream Events with User Information for Downstream Analysis](#Enrich-Clickstream-Events)
 * [Lab 5 - Explore Kafka](#Lab-5---Explore-Kafka)
@@ -176,7 +176,7 @@ Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and fol
   - Go back to your **FlowFile** details window. Click on the **ATTRIBUTES** tab. This provides the details of the attributes that are associated with the flow file. Click OK and close the queue list window to return back to your canvas. ![Flowfile Contents](images/Queue-list-5.png.png)
 
 ****  
-### Lab 2 - Process Data and Integrate with Schema Registry
+## Lab 2 - Process Data and Integrate with Schema Registry
 In this lab, we will further enrich and process content that was received from the log generator simulating a web click stream.
 
 We will perform the following steps to continue to build our flow:
