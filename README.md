@@ -22,7 +22,7 @@
 * [Workshop Overview](#stream-data-using-nifi)   
    
 * [Lab 1 - Build the first NiFi flow](#Build-the-first-NiFi-flow)
-* [Lab 2 - Process and enrich content](#Process-and-enrich-content)
+* [Lab 2 - Process Data and Integrate with Schema Registry](#Process-Data)
 * [Lab 3 - Explore Zeppelin and Hive](#explore-Zeooelin-and-Hive)
 * [Lab 4 - Enrich Clickstream Events with User Information for Downstream Analysis](#Enrich-Clickstream-Events)
 * [Lab 5 - Explore Kafka](#explore-kafka)
@@ -176,7 +176,7 @@ Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and fol
   - Go back to your **FlowFile** details window. Click on the **ATTRIBUTES** tab. This provides the details of the attributes that are associated with the flow file. Click OK and close the queue list window to return back to your canvas. ![Flowfile Contents](images/Queue-list-5.png.png)
 
 ****  
-### Process and enrich content
+### Lab 2 - Process Data and Integrate with Schema Registry
 In this lab, we will further enrich and process content that was received from the log generator simulating a web click stream.
 
 We will perform the following steps to continue to build our flow:
@@ -890,16 +890,14 @@ service minifi start
     - Select **Actions** from the upper right corner and click on **Publish** to publish the flow to NiFi Registry. If successful, the **Star** Icon will change to a **Green Check** icon. This action also publishes the flow to all the MiNiFi agents that are deployed on all the servers - in our case on the sandbox server.  
     
      ![CEMFlow-1-FullFlow-Publish](images/CEMFlow-1-FullFlow-Publish.png.png)   
-      
+  
+- **Step 5: Test the flow from MiNiFi to NiFi to Kafka to Druid to Superset**       
+
+   In our final step, we will test flow end-to-end. Follow the below steps:
    
-   This MiNiFi agent will tail '/home/centos/cdf-workshop-master/data/weblogs' and send the logs to a remote process group (our NiFi instance) using the Input Port.   
-   ![Tailfile](images/tail-file.png).   
+   - In your ssh terminal window from the `/home/centos/cdf-workshop-master/data_gen` directory, execute the shell script `./write-clickstream-to-file.sh`. This will start generating the clickstream data which will be written to the `weblogs.log` file located at the `/home/centos/cdf-workshop-master/data/weblogs` directory. 
    
-   Please note that the NiFi instance has been configured to receive data over HTTP only, not RAW   
-   
-   ![Remote process group](images/remote-process-group.png).   
-   
-   Now we can start the NiFi flow and publish the MiNiFi flow to NiFi registry (Actions > Publish...).  Visit [NiFi Registry UI](http://demo.cloudera.com:61080/nifi-registry/explorer/grid-list) to make sure your flow has been published successfully.   
+   - The MiNiFi agent is already running and will start tailing the weblogs.log file. From the root canvas in the NiFi UI (http://demo.cloudera.com), start the Input Port, the clickstream-flow process group. Now we can start the NiFi flow and publish the MiNiFi flow to NiFi registry (Actions > Publish...).  Visit [NiFi Registry UI](http://demo.cloudera.com:61080/nifi-registry/explorer/grid-list) to make sure your flow has been published successfully.   
    
    ![NiFi Registry](images/nifi-registry.png).   
    
