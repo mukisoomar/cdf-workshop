@@ -803,15 +803,14 @@ Perform the following Steps for the lab:
 service efm start
 service minifi start
 ```
-   - Visit [EFM UI](http://demo.cloudera.com:10080/efm/ui/)
-   - You should see heartbeats coming from the agent   
+   - Visit [EFM UI](http://demo.cloudera.com:10080/efm/ui/). You should see heartbeats coming from the agent   
    ![EFM agents monitor](images/efm-agents-monitor.png)   
    
 - **Step 2: Build the NiFi Flow to receive data from MiniFi**   
 
    Before we configure MiniFi to send data to NiFi, we must build the receiving flow in NiFi first. Perform the following steps.   
    
-   - Add an Input Port to the root canvas of NiFi. Input Ports are used to receive flow files from remote MiNiFi agents or other NiFi instances.   
+   - Add an **Input Port** to the **root canvas** of NiFi. Input Ports are used to receive flow files from remote MiNiFi agents or other NiFi instances.   
    
    ![NiFi-RecieveFromMiniFi-1](images/NiFi-RecieveFromMiniFi-1.png.png)   
    
@@ -846,9 +845,21 @@ service minifi start
    Now that our NiFi flow is ready to receive data from minifi, let us configure the MiNiFi flow first.   
    
    - Go to [EFM UI](http://demo.cloudera.com:10080/efm/ui/)
-   Add an Input Port to the canvas within your Process Group where we built the main NiFi flow. Name the input flow as **from_minifi**   
    
-   **on the root canvas**, create a simple flow to collect data from the web application log files and forward them to our flow we built earlier in NiFi. 
+   - Click on the **checkered menu**. This will take you to the **Flow  Designer**. On the canvas, add a processor by dragging the processor to the canvas. A list of processors available to configure are displayed. In the filter, type in **tail**. This will filter out the rest and show the **TailFile** processor. Select this processor and configure it.
+   
+      ![CEMFlow-1-TailFile](images/CEMFlow-1-TailFile.png.png)
+      
+   - Configure the properties for the processor as follows:   
+     - **PROCESSOR NAME** : TailFile-weblogs
+     - Properties:
+     	- **Tailing mode** : Single File
+     	- **File(s) to tail** : /home/centos/cdf-workshop-master/data/weblogs/weblogs.log
+     	- **Initial Start Position** : Beginning of File
+     - Leave the rest as default values, Click APPLY and exit.
+     ![CEMFlow-2-TailFile](images/CEMFlow-2-TailFile.png.png)
+     ![CEMFlow-3-TailFile](images/CEMFlow-3-TailFile.png.png)
+     
    
    Our agent has been tagged with the class 'demo' (check nifi.c2.agent.class property in /usr/minifi/conf/bootstrap.conf) so we are going to create a template under this specific class.   
    
