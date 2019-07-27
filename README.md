@@ -861,7 +861,10 @@ service minifi start
      ![CEMFlow-3-TailFile](images/CEMFlow-3-TailFile.png.png)   
      
     - Add a **Remote Group Processor** to the canvas. Input the URL as **http://demo.cloudera.com:9090**, which is the URL for our NiFi UI.
-     ![CEMFlow-1-RemoteProcessGroup](images/CEMFlow-1-RemoteProcessGroup.png.png) 
+     ![CEMFlow-1-RemoteProcessGroup](images/CEMFlow-1-RemoteProcessGroup.png.png)   
+     
+      - Double click on the **Remote Process Group** component on the canvas, and make sure the **TRANSPORT PROTOCOL** property is set to **HTTP**. Change it if is set to **RAW**. Leave the rest of the properties as default values.   
+      ![CEMFlow-1-RemoteProcessGroup](images/CEMFlow-1-RemoteProcessGroup.png.png)
      
    
    Our agent has been tagged with the class 'demo' (check nifi.c2.agent.class property in /usr/minifi/conf/bootstrap.conf) so we are going to create a template under this specific class.   
