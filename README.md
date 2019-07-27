@@ -23,9 +23,9 @@
    
 * [Lab 1 - Build the first NiFi flow](#Build-the-first-NiFi-flow)
 * [Lab 2 - Process Data and Integrate with Schema Registry](#Process-Data)
-* [Lab 3 - Explore Zeppelin and Hive](#explore-Zeooelin-and-Hive)
+* [Lab 3 - Explore Zeppelin and Hive](#explore-Zeppelin-and-Hive)
 * [Lab 4 - Enrich Clickstream Events with User Information for Downstream Analysis](#Enrich-Clickstream-Events)
-* [Lab 5 - Explore Kafka](#explore-kafka)
+* [Lab 5 - Explore Kafka](#Lab-5---Explore-Kafka)
 * [Lab 6 - Publish Enriched Clickstream Events to Kafka and ingest into Druid](#integrate-with-schema-registry)
 * [Lab 7 - Ingest clickstream_events into Druid](#explore-hive-druid-and-zeppelin)
 * [Lab 8 - Create live dashboard with Superset](#create-live-dashboard-with-superset)
@@ -557,7 +557,7 @@ We will now test the flow to check the results of our flow configuration. Perfor
 Since we have now achieved a substantial amount of flow to work, persist the flow in the NiFi Registry by right-clicking on the canvas, selecting the version option and selecting the "commit local changes".  
        
 ******
-## Explore Kafka
+## Lab 5 - Explore Kafka
 
 In this lab, we will explore basic functions of Kafka and the scripts available to interact with Kafka that come packaged with the Kafka installation binaries. We will use Kafka as our messaging layer in the later labs to publish clickstream events to it. Streaming applications built for real-time analytics generally consume streaming data from Kafka, with Kafka acting as a decoupling layer between the streaming data source and the streaming applications.
 
