@@ -21,7 +21,7 @@
 * [Setup for Accessing the sandbox](#accessing-the-sandbox)
 * [Workshop Overview](#stream-data-using-nifi)   
    
-* [Lab 1 - Build the first NiFi flow](#Build-the-first-NiFi-flow)
+* [Lab 1 - Build the first NiFi flow](#Lab-1---Build-the-first-NiFi-flow)
 * [Lab 2 - Process Data and Integrate with Schema Registry](#Process-Data)
 * [Lab 3 - Explore Zeppelin and Hive](#explore-Zeppelin-and-Hive)
 * [Lab 4 - Enrich Clickstream Events with User Information for Downstream Analysis](#Enrich-Clickstream-Events)
@@ -102,7 +102,7 @@ Since the sandbox for the labs was built using **HDP/CDP** and **HDF/CDF** platf
 **TODO: Image of the overall architecture.**
 
 ****
-### LAB 1 - Build the first NiFi flow
+## Lab 1 - Build the first NiFi flow
 
 Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and follow the steps below:
 
