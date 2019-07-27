@@ -927,7 +927,7 @@ service minifi start
 [Back to Content](#content)
 
 ******
-## Bonus - Lab 10 - Stream enhanced data into Hive using NiFi
+## Bonus - Lab 10 - Ingest Streaming Data into Hive using NiFi
 
 
 
