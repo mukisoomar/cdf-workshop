@@ -873,7 +873,18 @@ service minifi start
      - Go to the NiFi UI (http://demo.cloudera.com:9090) if it is open in another window or open one and go to the **root canvas**. Double-click on the **Input Port** we configured (called as *minifi-clickstream-events*), and copy the **Id** value from the configuration window. Input that value as the ***Destination Port Id*** in the connection dialog that popped up in the previous step.   
        ![CEMFlow-2-Connection](images/CEMFlow-2-Connection.png.png)
      
-
+    - Your final MiNiFi flow should look as belo. The **asterisk or Star** at the upper left corner of the window indicates that it has not yet been published to the MiNiFi agent. To publish it to the MiniFi agent, we first publish it to the NiFi Registry. Once it is published there, it automatically publishes the flow to all the MiNiFi agents that belong to the ***demo*** class.   
+    
+     ![CEMFlow-1-FullFlow](images/CEMFlow-1-FullFlow.png.png)
+     
+    - Double-click on the connection to check the details of the configuration.
+    ![CEMFlow-2-FullFlow](images/CEMFlow-2-FullFlow.png.png)
+       
+     
+    - Select **Actions** from the upper right corner and click on **Publish** to publish the flow to NiFi Registry. If successful, the **Star** Icon will change to a **Green Check** icon. This action also publishes the flow to all the MiNiFi agents that are deployed on all the servers - in our case on the sandbox server.  
+    
+     ![CEMFlow-1-FullFlow-Publish](images/CEMFlow-1-FullFlow-Publish.png.png)   
+     
       
      
    
