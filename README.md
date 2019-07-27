@@ -837,55 +837,37 @@ service minifi start
    
    ![NiFi-Main-FromMiniFi-2](images/NiFi-Main-FromMiniFi-2.png.png) 
    
-   - Go back to the root canvas and connect the Input Port via funnel to the *process group* **clickstream-flow** as shown.
+   - Go back to the root canvas and connect the Input Port via funnel to the *process group* **clickstream-flow** or whatever you named your flow that was built earlier as shown.
    
    ![NiFi-Main-FromMiniFi-3](images/NiFi-Main-FromMiniFi-3.png.png)   
    
 - **Step 4: Build the MiniFi flow in EFM**   
 
-   Now that our NiFi flow is ready to rec.   
+   Now that our NiFi flow is ready to receive data from minifi, let us configure the MiNiFi flow first.   
    
-   - Add an Input Port to the canvas within your Process Group where we built the main NiFi flow. Name the input flow as **from_minifi**   
+   - Go to [EFM UI](http://demo.cloudera.com:10080/efm/ui/)
+   Add an Input Port to the canvas within your Process Group where we built the main NiFi flow. Name the input flow as **from_minifi**   
    
-   - Connect the Input Port to the **UpdateAttribute** processor which we named as *Set Schema Name from Registry* via a funnel as shown in the figure below.
+   **on the root canvas**, create a simple flow to collect data from the web application log files and forward them to our flow we built earlier in NiFi. 
    
-   ![NiFi-Main-FromMiniFi-1](images/NiFi-Main-FromMiniFi-1.png.png)
-
-   - Connect the **ListenTCP** processor to the funnel and delete its connection with the **UpdateAttribute** processor. See the figure below for the final result.
+   Our agent has been tagged with the class 'demo' (check nifi.c2.agent.class property in /usr/minifi/conf/bootstrap.conf) so we are going to create a template under this specific class.   
    
-   ![NiFi-Main-FromMiniFi-2](images/NiFi-Main-FromMiniFi-2.png.png)     
-    
-** TODO**
-![NiFi syslog parser](images/nifi-syslog-parser.png)
-
-Now, **on the root canvas**, create a simple flow to collect data from the web application log files and forward them to our flow we built earlier in NiFi. 
+   ![CEM flow](images/cem-minifi-flow.png)   
    
-   Our agent has been tagged with the class 'demo' (check nifi.c2.agent.class property in /usr/minifi/conf/bootstrap.conf) so we are going to create a template under this specific class.
-
-Now that we have built the NiFi flow that will receive the logs, let's go back to the EFM UI and build the MiNiFi flow as below:
-
-![CEM flow](images/cem-minifi-flow.png)
-
-This MiNiFi agent will tail /var/log/messages and send the logs to a remote process group (our NiFi instance) using the Input Port.
-
-![Tailfile](images/tail-file.png)
-
-Don't forget to increase the scheduler!
-
-Please note that the NiFi instance has been configured to receive data over HTTP only, not RAW
-
-![Remote process group](images/remote-process-group.png)
-
-Now we can start the NiFi flow and publish the MiNiFi flow to NiFi registry (Actions > Publish...)
-
-Visit [NiFi Registry UI](http://demo.cloudera.com:61080/nifi-registry/explorer/grid-list) to make sure your flow has been published successfully.
-
-![NiFi Registry](images/nifi-registry.png)
-
-Within few seconds, you should be able to see syslog messages streaming through your NiFi flow and be published to the Kafka topic you have created.
-
-![Syslog message](images/syslog-json.png)
-
+   This MiNiFi agent will tail '/home/centos/cdf-workshop-master/data/weblogs' and send the logs to a remote process group (our NiFi instance) using the Input Port.   
+   ![Tailfile](images/tail-file.png).   
+   
+   Please note that the NiFi instance has been configured to receive data over HTTP only, not RAW   
+   
+   ![Remote process group](images/remote-process-group.png).   
+   
+   Now we can start the NiFi flow and publish the MiNiFi flow to NiFi registry (Actions > Publish...).  Visit [NiFi Registry UI](http://demo.cloudera.com:61080/nifi-registry/explorer/grid-list) to make sure your flow has been published successfully.   
+   
+   ![NiFi Registry](images/nifi-registry.png).   
+   
+   Within few seconds, you should be able to see Weblog messages streaming through the NiFi flow and published to the Kafka topic we had created. Data will be continuously ingested into the Druid data source we created and you will be able to see your dashboard getting updated in real-time.
+   
+   **This concludes our lab**
 
 
 
