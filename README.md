@@ -842,8 +842,11 @@ service minifi start
    
 - **Step 4: Build the MiniFi flow in EFM**   
 
-   Now that our NiFi flow is ready to receive data from MiNiFi, let us configure the MiNiFi flow first. This MiNiFi agent will tail the file located at '/home/centos/cdf-workshop-master/data/weblogs/weblogs.log' and send the logs to the **Input Port** we configured on the **root canvas** earlier. The script 'write-clickstream-to-file.sh' will write the clickstream data to this directory  
-   ![Tailfile](images/tail-file.png). Follow the below steps to create the flow for the MiNiFi agent.   
+   Now that our NiFi flow is ready to receive data from MiNiFi, let us configure the MiNiFi flow. This MiNiFi agent will tail the file located at ``/home/centos/cdf-workshop-master/data/weblogs/weblogs.log` and send the logs to the **Input Port** we configured on the **root canvas** earlier. The script `write-clickstream-to-file.sh` will write the clickstream data to this directory.   
+     
+   ![Tailfile](images/tail-file.png).   
+   
+   Follow the below steps to create the flow for the MiNiFi agent.   
    
    - Go to [EFM UI](http://demo.cloudera.com:10080/efm/ui/)
    
