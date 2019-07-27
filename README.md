@@ -14,7 +14,7 @@
     - Source: My IP
   - Choose an existing or create a new key pair
 
-## [Content](#content)
+## Content
 
 * [Setup for Accessing the sandbox](#Setup-for-Accessing-the-sandbox)
 * [Workshop Overview](#Workshop-Overview)   
@@ -99,7 +99,7 @@ Since the sandbox for the labs was built using **HDP/CDP** and **HDF/CDF** platf
 
 **TODO: Image of the overall architecture.**
 
-##### Back to Top
+[Back to Content](#content)
 
 ****
 ## Lab 1 - Build the first NiFi flow
@@ -174,6 +174,8 @@ Let's get started... Open [NiFi UI](http://demo.cloudera.com:9090/nifi/) and fol
   - Select the "info icon in the first column", This will open up the a window to show the corresponding flow file details. Observe some of the attributes on the **DETAILS** tab. Each flowfile has a unique id associated with that and a unique filename given to it. Also shows the size of the file. You can download the contents of the file to your computer by clicking on the **Download Button** or click on the **View Button** to view what was received. ![Flowfile Details](images/Queue-list-3.png.png)
   - Click on the **View Button** and you will see the contents in another tab of your browser window that pops up. Keep this window open for using later. ![Flowfile Contents](images/Queue-list-4.png.png)
   - Go back to your **FlowFile** details window. Click on the **ATTRIBUTES** tab. This provides the details of the attributes that are associated with the flow file. Click OK and close the queue list window to return back to your canvas. ![Flowfile Contents](images/Queue-list-5.png.png)
+
+[Back to Content](#content)
 
 ****  
 ## Lab 2 - Process Data and Integrate with Schema Registry
@@ -407,6 +409,9 @@ We will now test the flow. Perform the following steps to start the controller s
    ![Test-NiFiRegistryConfirmation](images/Test-NiFiRegistryConfirmation.png.png)
      
    - You have now successfully completed this lab.
+
+
+[Back to Content](#content)
    
 ****  
 ## Lab 3 - Explore Zeppelin and Hive
@@ -480,6 +485,7 @@ Zeppelin is a notebook application that provides an interactive environment to c
   - This concludes the lab. In this lab we had the users.tsv and products.tsv data files were already moved to HDFS. We inspected that through the %s interpreter and created Hive tables using those files. We then created the corresponding ORC tables for them which are optimized for performance. We will use the ORC tables in NiFi to enrich click stream events with user information.
   
 
+[Back to Content](#content)
 
 ******
 ## Lab 4 - Enrich Clickstream Events with User Information for Downstream Analysis
@@ -555,6 +561,9 @@ We will now test the flow to check the results of our flow configuration. Perfor
 
 - **Step 6: Update flow in NiFi Flow Registry**
 Since we have now achieved a substantial amount of flow to work, persist the flow in the NiFi Registry by right-clicking on the canvas, selecting the version option and selecting the "commit local changes".  
+
+[Back to Content](#content)
+
        
 ******
 ## Lab 5 - Explore Kafka
@@ -589,6 +598,9 @@ Follow the same steps as above except for the last step where we are going to op
 ```./bin/kafka-console-producer.sh --broker-list demo.cloudera.com:6667 --topic clickstream_events```
 
 Type anything and click enter. Then go back to the first terminal with the consumer running. You should see the same message get displayed!
+
+
+[Back to Content](#content)
 
 ******
 ## Lab 6 - Publish Enriched Clickstream Events to Kafka and ingest into Druid
@@ -665,6 +677,9 @@ You can check if the retention was set properly:
 
 ```./bin/kafka-configs.sh --zookeeper demo.cloudera.com:2181 --describe --entity-type topics --entity-name clickstream_events```
 
+
+[Back to Content](#content)
+
 ********
 ## Lab 7 - Ingest clickstream_events into Druid
 
@@ -716,6 +731,9 @@ Verify that supervisor and indexing task are running from the [Druid overload co
 
 You can now start publishing data using the script to the NiFi flow. The data that gets published to Kafka in NiFi now automatically gets ingested into Druid allowing us to query the data streamed in real-time.
 
+[Back to Content](#content)
+
+******
 ## Lab 8 - Create Live Dashboard with Superset
 
 Go to [Superset UI](http://demo.cloudera.com:9088/)
@@ -784,6 +802,7 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
    
 - You can add more slices to do product segmentation across demographics (gender for example or by age) to get more insights and in real-time or daily to see the trends over time. 
    
+[Back to Content](#content)
    
 ******
 ## Lab 9 - Collect clickstream events data using MiNiFi and EFM
@@ -905,7 +924,9 @@ service minifi start
    
    **This concludes our lab**
 
+[Back to Content](#content)
 
+******
 ## Bonus - Lab 10 - Stream enhanced data into Hive using NiFi
 
 
