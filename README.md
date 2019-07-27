@@ -1,20 +1,18 @@
 # CDF Labs: Real-time Web Click Stream Data analysis with NiFi, Kafka, Druid, Hive, Zeppelin and Superset
 
 
-## Prerequisite
+## Prerequisites
 
 **Although this AMI is not public and is available for Cloudera workhops only, the steps can be reproduced in your own environment**
 
 - Launch AWS AMI 
-  - **New: ami-09cfb2ea903d77ce1** 
-  - **charles: -ami-06c4071a1b5d62c4f** 
-  
-- Use **m5d.4xlarge** instance type
-- Keep default storage (300GB SSD)
-- Set security group with:
-  - Type: All TCP
-  - Source: My IP
-- Choose an existing or create a new key pair
+  - **New: ami-0a07d72cfdae70482**
+  - Use **m5d.4xlarge** instance type
+  - Keep default storage (300GB SSD)
+  - Set security group with:
+    - Type: All TCP
+    - Source: My IP
+  - Choose an existing or create a new key pair
 
 ## Content
 
