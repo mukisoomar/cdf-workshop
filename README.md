@@ -23,14 +23,14 @@
    
 * [Lab 1 - Build the first NiFi flow](#Lab-1---Build-the-first-NiFi-flow)
 * [Lab 2 - Process Data and Integrate with Schema Registry](#Lab-2---Process-Data-and-Integrate-with-Schema-Registry)
-* [Lab 3 - Explore Zeppelin and Hive](#explore-Zeppelin-and-Hive)
-* [Lab 4 - Enrich Clickstream Events with User Information for Downstream Analysis](#Enrich-Clickstream-Events)
+* [Lab 3 - Explore Zeppelin and Hive](#Lab-3---Explore-Zeppelin-and-Hive)
+* [Lab 4 - Enrich Clickstream Events with User Information for Downstream Analysis](#Lab-4---Enrich-Clickstream-Events-with-User-Information-for-Downstream-Analysis)
 * [Lab 5 - Explore Kafka](#Lab-5---Explore-Kafka)
-* [Lab 6 - Publish Enriched Clickstream Events to Kafka and ingest into Druid](#integrate-with-schema-registry)
-* [Lab 7 - Ingest clickstream_events into Druid](#explore-hive-druid-and-zeppelin)
-* [Lab 8 - Create live dashboard with Superset](#create-live-dashboard-with-superset)
-* [Lab 9 - Collect clickstream events data using MiNiFi and EFM](#collect-syslog-data-using-minifi-and-efm)
-* [Bonus - Lab 10 - Stream enhanced data into Hive using NiFi](#stream-enhanced-data-into-hive-using-nifi)
+* [Lab 6 - Publish Enriched Clickstream Events to Kafka and ingest into Druid](#Lab-6---Publish-Enriched-Clickstream-Events-to-Kafka-and-ingest-into-Druid)
+* [Lab 7 - Ingest clickstream_events into Druid](#Lab-7---Ingest-clickstream_events-into-Druid)
+* [Lab 8 - Create Live Dashboard with Superset](#Lab-8---Create-Live-Dashboard-with-Superset)
+* [Lab 9 - Collect clickstream events data using MiNiFi and EFM](#Lab-9---Collect-clickstream-events-data-using-MiNiFi-and-EFM)
+* [Bonus - Lab 10 - Stream enhanced data into Hive using NiFi](#Bonus---Lab-10---Stream-enhanced-data-into-Hive-using-NiFi)
 
 ## Setup for Accessing the sandbox
 
@@ -409,7 +409,7 @@ We will now test the flow. Perform the following steps to start the controller s
    - You have now successfully completed this lab.
    
 ****  
-### Explore Zeppelin and Hive
+## Lab 3 - Explore Zeppelin and Hive
 In this lab we will explore the HDP platform's HDFS and Hive components using Zeppelin.
 Zeppelin is a notebook application that provides an interactive environment to create notebooks using many scripting languages for which interpreters are available. Graphically rich applications can be created using notebooks and the scripting programming languages the user is familiar with.
 
@@ -482,7 +482,7 @@ Zeppelin is a notebook application that provides an interactive environment to c
 
 
 ******
-### Enrich Clickstream Events with User Information for Downstream Analysis
+## Lab 4 - Enrich Clickstream Events with User Information for Downstream Analysis
 
 In this lab, we will configure some more processors to enrich the in-flight streaming data with user information. For this we will use the user table in the hive database we created in the previous lab.
 
@@ -591,7 +591,7 @@ Follow the same steps as above except for the last step where we are going to op
 Type anything and click enter. Then go back to the first terminal with the consumer running. You should see the same message get displayed!
 
 ******
-## Publish Enriched Clickstream Events to Kafka and ingest into Druid
+## Lab 6 - Publish Enriched Clickstream Events to Kafka and ingest into Druid
 In this lab we will add a few more attributes to the click stream event data that are necessary for sending the event data into Druid for aggregation and then convert the attributes of the flow file into json content of the flow file. We will then publish the data to Kafka. 
 
 We will then create a table in Druid through the hive interface and initiate data ingestion into Druid.
@@ -666,7 +666,7 @@ You can check if the retention was set properly:
 ```./bin/kafka-configs.sh --zookeeper demo.cloudera.com:2181 --describe --entity-type topics --entity-name clickstream_events```
 
 ********
-## Ingest clickstream_events into Druid
+## Lab 7 - Ingest clickstream_events into Druid
 
 Visit [Zeppelin](http://demo.cloudera.com:9995/) and log in as admin (password: admin)
 
@@ -716,7 +716,7 @@ Verify that supervisor and indexing task are running from the [Druid overload co
 
 You can now start publishing data using the script to the NiFi flow. The data that gets published to Kafka in NiFi now automatically gets ingested into Druid allowing us to query the data streamed in real-time.
 
-## Create Live Dashboard with Superset
+## Lab 8 - Create Live Dashboard with Superset
 
 Go to [Superset UI](http://demo.cloudera.com:9088/)
 
@@ -786,7 +786,7 @@ Edit the **workshop.clickstream_events** datasource record and verify that the c
    
    
 ******
-## Collect Clickstream Event Data using MiNiFi and EFM
+## Lab 9 - Collect clickstream events data using MiNiFi and EFM
 
 While we saw one way of collecting data using a direct TCP connection within NiFi, this may in general not be feasible when your applications are deployed, for example in the cloud or outside your enterprise. In such a situation, we can use minifi as a very light-footprint agent on the web application servers and capture the streaming data from the log files that the web applications write to and stream that over to NiFi.
 
@@ -906,7 +906,7 @@ service minifi start
    **This concludes our lab**
 
 
-
+## Bonus - Lab 10 - Stream enhanced data into Hive using NiFi
 
 
 
