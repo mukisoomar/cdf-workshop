@@ -868,10 +868,9 @@ service minifi start
       
     - Connect the **TailFile-weblogs** processor with the **RemoteProcessGroup**. A connection dialog pops up, asking to provide the ***Destination Port Id***   
     
-     ![CEMFlow-1-Connection](images/CEMFlow-1-Conection.png.png)   
+     ![CEMFlow-1-Connection](images/CEMFlow-1-Connection.png.png)   
      
-       - Go to the NiFi UI (http://demo.cloudera.com:9090) if it is open in another window or open one and go to the **root canvas**. Double-click on the **Input Port** we configured (called as *minifi-clickstream-events*), and copy the **Id** value from the configuration window. Input that value as the ***Destination Port Id*** in the connection dialog that popped up in the previous step.
-       
+       - Go to the NiFi UI (http://demo.cloudera.com:9090) if it is open in another window or open one and go to the **root canvas**. Double-click on the **Input Port** we configured (called as *minifi-clickstream-events*), and copy the **Id** value from the configuration window. Input that value as the ***Destination Port Id*** in the connection dialog that popped up in the previous step.   
        ![CEMFlow-2-Connection](images/CEMFlow-2-Connection.png.png)
      
 
