@@ -858,7 +858,10 @@ service minifi start
      	- **Initial Start Position** : Beginning of File
      - Leave the rest as default values, Click APPLY and exit.
      ![CEMFlow-2-TailFile](images/CEMFlow-2-TailFile.png.png)
-     ![CEMFlow-3-TailFile](images/CEMFlow-3-TailFile.png.png)
+     ![CEMFlow-3-TailFile](images/CEMFlow-3-TailFile.png.png)   
+     
+    - Add a **Remote Group Processor** to the canvas. Input the URL as **http://demo.cloudera.com:9090**, which is the URL for our NiFi UI.
+     ![CEMFlow-1-RemoteProcessGroup](images/CEMFlow-1-RemoteProcessGroup.png.png) 
      
    
    Our agent has been tagged with the class 'demo' (check nifi.c2.agent.class property in /usr/minifi/conf/bootstrap.conf) so we are going to create a template under this specific class.   
