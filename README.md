@@ -18,8 +18,8 @@
 
 ## Content
 
-* [Setup for Accessing the sandbox](#accessing-the-sandbox)
-* [Workshop Overview](#stream-data-using-nifi)   
+* [Setup for Accessing the sandbox](#Setup-for-Accessing-the-sandbox)
+* [Workshop Overview](#Workshop-Overview)   
    
 * [Lab 1 - Build the first NiFi flow](#Lab-1---Build-the-first-NiFi-flow)
 * [Lab 2 - Process Data and Integrate with Schema Registry](#Lab-2---Process-Data-and-Integrate-with-Schema-Registry)
