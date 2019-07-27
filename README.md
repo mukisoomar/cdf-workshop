@@ -842,9 +842,12 @@ service minifi start
    
 - **Step 4: Build the MiniFi flow in EFM**   
 
-   Now that our NiFi flow is ready to receive data from minifi, let us configure the MiNiFi flow first.   
+   Now that our NiFi flow is ready to receive data from MiNiFi, let us configure the MiNiFi flow first. This MiNiFi agent will tail the file located at '/home/centos/cdf-workshop-master/data/weblogs/weblogs.log' and send the logs to the **Input Port** we configured on the **root canvas** earlier. The script 'write-clickstream-to-file.sh' will write the clickstream data to this directory  
+   ![Tailfile](images/tail-file.png). Follow the below steps to create the flow for the MiNiFi agent.   
    
    - Go to [EFM UI](http://demo.cloudera.com:10080/efm/ui/)
+   
+   - Our agent has been tagged with the class 'demo' (check nifi.c2.agent.class property in /usr/minifi/conf/bootstrap.conf) so we are going to create a template under this specific class.  
    
    - Click on the **checkered menu**. This will take you to the **Flow  Designer**. On the canvas, add a processor by dragging the processor to the canvas. A list of processors available to configure are displayed. In the filter, type in **tail**. This will filter out the rest and show the **TailFile** processor. Select this processor and configure it.
    
@@ -884,13 +887,7 @@ service minifi start
     - Select **Actions** from the upper right corner and click on **Publish** to publish the flow to NiFi Registry. If successful, the **Star** Icon will change to a **Green Check** icon. This action also publishes the flow to all the MiNiFi agents that are deployed on all the servers - in our case on the sandbox server.  
     
      ![CEMFlow-1-FullFlow-Publish](images/CEMFlow-1-FullFlow-Publish.png.png)   
-     
       
-     
-   
-   Our agent has been tagged with the class 'demo' (check nifi.c2.agent.class property in /usr/minifi/conf/bootstrap.conf) so we are going to create a template under this specific class.   
-   
-   ![CEM flow](images/cem-minifi-flow.png)   
    
    This MiNiFi agent will tail '/home/centos/cdf-workshop-master/data/weblogs' and send the logs to a remote process group (our NiFi instance) using the Input Port.   
    ![Tailfile](images/tail-file.png).   
