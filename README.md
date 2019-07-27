@@ -28,7 +28,7 @@
 * [Lab 7 - Ingest clickstream_events into Druid](#Lab-7---Ingest-clickstream_events-into-Druid)
 * [Lab 8 - Create Live Dashboard with Superset](#Lab-8---Create-Live-Dashboard-with-Superset)
 * [Lab 9 - Collect clickstream events data using MiNiFi and EFM](#Lab-9---Collect-clickstream-events-data-using-MiNiFi-and-EFM)
-* [Bonus - Lab 10 - Stream enhanced data into Hive using NiFi](#Bonus---Lab-10---Stream-enhanced-data-into-Hive-using-NiFi)
+* [Bonus - Lab 10 - Ingest Streaming Data into Hive using NiFi](#Bonus---Lab-10---Ingest-Streaming-Data-into-Hive-using-NiFi)
 
 ## Setup for Accessing the sandbox
 
