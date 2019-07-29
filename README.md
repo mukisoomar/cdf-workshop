@@ -436,7 +436,8 @@ Zeppelin is a notebook application that provides an interactive environment to c
     ```   
     
     - Using a hive interpreter (%hive), execute the following SQL statements. You can use one paragraph for each command to execute the below commands.
-    ```
+    
+    ```SQL
     # Create a database in Hive
     CREATE DATABASE IF NOT EXISTS clickstream
     USE clickstream
