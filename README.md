@@ -24,7 +24,7 @@
 * [Lab 3 - Explore Zeppelin and Hive](#Lab-3---Explore-Zeppelin-and-Hive)
 * [Lab 4 - Enrich Clickstream Events with User Information for Downstream Analysis](#Lab-4---Enrich-Clickstream-Events-with-User-Information-for-Downstream-Analysis)
 * [Lab 5 - Explore Kafka](#Lab-5---Explore-Kafka)
-* [Lab 6 - Publish Enriched Clickstream Events to Kafka and ingest into Druid](#Lab-6---Publish-Enriched-Clickstream-Events-to-Kafka-and-ingest-into-Druid)
+* [Lab 6 - Publish Enriched Clickstream Events to Kafka](#Lab-6---Publish-Enriched-Clickstream-Events-to-Kafka)
 * [Lab 7 - Ingest clickstream_events into Druid](#Lab-7---Ingest-clickstream_events-into-Druid)
 * [Lab 8 - Create Live Dashboard with Superset](#Lab-8---Create-Live-Dashboard-with-Superset)
 * [Lab 9 - Collect clickstream events data using MiNiFi and EFM](#Lab-9---Collect-clickstream-events-data-using-MiNiFi-and-EFM)
@@ -604,7 +604,7 @@ Type anything and click enter. Then go back to the first terminal with the consu
 [Back to Content](#content)
 
 ******
-## Lab 6 - Publish Enriched Clickstream Events to Kafka and ingest into Druid
+## Lab 6 - Publish Enriched Clickstream Events to Kafka
 In this lab we will add a few more attributes to the click stream event data that are necessary for sending the event data into Druid for aggregation and then convert the attributes of the flow file into json content of the flow file. We will then publish the data to Kafka. 
 
 We will then create a table in Druid through the hive interface and initiate data ingestion into Druid.
