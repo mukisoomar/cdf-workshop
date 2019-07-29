@@ -6,8 +6,8 @@
 **Although this AMI is not public and is available for Cloudera workhops only, the steps can be reproduced in your own environment**
 
 - Launch AWS AMI 
-  - **New: ami-0a07d72cfdae70482**
-  - Use **m5d.4xlarge** instance type
+  - **ami-045010343435ff320**
+  - Use **r5d.4xlarge** instance type
   - Keep default storage (300GB SSD)
   - Set security group with:
     - Type: All TCP
@@ -423,7 +423,7 @@ Zeppelin is a notebook application that provides an interactive environment to c
   - Open the notebook **clickstream**.
   ![Zepplin-1-open-notebook](images/Zepplin-1-open-notebook.png.png)
   
-  - Click on the **Gear** icon at the top right corner. This opens up the list of interpreters. Click Save and exit. This will initialize all the interpreters.
+  - Click on the **Gear** icon at the top right corner. This opens up the list of interpreters. Click Save and exit. This will initialize all the interpreters. Make sure **hive** interpreter shows up as the topmost interpreter in the list. If not, drag it to the topmost position in the list of the interpreters. This makes **hive** as the default interpreter.
   ![Zepplin-2-initialize-interpreters](images/Zepplin-2-initialize-interpreters.png.png)
   
   - Perform the following steps to get familiarized with Zeppelin notebooks and the interpreters we will use in this lab to inspect HDFS directories and create Hive tables.   

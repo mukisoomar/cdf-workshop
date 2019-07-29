@@ -51,30 +51,30 @@ SELECT * FROM PRODUCTS_ORC LIMIT 10
 
 
 ## FOR DRUID INGESTION
-CREATE EXTERNAL TABLE CLICKSTREAM_EVENTS (
-`__TIME` TIMESTAMP,
-CLICKSTREAM_ID STRING,
-USER_SESSION_ID STRING,
-IPADDRESS STRING,
-TS STRING,
-GENDER STRING,
-BDAY STRING,
-IS_PURCHASED STRING,
-IS_PAGE_ERRORED STRING,
-URL STRING,
-CITY STRING,
-STATE STRING,
-COUNTRY STRING
+CREATE EXTERNAL TABLE workshop.clickstream_events (
+`__time` timestamp,
+clickstream_id string,
+user_session_id string,
+ipaddress string,
+ts string,
+gender string,
+bday string,
+is_purchased string,
+is_page_errored string,
+url string,
+city string,
+state string,
+country string
 )
-STORED BY 'org.apache.hadoop.hive.druid.druidstoragehandler'
+STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler'
 TBLPROPERTIES (
-"KAFKA.BOOTSTRAP.SERVERS" = "demo.cloudera.com:6667",
-"KAFKA.TOPIC" = "clickstream_events",
-"DRUID.KAFKA.INGESTION.USEEARLIESTOFFSET" = "true",
-"DRUID.KAFKA.INGESTION.MAXROWSINMEMORY" = "5",
-"DRUID.KAFKA.INGESTION.STARTDELAY" = "PT1S",
-"DRUID.KAFKA.INGESTION.PERIOD" = "PT1S",
-"DRUID.KAFKA.INGESTION.CONSUMER.RETRIES" = "2"
+"kafka.bootstrap.servers" = "demo.cloudera.com:6667",
+"kafka.topic" = "clickstream_events",
+"druid.kafka.ingestion.useEarliestOffset" = "true",
+"druid.kafka.ingestion.maxRowsInMemory" = "5",
+"druid.kafka.ingestion.startDelay" = "PT1S",
+"druid.kafka.ingestion.period" = "PT1S",
+"druid.kafka.ingestion.consumer.retries" = "2"
 )
 
 # Join with other tables
