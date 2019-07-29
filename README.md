@@ -928,6 +928,20 @@ service minifi start
 
 ******
 ## Bonus - Lab 10 - Ingest Streaming Data into Hive using NiFi
+We can ingest the raw clickstream events directly into HDFS for historical analysis. In this lab, configure the ingestion flow as depicted in the figures below:   
+
+- **Step 1:** Add **MergeContent** and **PutHDFS** processors to the canvas. Connect the **funnel** to the **MergeContent** processor and the **MergeContent** processor to the **PutHDFS** processor as shown in the figure below.   
+
+![HDFS-Ingest-1](images/HDFS-Ingest-1.png.png).   
+
+
+- **Step 2:** Configure the **MergeContent** Processor as shown below.   
+
+![HDFS-Ingest-2-MergeContents](images/HDFS-Ingest-2-MergeContents.png.png).
+
+- **Step 3:** Configure the **PutHDFS** Processor as shown below.   
+
+![HDFS-Ingest-3-PutHDFS](images/HDFS-Ingest-3-PutHDFS.png.png).
 
 
 
