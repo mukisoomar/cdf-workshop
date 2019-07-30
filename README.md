@@ -428,22 +428,22 @@ Zeppelin is a notebook application that provides an interactive environment to c
   
   - Perform the following steps to get familiarized with Zeppelin notebooks and the interpreters we will use in this lab to inspect HDFS directories and create Hive tables.   
 
-    - Using a shell interpreter (%s), execute the following HDFS commands. You can use one paragraph for each command to execute the below commands. You can view the HDFS directories and the files that were ingested for creating hive tables we will use in the lab.
+    - Using a shell interpreter (%sh), execute the following HDFS commands. You can use one paragraph for each command to execute the below commands. You can view the HDFS directories and the files that were ingested for creating hive tables we will use in the lab.
     ```
      hdfs dfs -ls /workshop/clickstream/data
      hdfs dfs -ls /workshop/clickstream/data/products
      hdfs dfs -ls /workshop/clickstream/data/users
     ```   
     
-    - Using a hive interpreter (%hive), execute the following SQL statements. You can use one paragraph for each command to execute the below commands.
+    - Using a hive interpreter (%hive), execute the following SQL statements. You can use one paragraph for each command to execute the below commands. Use one command in a 
     
     ```SQL
-    # Create a database in Hive
-    CREATE DATABASE IF NOT EXISTS clickstream
-    USE clickstream
+    -- Create a database in Hive
+    CREATE DATABASE IF NOT EXISTS workshop
+    USE workshop
     
-    # Create a users table with a schema on top of the users.tsv file in HDFS
-    # DROP TABLE IF EXISTS users
+    -- Create a users table with a schema on top of the users.tsv file in HDFS
+    -- DROP TABLE IF EXISTS users
      
     CREATE EXTERNAL TABLE IF NOT EXISTS users 
     (swid string, birth_dt string, gender_cd string) 
