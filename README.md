@@ -420,7 +420,7 @@ Zeppelin is a notebook application that provides an interactive environment to c
 
 
   - Log into Zeppelin [Zeppelin](http://demo.cloudera.com:9995/) as admin (password: admin)
-  - Open the notebook **clickstream**.
+  - Create a new notebook and call it **clickstream**.
   ![Zepplin-1-open-notebook](images/Zepplin-1-open-notebook.png.png)
   
   - Click on the **Gear** icon at the top right corner. This opens up the list of interpreters. Click Save and exit. This will initialize all the interpreters. Make sure **hive** interpreter shows up as the topmost interpreter in the list. If not, drag it to the topmost position in the list of the interpreters. This makes **hive** as the default interpreter.
